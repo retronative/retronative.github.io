@@ -1,1 +1,3 @@
-[]
+[
+	{ "id": "thixpin", "role": "Maintainer", "projects": ["recarbon", "refrozen"] }
+]
