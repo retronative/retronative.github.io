@@ -36,7 +36,7 @@ npm run og             # re-render public/og/retronative.png
 | `src/styles/` | Design tokens, fonts, base styles |
 | `scripts/check-dist.mjs` | Checks on the build: metadata, links and anchors, private and download links, sitemap, project path collisions |
 | `scripts/a11y.mjs` | Accessibility checks against a running preview |
-| `deploy/github-pages.yml` | Inactive GitHub Pages workflow template |
+| `.github/workflows/deploy.yml` | The GitHub Pages deployment (actions pinned to release commits) |
 
 ## Adding a project
 
@@ -53,9 +53,9 @@ Add an entry to `src/data/projects.json`. The build fails if an entry doesn't ma
 
 ## Deployment
 
-Not enabled. Once approved: create the public repository `retronative/retronative.github.io`,
-set Settings → Pages → Source to "GitHub Actions", move `deploy/github-pages.yml` to
-`.github/workflows/`, run it once by hand, check the result, then enable its `push` trigger.
+`.github/workflows/deploy.yml` builds, checks (`astro check`, `scripts/check-dist.mjs`) and deploys
+the site to GitHub Pages (Settings → Pages → Source: GitHub Actions). It runs by hand; its `push`
+trigger is enabled once the first deployment has been checked.
 
 ## Licenses
 

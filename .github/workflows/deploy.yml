@@ -1,0 +1,52 @@
+# Deploys this site to GitHub Pages (https://retronative.github.io/) from
+# retronative/retronative.github.io (Settings > Pages > Source: GitHub Actions).
+# It runs by hand (Actions > Deploy to GitHub Pages > Run workflow); the push
+# trigger is enabled once the first deployment has been checked.
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+
+# Nothing by default; each job asks for what it needs. Actions are pinned to the
+# commit of a release (its tag in the comment).
+permissions: {}
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24   # Astro 7.4 needs Node 22.23.4 or later
+          cache: npm
+      - run: npm ci
+      - run: npx astro check
+      - run: npx astro build
+      - run: node scripts/check-dist.mjs
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
