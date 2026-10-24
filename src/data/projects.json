@@ -47,5 +47,47 @@
 		},
 		"accent": "neon",
 		"glyphs": ["PPC", "A64"]
+	},
+	{
+		"id": "refrozen",
+		"order": 2,
+		"featured": false,
+		"name": "reFrozen",
+		"tagline": "Native recompilation of Warcraft III: The Frozen Throne (1.26a) for Apple Silicon.",
+		"summary": "Planned with the same method as ReCarbon: statically recompile the game's x86 Win32 code (war3.exe and Game.dll 1.26a) for arm64, on a native runtime that replaces Win32, Direct3D 8/9, DirectSound and Storm, so that DotA Allstars (v6.83) plays on macOS without Wine or a VM. Whether this is feasible is still being studied.",
+		"game": {
+			"title": "Warcraft III: The Frozen Throne",
+			"original_platform": "Windows (x86 Win32)"
+		},
+		"target": {
+			"os": "macOS",
+			"hardware": "Apple Silicon Macs",
+			"arch": ["arm64"]
+		},
+		"technique": "static-recompilation",
+		"status": {
+			"phase": "planning",
+			"label": "Planning",
+			"note": "Feasibility research (M0) is in progress; nothing is built yet. No releases or downloads.",
+			"released": false,
+			"downloads": false,
+			"source": "reFrozen README (Status)",
+			"updated": "2026-10-24"
+		},
+		"requirements": [
+			"An Apple Silicon Mac",
+			"Your own legally obtained copy of Warcraft III: Reign of Chaos and The Frozen Throne"
+		],
+		"links": {
+			"repo": { "url": "https://github.com/retronative/refrozen", "public": true }
+		},
+		"upstream": [],
+		"legal": {
+			"unofficial": true,
+			"rights_holder": "Blizzard Entertainment, Inc.",
+			"disclaimer": "reFrozen is an unofficial fan project. It is not affiliated with, endorsed by or sponsored by Blizzard Entertainment, Inc. Warcraft and The Frozen Throne are trademarks of Blizzard Entertainment, Inc. and are used here only to describe the game. DotA Allstars is a community map by its respective authors. No game files are included or distributed: you need your own legally obtained copy of Warcraft III: Reign of Chaos and The Frozen Throne."
+		},
+		"accent": "ember",
+		"glyphs": ["X86", "A64"]
 	}
 ]
