@@ -1,0 +1,92 @@
+---
+import { site } from '../site.config';
+import Wordmark from './Wordmark.astro';
+import ExternalLink from './ExternalLink.astro';
+
+const year = 2026;
+---
+
+<footer class="site-footer">
+	<div class="wrap grid">
+		<div class="id">
+			<Wordmark />
+			<p class="mission">{site.mission}</p>
+			<p><ExternalLink href={site.github.url}>{site.github.label}</ExternalLink></p>
+		</div>
+		<nav aria-label="Footer">
+			<h2 class="label">Site</h2>
+			<ul>
+				<li><a href="/#mission">Mission</a></li>
+				<li><a href="/projects/">Projects</a></li>
+				<li><a href="/#contributors">Contributors</a></li>
+				<li><a href="/#github">GitHub</a></li>
+			</ul>
+		</nav>
+		<div class="legal">
+			<h2 class="label">Legal</h2>
+			<p>
+				RetroNative projects are unofficial fan projects. They are not affiliated with, endorsed by or sponsored by any game's publisher or
+				platform holder. Game titles are trademarks of their owners, used only to describe the games. No game files are included or distributed.
+			</p>
+			<p class="licenses">
+				© {year} RetroNative contributors. Site code: <ExternalLink href="https://opensource.org/license/mit">MIT</ExternalLink>. Written content: <ExternalLink
+					href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</ExternalLink
+				>. Fonts: SIL Open Font License 1.1 (license texts: <a href="/licenses/chakra-petch-OFL.txt">Chakra Petch</a>, <a href="/licenses/inter-OFL.txt">Inter</a>, <a href="/licenses/jetbrains-mono-OFL.txt">JetBrains Mono</a>).
+			</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		margin-top: 6rem;
+		padding-block: 3rem 2.5rem;
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		background: var(--bg-deep);
+		border-top: 1px solid var(--line);
+	}
+	.grid {
+		display: grid;
+		gap: 2rem;
+	}
+	@media (min-width: 48rem) {
+		.grid {
+			grid-template-columns: 1.2fr 0.6fr 2fr;
+		}
+	}
+	.mission {
+		max-width: 22rem;
+		margin-block: 1rem 0.5rem;
+		color: var(--text-2);
+	}
+	.label {
+		margin: 0 0 0.75rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		font-weight: 400;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	li a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+	}
+	.legal p {
+		margin: 0 0 0.75rem;
+		max-width: 44rem;
+	}
+	.licenses {
+		font-size: 0.85rem;
+	}
+	a {
+		color: var(--link);
+	}
+</style>

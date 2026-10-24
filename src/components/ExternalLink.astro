@@ -1,0 +1,10 @@
+---
+// A link that leaves the site: an arrow for sighted users, words for everyone else.
+interface Props {
+	href: string;
+	class?: string;
+}
+const { href, class: className } = Astro.props;
+---
+
+<a href={href} class:list={['ext', className]} rel="noopener"><slot /><span class="sr-only"> (external site)</span></a>

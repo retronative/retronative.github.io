@@ -1,0 +1,110 @@
+---
+import { site } from '../site.config';
+import Wordmark from './Wordmark.astro';
+import ExternalLink from './ExternalLink.astro';
+
+const path = Astro.url.pathname;
+const isHome = path === '/';
+// On the home page the section links are same-page anchors.
+const at = (hash: string) => (isHome ? `#${hash}` : `/#${hash}`);
+const nav = [
+	{ label: 'Mission', href: at('mission') },
+	{ label: 'Projects', href: '/projects/', current: path.startsWith('/projects/') },
+	{ label: 'Contributors', href: at('contributors') },
+];
+---
+
+<header class="site-header">
+	<div class="bar wrap">
+		<a class="home" href="/" aria-label="RetroNative home" aria-current={isHome ? 'page' : undefined}>
+			<Wordmark />
+		</a>
+		<nav aria-label="Main">
+			<ul>
+				{
+					nav.map((item) => (
+						<li>
+							<a href={item.href} aria-current={item.current ? 'page' : undefined}>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+				<li><ExternalLink href={site.github.url}>GitHub</ExternalLink></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: color-mix(in srgb, var(--bg) 90%, transparent);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid transparent;
+		border-image: linear-gradient(90deg, transparent, var(--rn-neon) 25%, var(--rn-ember) 70%, transparent) 1;
+	}
+	.bar {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		column-gap: 1.5rem;
+		min-height: var(--rn-header-h);
+	}
+	.home {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		text-decoration: none;
+	}
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 0.25rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	nav :global(a) {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		padding: 0 0.6rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.85rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: var(--text-2);
+		transition: color var(--rn-fast) var(--rn-ease);
+	}
+	nav :global(a:hover),
+	nav a[aria-current='page'] {
+		color: var(--rn-neon);
+	}
+	nav a[aria-current='page'] {
+		text-decoration: underline;
+		text-underline-offset: 0.45em;
+	}
+	/* Phones: the links wrap under the wordmark; no menu button, no JS. */
+	@media (max-width: 40rem) {
+		.site-header {
+			position: static;
+		}
+		.bar {
+			padding-block: 0.5rem;
+		}
+		nav {
+			width: 100%;
+			margin-inline-start: -0.45rem;
+		}
+		nav :global(a) {
+			padding: 0 0.45rem;
+			font-size: 0.78rem;
+			letter-spacing: 0.03em;
+		}
+	}
+</style>

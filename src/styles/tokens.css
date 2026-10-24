@@ -1,0 +1,60 @@
+/* RetroNative design tokens. Dark-only: there is no light theme.
+   The palette's colour values match ReCarbon's website, so the org site and its
+   first project read as one family; this file itself is original to this site. */
+:root {
+	color-scheme: dark;
+
+	/* Palette */
+	--rn-asphalt: #0b0d10;
+	--rn-void: #07080b;
+	--rn-carbon: #15181d;
+	--rn-graphite: #232831;
+	--rn-steel: #3a4250;
+	--rn-neon: #19e3ff;
+	--rn-neon-soft: #7cf0ff;
+	--rn-ember: #ff4d2e;
+	--rn-amber: #ffb02e;
+	--rn-volt: #c6ff3d;
+	--rn-text: #e9eef5;
+	--rn-text-2: #c3cad6;
+	--rn-muted: #8a94a6;
+
+	/* Roles */
+	--bg: var(--rn-asphalt);
+	--bg-deep: var(--rn-void);
+	--surface: var(--rn-carbon);
+	--line: var(--rn-graphite);
+	--line-strong: var(--rn-steel);
+	--text: var(--rn-text);
+	--text-2: var(--rn-text-2);
+	--text-muted: var(--rn-muted);
+	--link: var(--rn-neon-soft);
+	--focus: var(--rn-neon);
+
+	/* Type */
+	--rn-font-display: 'Chakra Petch', 'Avenir Next Condensed', system-ui, sans-serif;
+	--rn-font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--rn-font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+	/* Shape and motion */
+	--rn-cut: 14px; /* diagonal corner cut on cards */
+	--rn-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+	--rn-fast: 160ms;
+	--rn-slow: 280ms;
+	--rn-header-h: 4rem;
+	--rn-gutter: 1rem;
+	--rn-max: 76rem;
+}
+
+@media (min-width: 48rem) {
+	:root {
+		--rn-gutter: 1.5rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--rn-fast: 0ms;
+		--rn-slow: 0ms;
+	}
+}

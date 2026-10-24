@@ -1,0 +1,45 @@
+---
+// The RetroNative text wordmark: "Retro" in light text, "Native" in neon, with a
+// cursor block between them (the translation point). Text only, no artwork.
+interface Props {
+	size?: 'sm' | 'lg';
+}
+const { size = 'sm' } = Astro.props;
+---
+
+<span class:list={['wordmark', size]}>
+	<span class="retro">Retro</span><span class="joint" aria-hidden="true"></span><span class="native">Native</span>
+</span>
+
+<style>
+	.wordmark {
+		display: inline-flex;
+		align-items: baseline;
+		font-family: var(--rn-font-display);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		line-height: 1;
+		white-space: nowrap;
+	}
+	.sm {
+		font-size: 1.2rem;
+	}
+	.lg {
+		font-size: clamp(2rem, 7vw, 4.5rem);
+	}
+	.retro {
+		color: var(--text);
+	}
+	.native {
+		color: var(--rn-neon);
+	}
+	.joint {
+		display: inline-block;
+		width: 0.32em;
+		height: 0.72em;
+		margin-inline: 0.12em;
+		background: linear-gradient(180deg, var(--rn-neon), var(--rn-ember));
+		transform: skewX(-12deg);
+	}
+</style>

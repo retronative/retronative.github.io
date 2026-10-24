@@ -1,0 +1,54 @@
+---
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import Seo from '../components/Seo.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	/** JSON-LD objects for this page. */
+	jsonLd?: object[];
+	noindex?: boolean;
+}
+const { title, description, jsonLd, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<Seo title={title} description={description} jsonLd={jsonLd} noindex={noindex} />
+	</head>
+	<body>
+		<a class="skip" href="#main">Skip to content</a>
+		<SiteHeader />
+		<main id="main" tabindex="-1">
+			<slot />
+		</main>
+		<SiteFooter />
+	</body>
+</html>
+
+<style>
+	.skip {
+		position: absolute;
+		left: var(--rn-gutter);
+		top: -4rem;
+		z-index: 100;
+		padding: 0.75rem 1rem;
+		font-weight: 600;
+		color: var(--rn-asphalt);
+		background: var(--rn-neon);
+		text-decoration: none;
+	}
+	.skip:focus {
+		top: 0.5rem;
+		outline: 2px solid var(--rn-text);
+		outline-offset: 2px;
+	}
+	main:focus {
+		outline: none;
+	}
+</style>

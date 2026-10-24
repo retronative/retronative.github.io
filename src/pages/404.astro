@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+---
+
+<Base title={`Page not found — ${site.name}`} description="This page does not exist on the RetroNative site." noindex>
+	<div class="wrap page">
+		<p class="code" aria-hidden="true">404</p>
+		<h1>Page not found</h1>
+		<p class="lede">There is nothing at this address. It may have moved, or it belongs to a project site that is not public yet.</p>
+		<p><a class="btn" href="/">Back to the start</a></p>
+	</div>
+</Base>
+
+<style>
+	.page {
+		padding-block: clamp(3rem, 10vw, 7rem) 0;
+	}
+	.code {
+		margin: 0;
+		font-family: var(--rn-font-display);
+		font-size: clamp(5rem, 20vw, 10rem);
+		font-weight: 700;
+		line-height: 1;
+		color: transparent;
+		-webkit-text-stroke: 1px var(--rn-neon);
+	}
+	h1 {
+		margin: 0.5rem 0 1rem;
+		font-size: clamp(1.75rem, 4vw, 2.5rem);
+		text-transform: uppercase;
+	}
+</style>
