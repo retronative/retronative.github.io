@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectGallery from '../../components/ProjectGallery.astro';
+import Disclaimer from '../../components/Disclaimer.astro';
+import { getProjects } from '../../lib/projects';
+import { site } from '../../site.config';
+
+const projects = await getProjects();
+---
+
+<Base
+	title={`Projects — ${site.name}`}
+	description="RetroNative's native recompilation projects, each with its status and requirements. Unofficial fan projects; no releases or downloads yet."
+>
+	<div class="wrap page">
+		<p class="eyebrow">Projects</p>
+		<h1>Projects</h1>
+		<p class="lede">
+			Each port is its own project, with its own status, requirements and license. This list comes from one data file, so a new port is a new
+			entry.
+		</p>
+		<ProjectGallery projects={projects} headingLevel="h2" />
+		<div class="notices">
+			{projects.map((p) => <Disclaimer project={p} />)}
+		</div>
+	</div>
+</Base>
+
+<style>
+	.page {
+		padding-top: clamp(2.5rem, 6vw, 4.5rem);
+	}
+	h1 {
+		margin: 0 0 1rem;
+		font-size: clamp(2rem, 5vw, 3rem);
+		text-transform: uppercase;
+	}
+	.lede {
+		margin-bottom: 2.5rem;
+	}
+	.notices {
+		display: grid;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+</style>

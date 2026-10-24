@@ -1,0 +1,51 @@
+[
+	{
+		"id": "recarbon",
+		"order": 1,
+		"featured": true,
+		"name": "ReCarbon",
+		"tagline": "Native recompilation of Need for Speed: Carbon (Xbox 360) for Apple Silicon.",
+		"summary": "A static recompilation, not an emulator: the game's PowerPC code is translated to C++ ahead of time with XenonRecomp and compiled to native arm64. Built on SpeedBreaker. No Wine, CrossOver or runtime CPU emulation.",
+		"game": {
+			"title": "Need for Speed: Carbon",
+			"original_platform": "Xbox 360"
+		},
+		"target": {
+			"os": "macOS",
+			"hardware": "Apple Silicon Macs",
+			"arch": ["arm64"],
+			"min_os": "macOS 27"
+		},
+		"technique": "static-recompilation",
+		"status": {
+			"phase": "early-development",
+			"label": "Early Development — Playable in Parts",
+			"note": "No public release and no downloads yet.",
+			"released": false,
+			"downloads": false,
+			"source": "ReCarbon README (Status) and docs overview",
+			"updated": "2026-10-24"
+		},
+		"requirements": [
+			"An Apple Silicon Mac",
+			"macOS 27 or later",
+			"Your own legally obtained copy of the Xbox 360 disc"
+		],
+		"links": {
+			"site": { "url": "https://retronative.github.io/recarbon/", "public": false },
+			"repo": { "url": "https://github.com/retronative/recarbon", "public": false }
+		},
+		"upstream": [
+			{ "name": "SpeedBreaker", "note": "the static recompilation by project(u) that ReCarbon builds on; its runtime is adapted for ReCarbon" },
+			{ "name": "XenonRecomp", "note": "the recompiler that translates the PowerPC code to C++" }
+		],
+		"license": "GPL-3.0-or-later",
+		"legal": {
+			"unofficial": true,
+			"rights_holder": "Electronic Arts Inc.",
+			"disclaimer": "ReCarbon is an unofficial fan project. It is not affiliated with, endorsed by or sponsored by Electronic Arts Inc. or the Need for Speed brand. Need for Speed and Carbon are trademarks of Electronic Arts Inc. and are used here only to describe the game. No game files are included or distributed: you need your own legally obtained copy of the Xbox 360 disc."
+		},
+		"accent": "neon",
+		"glyphs": ["PPC", "A64"]
+	}
+]

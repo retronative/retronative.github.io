@@ -1,0 +1,261 @@
+---
+// The landing hero: the wordmark, the mission line and a "translation console"
+// that shows, with made-up instructions, what native recompilation does: console
+// machine code in, native machine code out, ahead of time. No game material.
+// The only motion is a one-off reveal (under 3 s), disabled for reduced motion.
+import { site } from '../site.config';
+import Wordmark from './Wordmark.astro';
+import ExternalLink from './ExternalLink.astro';
+
+const source = [
+	['lwz', 'r11, 0x1c(r31)'],
+	['addi', 'r3, r11, 16'],
+	['rlwinm', 'r4, r3, 2, 0, 29'],
+	['stw', 'r4, 0x20(r31)'],
+	['bl', 'update_frame'],
+];
+const target = [
+	['ldr', 'w11, [x19, #0x1c]'],
+	['rev', 'w11, w11'],
+	['add', 'w3, w11, #16'],
+	['lsl', 'w4, w3, #2'],
+	['rev', 'w4, w4'],
+	['str', 'w4, [x19, #0x20]'],
+	['bl', 'update_frame'],
+];
+---
+
+<section class="hero" aria-labelledby="hero-title">
+	<div class="backdrop" aria-hidden="true"></div>
+	<div class="wrap inner">
+		<div class="copy">
+			<p class="brand"><Wordmark size="lg" /></p>
+			<h1 id="hero-title">{site.mission}</h1>
+			<p class="lede">
+				RetroNative's projects translate a console game's machine code ahead of time into a program that runs natively on today's computers. No
+				emulator in the loop, and no game files in the box: you bring your own copy.
+			</p>
+			<div class="ctas">
+				<a class="btn" href="#projects">Explore projects</a>
+				<ExternalLink class="btn btn--ghost" href={site.github.url}>RetroNative on GitHub</ExternalLink>
+			</div>
+		</div>
+
+		<figure class="console">
+			<div class="pipeline" aria-hidden="true">
+				<span>Console code</span><span class="arrow">→</span><span>C++</span><span class="arrow">→</span><span class="out">Native binary</span>
+			</div>
+			<div class="panes">
+				<div class="pane">
+					<p class="pane-label">PowerPC · big-endian</p>
+					<ol class="code">
+						{
+							source.map(([op, args]) => (
+								<li>
+									<span class="op">{op}</span> {args}
+								</li>
+							))
+						}
+					</ol>
+				</div>
+				<div class="pane pane--out">
+					<p class="pane-label">arm64 · native</p>
+					<ol class="code">
+						{
+							target.map(([op, args], i) => (
+								<li style={`--i: ${i}`}>
+									<span class="op">{op}</span> {args}
+								</li>
+							))
+						}
+					</ol>
+				</div>
+				<div class="sweep" aria-hidden="true"></div>
+			</div>
+			<figcaption>Illustrative instructions, not taken from any game: the same work, recompiled once, before the game ever runs.</figcaption>
+		</figure>
+	</div>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding-block: clamp(3rem, 8vw, 6.5rem) clamp(3.5rem, 8vw, 6rem);
+		border-bottom: 1px solid var(--line);
+	}
+	/* Glow, pixel grid and scanlines: static textures, no animation. */
+	.backdrop {
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		background:
+			repeating-linear-gradient(0deg, rgb(255 255 255 / 0.025) 0 1px, transparent 1px 3px),
+			linear-gradient(rgb(25 227 255 / 0.06) 1px, transparent 1px) 0 0 / 32px 32px,
+			linear-gradient(90deg, rgb(25 227 255 / 0.06) 1px, transparent 1px) 0 0 / 32px 32px,
+			radial-gradient(60rem 30rem at 10% -10%, rgb(25 227 255 / 0.16), transparent 70%),
+			radial-gradient(50rem 30rem at 100% 110%, rgb(255 77 46 / 0.14), transparent 70%),
+			var(--bg-deep);
+		mask-image: linear-gradient(180deg, #000 70%, transparent);
+	}
+	@media (min-width: 62rem) {
+		.hero {
+			display: grid;
+			align-items: center;
+			min-height: min(calc(100vh - var(--rn-header-h)), 46rem);
+		}
+	}
+	.inner {
+		display: grid;
+		gap: clamp(2.5rem, 5vw, 4rem);
+		align-items: center;
+	}
+	@media (min-width: 62rem) {
+		.inner {
+			grid-template-columns: 1.1fr 1fr;
+		}
+	}
+	.brand {
+		margin: 0 0 1.25rem;
+	}
+	h1 {
+		max-width: 22ch;
+		margin: 0 0 1.25rem;
+		font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+		font-weight: 500;
+		color: var(--text);
+	}
+	.ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem 1rem;
+		margin-top: 2rem;
+	}
+
+	.console {
+		margin: 0;
+		min-width: 0;
+		padding: 1rem;
+		background: color-mix(in srgb, var(--surface) 88%, transparent);
+		border: 1px solid var(--line-strong);
+		clip-path: polygon(0 0, calc(100% - var(--rn-cut)) 0, 100% var(--rn-cut), 100% 100%, var(--rn-cut) 100%, 0 calc(100% - var(--rn-cut)));
+		box-shadow: 0 30px 80px -30px rgb(25 227 255 / 0.25);
+	}
+	.pipeline {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.4rem;
+		margin-bottom: 1rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	.pipeline span:not(.arrow) {
+		padding: 0.15rem 0.5rem;
+		border: 1px solid var(--line-strong);
+	}
+	.pipeline .out {
+		color: var(--rn-neon);
+		border-color: color-mix(in srgb, var(--rn-neon) 60%, transparent);
+	}
+	.arrow {
+		color: var(--text-muted);
+	}
+	.panes {
+		position: relative;
+		display: grid;
+		gap: 1rem;
+		overflow: hidden;
+	}
+	@media (min-width: 30rem) {
+		.panes {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.pane {
+		min-width: 0;
+		padding: 0.75rem 0.9rem;
+		background: var(--bg-deep);
+		border: 1px solid var(--line);
+	}
+	.pane--out {
+		border-color: color-mix(in srgb, var(--rn-neon) 45%, var(--line));
+	}
+	.pane-label {
+		margin: 0 0 0.5rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+	}
+	.pane--out .pane-label {
+		color: var(--rn-neon);
+	}
+	.code {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: var(--rn-font-mono);
+		font-size: 0.8rem;
+		line-height: 1.85;
+		color: var(--text-2);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.code li {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.op {
+		display: inline-block;
+		min-width: 4.5ch;
+		color: var(--rn-amber);
+	}
+	.pane--out .op {
+		color: var(--rn-volt);
+	}
+	figcaption {
+		margin-top: 0.9rem;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+	}
+	.sweep {
+		display: none;
+	}
+
+	/* The one-off reveal: output lines come in one by one while a scan bar
+	   crosses the panes once. Without motion everything is simply there. */
+	@media (prefers-reduced-motion: no-preference) {
+		.pane--out li {
+			animation: line-in 360ms var(--rn-ease) backwards;
+			animation-delay: calc(500ms + var(--i) * 170ms);
+		}
+		.sweep {
+			display: block;
+			position: absolute;
+			inset: 0 auto 0 0;
+			width: 30%;
+			pointer-events: none;
+			background: linear-gradient(90deg, transparent, rgb(25 227 255 / 0.18), transparent);
+			transform: translateX(-100%);
+			animation: sweep 1800ms var(--rn-ease) 300ms 1 forwards;
+		}
+	}
+	@keyframes line-in {
+		from {
+			opacity: 0;
+			transform: translateX(-0.75rem);
+		}
+	}
+	@keyframes sweep {
+		to {
+			transform: translateX(400%);
+		}
+	}
+</style>

@@ -1,0 +1,44 @@
+---
+// Abstract card art, generated from the data: a chip outline in the project's
+// accent with two platform glyphs (from → to). No game imagery, logos or marks.
+import type { Project } from '../lib/projects';
+import { accentVar } from '../lib/projects';
+
+interface Props {
+	project: Project;
+}
+const { project } = Astro.props;
+const [from, to] = project.glyphs;
+const pins = Array.from({ length: 7 }, (_, i) => 158 + i * 14);
+---
+
+<svg class="art" viewBox="0 0 400 200" aria-hidden="true" focusable="false" style={`--accent: ${accentVar[project.accent]}`}>
+	<defs>
+		<pattern id={`grid-${project.id}`} width="16" height="16" patternUnits="userSpaceOnUse">
+			<path d="M16 0H0V16" fill="none" stroke="currentColor" stroke-opacity="0.08"></path>
+		</pattern>
+	</defs>
+	<rect width="400" height="200" fill={`url(#grid-${project.id})`}></rect>
+	<g fill="none" stroke="var(--accent)" stroke-width="1.5">
+		<path d="M24 64h48l12 12v48l-12 12H24z" stroke-opacity="0.5"></path>
+		<path d="M376 64h-48l-12 12v48l12 12h48z"></path>
+		<path d="M96 100h208" stroke-dasharray="4 6" stroke-opacity="0.6"></path>
+		<path d="M292 92l12 8-12 8"></path>
+		<rect x="150" y="62" width="100" height="76" stroke-opacity="0.85"></rect>
+		<rect x="164" y="76" width="72" height="48" stroke-opacity="0.4"></rect>
+		{pins.map((x) => <path d={`M${x} 54v8M${x} 138v8`} stroke-opacity="0.55" />)}
+	</g>
+	<g font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" text-anchor="middle">
+		<text x="48" y="105" fill="var(--text-2)">{from}</text>
+		<text x="352" y="105" fill="var(--accent)">{to}</text>
+	</g>
+</svg>
+
+<style>
+	.art {
+		display: block;
+		width: 100%;
+		height: auto;
+		color: var(--text);
+	}
+</style>

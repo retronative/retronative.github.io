@@ -1,0 +1,131 @@
+---
+import type { Project } from '../lib/projects';
+import { accentVar, targetLabel } from '../lib/projects';
+import ProjectArt from './ProjectArt.astro';
+import StatusBadge from './StatusBadge.astro';
+
+interface Props {
+	project: Project;
+	headingLevel?: 'h2' | 'h3';
+}
+const { project, headingLevel: H = 'h3' } = Astro.props;
+---
+
+<article class="card" style={`--accent: ${accentVar[project.accent]}`}>
+	<div class="art"><ProjectArt project={project} /></div>
+	<div class="body">
+		<StatusBadge status={project.status} />
+		<H class="name"><a href={`/projects/${project.id}/`}>{project.name}</a></H>
+		<p class="tagline">{project.tagline}</p>
+		<dl class="meta">
+			<div><dt>Original</dt><dd>{project.game.original_platform}</dd></div>
+			<div><dt>Target</dt><dd>{targetLabel(project)}</dd></div>
+		</dl>
+		<p class="more" aria-hidden="true">View project <span>→</span></p>
+	</div>
+</article>
+
+<style>
+	.card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		background: var(--surface);
+		border: 1px solid var(--line-strong);
+		clip-path: polygon(0 0, calc(100% - var(--rn-cut)) 0, 100% var(--rn-cut), 100% 100%, var(--rn-cut) 100%, 0 calc(100% - var(--rn-cut)));
+		transition:
+			transform var(--rn-slow) var(--rn-ease),
+			border-color var(--rn-fast) var(--rn-ease);
+	}
+	.card::before {
+		content: '';
+		position: absolute;
+		inset: 0 0 auto;
+		height: 2px;
+		background: linear-gradient(90deg, var(--accent), transparent);
+	}
+	.card:hover,
+	.card:focus-within {
+		border-color: var(--accent);
+		transform: translateY(-3px);
+	}
+	.art {
+		background: var(--bg-deep);
+		border-bottom: 1px solid var(--line);
+	}
+	.body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.6rem;
+		flex: 1;
+		padding: 1.25rem 1.25rem 1.4rem;
+	}
+	.name {
+		margin: 0.25rem 0 0;
+		font-size: 1.6rem;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+	}
+	.name a {
+		color: var(--text);
+		text-decoration: none;
+	}
+	/* The whole card is the link's target area. */
+	.name a::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+	.name a:focus-visible {
+		outline: none;
+	}
+	.card:has(.name a:focus-visible) {
+		outline: 2px solid var(--focus);
+		outline-offset: -4px;
+	}
+	.tagline {
+		margin: 0;
+		color: var(--text-2);
+	}
+	.meta {
+		display: grid;
+		gap: 0.25rem;
+		margin: 0.25rem 0 0;
+		font-size: 0.875rem;
+	}
+	.meta div {
+		display: flex;
+		gap: 0.6rem;
+	}
+	dt {
+		min-width: 4.75rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		line-height: 1.85;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+	}
+	dd {
+		margin: 0;
+		color: var(--text);
+	}
+	.more {
+		margin: auto 0 0;
+		padding-top: 0.5rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.8rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+	.more span {
+		display: inline-block;
+		transition: transform var(--rn-fast) var(--rn-ease);
+	}
+	.card:hover .more span {
+		transform: translateX(4px);
+	}
+</style>

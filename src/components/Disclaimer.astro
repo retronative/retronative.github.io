@@ -1,0 +1,35 @@
+---
+// A project's legal note, from its data entry (legal.disclaimer).
+import type { Project } from '../lib/projects';
+
+interface Props {
+	project: Project;
+}
+const { project } = Astro.props;
+---
+
+<div class="disclaimer" role="note" aria-label={`${project.name} legal notice`}>
+	<p class="label">Unofficial fan project</p>
+	<p>{project.legal.disclaimer}</p>
+</div>
+
+<style>
+	.disclaimer {
+		padding: 1rem 1.25rem;
+		background: color-mix(in srgb, var(--rn-amber) 6%, var(--surface));
+		border-left: 3px solid var(--rn-amber);
+	}
+	.label {
+		margin: 0 0 0.35rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--rn-amber);
+	}
+	p {
+		margin: 0;
+		color: var(--text-2);
+		font-size: 0.925rem;
+	}
+</style>

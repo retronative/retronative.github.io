@@ -1,0 +1,258 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import ProjectGallery from '../components/ProjectGallery.astro';
+import Disclaimer from '../components/Disclaimer.astro';
+import ContributorList from '../components/ContributorList.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+import { getProjects } from '../lib/projects';
+import { site } from '../site.config';
+
+const projects = await getProjects();
+
+const principles = [
+	{
+		title: 'Native, not emulated',
+		text: "A game's code is translated once, ahead of time, and built by a modern compiler for the machine you own. No emulator interprets it while you play.",
+	},
+	{
+		title: 'Your own copy',
+		text: 'Projects ship no game code, assets or executables, and never link to game files. Each one works from a copy the player owns.',
+	},
+	{
+		title: 'Credit the foundations',
+		text: 'Recompilation stands on open-source tools and earlier ports. Each project names what it builds on and keeps its licenses.',
+	},
+];
+
+const steps = [
+	{
+		n: '01',
+		title: 'Start from your disc',
+		text: "The player extracts their own copy of the game. Its executable is analysed: where every function starts and ends, and how its jumps branch.",
+	},
+	{
+		n: '02',
+		title: 'Recompile ahead of time',
+		text: "The console's machine code is translated into C++, once, before anything runs. A modern compiler turns that C++ into native code for the target CPU.",
+	},
+	{
+		n: '03',
+		title: 'Run natively',
+		text: "A runtime stands in for the console: its kernel, graphics, audio and controllers, mapped onto the host platform's own APIs.",
+	},
+];
+
+const jsonLd = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		'@id': `${site.url}#organization`,
+		name: site.name,
+		url: site.url,
+		description: site.mission,
+		logo: new URL('/og/retronative.png', site.url).href,
+		sameAs: [site.github.url],
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		'@id': `${site.url}#website`,
+		name: site.name,
+		url: site.url,
+		description: site.description,
+		inLanguage: 'en',
+		publisher: { '@id': `${site.url}#organization` },
+	},
+];
+---
+
+<Base title={`${site.name} — native recompilation of classic games`} description={site.description} jsonLd={jsonLd}>
+	<Hero />
+
+	<Section id="mission" index="01" label="Mission" title="Why RetroNative">
+		<p class="statement">{site.mission}</p>
+		<p class="lede">
+			Classic games were written for consoles that are no longer made. RetroNative works on ports that carry those games over to the computers
+			people use today, as native programs, while respecting the people who made them and the players who own them.
+		</p>
+		<ul class="principles" role="list">
+			{
+				principles.map((p, i) => (
+					<li class="principle">
+						<span class="num" aria-hidden="true">
+							{String(i + 1).padStart(2, '0')}
+						</span>
+						<h3>{p.title}</h3>
+						<p>{p.text}</p>
+					</li>
+				))
+			}
+		</ul>
+	</Section>
+
+	<Section id="how" index="02" label="How it works" title="Recompiled, not emulated">
+		<ol class="steps" role="list">
+			{
+				steps.map((s) => (
+					<li class="step">
+						<span class="step-n" aria-hidden="true">
+							{s.n}
+						</span>
+						<h3>{s.title}</h3>
+						<p>{s.text}</p>
+					</li>
+				))
+			}
+		</ol>
+	</Section>
+
+	<Section id="projects" index="03" label="Projects" title="Projects">
+		<p class="lede">Every project is a separate port with its own status. Nothing here is a release or a download.</p>
+		<ProjectGallery projects={projects} />
+		<div class="notices">
+			{projects.map((p) => <Disclaimer project={p} />)}
+		</div>
+		<p class="all"><a href="/projects/">All projects <span aria-hidden="true">→</span></a></p>
+	</Section>
+
+	<Section id="contributors" index="04" label="Contributors" title="Contributors">
+		<ContributorList />
+	</Section>
+
+	<Section id="github" index="05" label="GitHub" title="On GitHub">
+		<div class="gh">
+			<div class="gh-term" aria-hidden="true">
+				<span class="prompt">$</span> open {site.github.label}<span class="caret"></span>
+			</div>
+			<div class="gh-copy">
+				<p>RetroNative's organization on GitHub is where its projects live. Repositories are listed there as they become public.</p>
+				<ExternalLink class="btn" href={site.github.url}>Visit {site.github.label}</ExternalLink>
+			</div>
+		</div>
+	</Section>
+</Base>
+
+<style>
+	.statement {
+		max-width: 30ch;
+		margin: 0 0 1.25rem;
+		font-family: var(--rn-font-display);
+		font-size: clamp(1.4rem, 3vw, 2rem);
+		font-weight: 500;
+		line-height: 1.25;
+		color: var(--rn-neon-soft);
+	}
+	.principles,
+	.steps {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+		gap: 1.25rem;
+		margin: 2.5rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+	.principle,
+	.step {
+		position: relative;
+		padding: 1.5rem;
+		background: var(--surface);
+		border: 1px solid var(--line);
+	}
+	.principle h3,
+	.step h3 {
+		margin: 0.5rem 0 0.5rem;
+		font-size: 1.25rem;
+	}
+	.principle p,
+	.step p {
+		margin: 0;
+		color: var(--text-2);
+	}
+	.num {
+		font-family: var(--rn-font-mono);
+		font-size: 0.8rem;
+		color: var(--rn-neon);
+	}
+	.steps {
+		margin-top: 0;
+		counter-reset: none;
+	}
+	.step {
+		border-top: 2px solid var(--rn-neon);
+	}
+	.step:nth-child(2) {
+		border-top-color: var(--rn-amber);
+	}
+	.step:nth-child(3) {
+		border-top-color: var(--rn-volt);
+	}
+	.step-n {
+		display: block;
+		font-family: var(--rn-font-display);
+		font-size: 2.5rem;
+		font-weight: 700;
+		line-height: 1;
+		color: var(--text-muted);
+	}
+	.notices {
+		display: grid;
+		gap: 1rem;
+		margin-top: 2rem;
+	}
+	.all {
+		margin: 1.5rem 0 0;
+	}
+	.all a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		min-height: 44px;
+		font-family: var(--rn-font-mono);
+		font-size: 0.875rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.gh {
+		display: grid;
+		gap: 1.5rem 2.5rem;
+		align-items: center;
+		padding: clamp(1.25rem, 3vw, 2rem);
+		background:
+			linear-gradient(rgb(25 227 255 / 0.05) 1px, transparent 1px) 0 0 / 24px 24px,
+			var(--surface);
+		border: 1px solid var(--line-strong);
+	}
+	@media (min-width: 52rem) {
+		.gh {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.gh-term {
+		min-width: 0;
+		padding: 1.25rem;
+		overflow-wrap: anywhere;
+		font-family: var(--rn-font-mono);
+		font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+		color: var(--text);
+		background: var(--bg-deep);
+		border: 1px solid var(--line);
+	}
+	.prompt {
+		color: var(--rn-volt);
+	}
+	.caret {
+		display: inline-block;
+		width: 0.6em;
+		height: 1.1em;
+		margin-inline-start: 0.2em;
+		vertical-align: text-bottom;
+		background: var(--rn-neon);
+	}
+	.gh-copy p {
+		margin: 0 0 1.25rem;
+		color: var(--text-2);
+	}
+</style>

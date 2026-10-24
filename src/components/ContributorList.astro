@@ -1,0 +1,97 @@
+---
+// Contributors, from the hand-curated src/data/contributors.json. Empty for now.
+import { site } from '../site.config';
+import ExternalLink from './ExternalLink.astro';
+import { contributors } from '../lib/contributors';
+---
+
+{
+	contributors.length > 0 ? (
+		<ul class="people" role="list">
+			{contributors.map((c) => (
+				<li class="person">
+					<ExternalLink href={`https://github.com/${c.id}`}>{c.name ?? c.id}</ExternalLink>
+					<span class="role">{c.role}</span>
+				</li>
+			))}
+		</ul>
+	) : (
+		<div class="empty">
+			<div class="roll" aria-hidden="true">
+				<span>PLAYER 1</span><span>– – –</span>
+				<span>PLAYER 2</span><span>– – –</span>
+				<span>PLAYER 3</span><span>– – –</span>
+			</div>
+			<div>
+				<p class="empty-title">No one is listed here yet.</p>
+				<p>
+					The contributor roll is curated by hand and starts empty. Credits will be added as people contribute to RetroNative projects; until
+					then, follow the work on <ExternalLink href={site.github.url}>RetroNative's GitHub organization</ExternalLink>.
+				</p>
+			</div>
+		</div>
+	)
+}
+
+<style>
+	.people {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.person {
+		display: flex;
+		flex-direction: column;
+		padding: 1rem;
+		background: var(--surface);
+		border: 1px solid var(--line);
+	}
+	.role {
+		color: var(--text-muted);
+		font-size: 0.875rem;
+	}
+	.empty {
+		display: grid;
+		gap: 1.5rem 2.5rem;
+		align-items: center;
+		padding: 1.5rem;
+		background: var(--surface);
+		border: 1px solid var(--line);
+	}
+	@media (min-width: 48rem) {
+		.empty {
+			grid-template-columns: auto 1fr;
+			padding: 2rem;
+		}
+	}
+	.roll {
+		display: grid;
+		grid-template-columns: auto auto;
+		gap: 0.35rem 1.5rem;
+		padding: 1rem 1.25rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.85rem;
+		letter-spacing: 0.12em;
+		color: var(--text-muted);
+		background: var(--bg-deep);
+		border: 1px solid var(--line);
+	}
+	.roll span:nth-child(even) {
+		color: var(--text-2);
+	}
+	.empty-title {
+		margin: 0 0 0.5rem;
+		font-family: var(--rn-font-display);
+		font-size: 1.25rem;
+		font-weight: 700;
+		color: var(--text);
+	}
+	.empty p:last-child {
+		margin: 0;
+		color: var(--text-2);
+		max-width: 44rem;
+	}
+</style>

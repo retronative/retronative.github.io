@@ -1,0 +1,294 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectArt from '../../components/ProjectArt.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import Disclaimer from '../../components/Disclaimer.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+import { getProjects, publicLinks, techniqueLabel, targetLabel, accentVar, type Project } from '../../lib/projects';
+import { site } from '../../site.config';
+
+export async function getStaticPaths() {
+	const projects = await getProjects();
+	return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+interface Props {
+	project: Project;
+}
+const { project } = Astro.props;
+const links = publicLinks(project);
+const facts = [
+	{ term: 'Game', value: project.game.title },
+	{ term: 'Original platform', value: project.game.original_platform },
+	{ term: 'Target', value: targetLabel(project) },
+	{ term: 'Technique', value: techniqueLabel[project.technique] },
+	...(project.license ? [{ term: 'License', value: project.license }] : []),
+];
+const checked = new Date(`${project.status.updated}T00:00:00Z`).toLocaleDateString('en-GB', {
+	day: 'numeric',
+	month: 'long',
+	year: 'numeric',
+	timeZone: 'UTC',
+});
+---
+
+<Base title={`${project.name} — ${site.name}`} description={`${project.tagline} ${project.status.label}. Unofficial fan project.`}>
+	<article class="wrap page" style={`--accent: ${accentVar[project.accent]}`}>
+		<nav class="crumbs" aria-label="Breadcrumb">
+			<ol>
+				<li><a href="/">Home</a></li>
+				<li><a href="/projects/">Projects</a></li>
+				<li><span aria-current="page">{project.name}</span></li>
+			</ol>
+		</nav>
+
+		<header class="head">
+			<div>
+				<StatusBadge status={project.status} />
+				<h1>{project.name}</h1>
+				<p class="tagline">{project.tagline}</p>
+			</div>
+			<div class="art"><ProjectArt project={project} /></div>
+		</header>
+
+		<div class="grid">
+			<div class="main">
+				<section aria-labelledby="overview">
+					<h2 id="overview">Overview</h2>
+					<p>{project.summary}</p>
+				</section>
+
+				<section aria-labelledby="status">
+					<h2 id="status">Status</h2>
+					<p class="status-label">{project.status.label}</p>
+					{project.status.note && <p>{project.status.note}</p>}
+					<p class="small">Source: {project.status.source}. Checked {checked}.</p>
+				</section>
+
+				<section aria-labelledby="requirements">
+					<h2 id="requirements">Requirements</h2>
+					<ul class="reqs">
+						{project.requirements.map((r) => <li>{r}</li>)}
+					</ul>
+				</section>
+
+				{
+					project.upstream.length > 0 && (
+						<section aria-labelledby="built-on">
+							<h2 id="built-on">Built on</h2>
+							<ul class="reqs">
+								{project.upstream.map((u) => (
+									<li>
+										{u.url ? <ExternalLink href={u.url}>{u.name}</ExternalLink> : <strong>{u.name}</strong>}
+										{u.note && <>: {u.note}</>}
+									</li>
+								))}
+							</ul>
+						</section>
+					)
+				}
+
+				<Disclaimer project={project} />
+			</div>
+
+			<aside class="side" aria-labelledby="facts">
+				<h2 id="facts" class="side-title">At a glance</h2>
+				<dl>
+					{
+						facts.map((f) => (
+							<div>
+								<dt>{f.term}</dt>
+								<dd>{f.value}</dd>
+							</div>
+						))
+					}
+				</dl>
+				<h2 class="side-title">Links</h2>
+				{
+					links.length > 0 ? (
+						<ul class="links">
+							{links.map((l) => (
+								<li>
+									<ExternalLink href={l.url}>{l.label}</ExternalLink>
+								</li>
+							))}
+						</ul>
+					) : (
+						<p class="small">
+							{project.name} has no public pages yet. Updates will appear on <ExternalLink href={site.github.url}>RetroNative's GitHub organization</ExternalLink>.
+						</p>
+					)
+				}
+			</aside>
+		</div>
+
+		<p class="back"><a href="/projects/"><span aria-hidden="true">←</span> All projects</a></p>
+	</article>
+</Base>
+
+<style>
+	.page {
+		padding-top: clamp(1.5rem, 4vw, 2.5rem);
+	}
+	.crumbs ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.5rem;
+		margin: 0 0 2rem;
+		padding: 0;
+		list-style: none;
+		font-family: var(--rn-font-mono);
+		font-size: 0.8rem;
+		letter-spacing: 0.06em;
+		color: var(--text-muted);
+	}
+	.crumbs li + li::before {
+		content: '/';
+		content: '/' / '';
+		margin-inline-end: 0.5rem;
+		color: var(--text-muted);
+	}
+	.crumbs a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+	}
+	.crumbs span[aria-current] {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		color: var(--text-2);
+	}
+	.head {
+		display: grid;
+		gap: 2rem;
+		align-items: center;
+		padding-bottom: 2.5rem;
+		border-bottom: 1px solid var(--line);
+	}
+	@media (min-width: 52rem) {
+		.head {
+			grid-template-columns: 1.3fr 1fr;
+		}
+	}
+	h1 {
+		margin: 0.75rem 0 0.75rem;
+		font-size: clamp(2.5rem, 7vw, 4.5rem);
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		color: var(--text);
+		text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 35%, transparent);
+	}
+	.tagline {
+		max-width: 36rem;
+		margin: 0;
+		font-size: 1.15rem;
+		color: var(--text-2);
+	}
+	.art {
+		background: var(--bg-deep);
+		border: 1px solid var(--line-strong);
+		clip-path: polygon(0 0, calc(100% - var(--rn-cut)) 0, 100% var(--rn-cut), 100% 100%, var(--rn-cut) 100%, 0 calc(100% - var(--rn-cut)));
+	}
+	.grid {
+		display: grid;
+		gap: 2.5rem;
+		padding-top: 2.5rem;
+	}
+	@media (min-width: 52rem) {
+		.grid {
+			grid-template-columns: 1fr 20rem;
+			align-items: start;
+		}
+	}
+	.main section {
+		margin-bottom: 2.25rem;
+	}
+	.main h2 {
+		margin: 0 0 0.75rem;
+		font-size: 1.4rem;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+	.main p {
+		max-width: 44rem;
+		color: var(--text-2);
+	}
+	.reqs {
+		margin: 0;
+		padding-left: 1.25rem;
+		color: var(--text-2);
+	}
+	.reqs li {
+		margin-bottom: 0.4rem;
+	}
+	.reqs li::marker {
+		color: var(--accent);
+	}
+	strong {
+		color: var(--text);
+	}
+	.main .status-label {
+		font-family: var(--rn-font-display);
+		font-size: 1.15rem;
+		font-weight: 700;
+		color: var(--rn-amber);
+	}
+	.small {
+		font-size: 0.875rem;
+		color: var(--text-muted);
+	}
+	.side {
+		padding: 1.25rem;
+		background: var(--surface);
+		border: 1px solid var(--line);
+		border-top: 2px solid var(--accent);
+	}
+	.side-title {
+		margin: 0 0 0.75rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		font-weight: 400;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	dl {
+		margin: 0 0 1.75rem;
+	}
+	dl div {
+		padding: 0.6rem 0;
+		border-bottom: 1px solid var(--line);
+	}
+	dt {
+		font-size: 0.8rem;
+		color: var(--text-muted);
+	}
+	dd {
+		margin: 0;
+		color: var(--text);
+	}
+	.links {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.links a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+	}
+	.side .small {
+		margin: 0;
+	}
+	.back a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		min-height: 44px;
+		font-family: var(--rn-font-mono);
+		font-size: 0.875rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+</style>

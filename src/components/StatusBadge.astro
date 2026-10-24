@@ -1,0 +1,47 @@
+---
+// A project's status: an icon and the label as written in the data, never colour alone.
+import type { Project } from '../lib/projects';
+
+interface Props {
+	status: Project['status'];
+}
+const { status } = Astro.props;
+const icons: Record<Project['status']['phase'], string> = {
+	planning: '○',
+	'early-development': '◐',
+	alpha: '◑',
+	beta: '◕',
+	released: '●',
+	archived: '■',
+};
+---
+
+<span class:list={['badge', `badge--${status.phase}`]}>
+	<span class="icon" aria-hidden="true">{icons[status.phase]}</span>
+	<span class="sr-only">Status: </span>{status.label}
+</span>
+
+<style>
+	.badge {
+		--c: var(--rn-amber);
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45em;
+		padding: 0.2em 0.65em 0.2em 0.5em;
+		font-family: var(--rn-font-mono);
+		font-size: 0.78rem;
+		line-height: 1.5;
+		color: var(--c);
+		border: 1px solid color-mix(in srgb, var(--c) 70%, transparent);
+		background: color-mix(in srgb, var(--c) 10%, transparent);
+	}
+	.badge--released {
+		--c: var(--rn-volt);
+	}
+	.badge--archived {
+		--c: var(--rn-muted);
+	}
+	.icon {
+		font-size: 0.95em;
+	}
+</style>
