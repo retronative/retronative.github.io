@@ -32,8 +32,8 @@
 			"Your own legally obtained copy of the Xbox 360 disc"
 		],
 		"links": {
-			"site": { "url": "https://retronative.github.io/recarbon/", "public": false },
-			"repo": { "url": "https://github.com/retronative/recarbon", "public": false }
+			"site": { "url": "https://retronative.github.io/recarbon/", "public": true },
+			"repo": { "url": "https://github.com/retronative/recarbon", "public": true }
 		},
 		"upstream": [
 			{ "name": "SpeedBreaker", "note": "the static recompilation by project(u) that ReCarbon builds on; its runtime is adapted for ReCarbon" },

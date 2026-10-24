@@ -4,7 +4,8 @@
 //   URL (unless it is noindex); JSON-LD parses, and only / has it (Organization, WebSite).
 // - Every internal link and #anchor resolves to a built file and an element id.
 // - No link to a private target (a project link with public: false), to a GitHub
-//   repository of the organization, or to a download; no `download` attribute.
+//   repository of the organization other than a project's public repo link, or to a
+//   download; no `download` attribute.
 // - The sitemap lists every indexable page, and robots.txt points at it.
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
@@ -41,6 +42,8 @@ for (const p of projects) {
 
 // Private targets: every link of a project that is not public.
 const privateUrls = projects.flatMap((p) => Object.values(p.links ?? {}).filter((l) => !l.public).map((l) => l.url.replace(/\/$/, '')));
+// Public project links (a public repository may be linked; nothing else in the organization).
+const publicUrls = projects.flatMap((p) => Object.values(p.links ?? {}).filter((l) => l.public).map((l) => l.url.replace(/\/$/, '')));
 
 const files = await walk(dist);
 const pages = files.filter((f) => f.endsWith('.html'));
@@ -105,7 +108,7 @@ for (const [file, src] of html) {
 		if (/^https?:\/\//.test(href)) {
 			const u = href.replace(/\/$/, '');
 			if (privateUrls.some((p) => u === p || u.startsWith(`${p}/`) || u.startsWith(`${p}#`))) fail(name, `links to a private target: ${href}`);
-			if (u.startsWith(`${ORG}/`)) fail(name, `links into the organization (only ${ORG} itself is allowed): ${href}`);
+			if (u.startsWith(`${ORG}/`) && !publicUrls.some((p) => u === p)) fail(name, `links into the organization (only ${ORG} itself is allowed): ${href}`);
 			if (/\/releases(\/|$)|\.(dmg|zip|pkg|app|exe|iso|xex)(\?|#|$)/i.test(u)) fail(name, `download-like link: ${href}`);
 			continue;
 		}
