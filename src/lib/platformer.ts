@@ -1,5 +1,5 @@
 // An original 8-bit side-scroller for the hero's laptop screen: a helmeted runner
-// jumps a crate and a pit, bumps a block that releases a sprout power-up, grows,
+// jumps a crate and a pit, bumps a block that releases a chip power-up, grows,
 // stomps a one-eyed beetle and runs on. All art and the level are original.
 //
 // The loop is seamless by construction: the level is one segment of L pixels that
@@ -29,7 +29,7 @@ const P: Record<string, string> = {
 	h: '#0e7fa0', H: '#19e3ff', v: '#1b1f3a', W: '#ffffff', S: '#ff4d2e', u: '#3a4fd8', U: '#5b70f0', k: '#f6c79b', b: '#2b1d16',
 	m: '#6e1f86', M: '#c23fd0', p: '#1b1f3a', l: '#2b1d16',
 	g: '#5f9a12', G: '#c6ff3d', c: '#e9d3a8', C: '#fff6e2',
-	o: '#b07400', O: '#ffd23f', y: '#fff3a6',
+	o: '#b07400', O: '#ffd23f', y: '#fff3a6', n: '#c9d2de',
 };
 
 const HEAD = ['...hhhh...', '..hHHHHh..', '.hHHHvvvh.', '.hHHvWvvh.', '.hHHHvvvh.', '..hhhhhh..', 'SSSSSSSh..'];
@@ -48,7 +48,8 @@ const ENEMY = [
 	['...mmmm...', '..mMMMMm..', '.mMMWWWMm.', '.mMWWpWMm.', 'mMMMWWWMMm', 'mMMMMMMMMm', '.mmmmmmmm.', '...l..l...', '..ll..ll..'],
 ];
 const ENEMY_FLAT = ['.mmmmmmmm.', 'mMMWpWMMMm', 'mMMMMMMMMm', '.llmmmmll.'];
-const SPROUT = ['..gGGg..', '.gGWGGg.', 'gGWWGGGg', 'gGGGGWGg', 'gggggggg', '..cCCc..', '..cCcc..', '..cccc..'];
+// The power-up: a glowing microchip with silver pins (RetroNative's own motif).
+const CHIP = ['..n..n..', '.vHHHHv.', 'nHhhhhHn', '.HhOOhH.', 'nHhOyhHn', '.HhhhhH.', '.vHHHHv.', '..n..n..'];
 const COIN = [
 	['.oooo.', 'oOyOOo', 'oOyOOo', 'oOyOOo', 'oOyOOo', 'oOyOOo', 'oOOOOo', '.oooo.'],
 	['..oo..', '.oyOo.', '.oyOo.', '.oyOo.', '.oyOo.', '.oyOo.', '.oOOo.', '..oo..'],
@@ -112,12 +113,12 @@ const arcs: Arc[] = [
 	bounce,
 ];
 
-// The sprout: rises out of the block, hops forward, lands and walks right at 24 px/s
+// The chip: rises out of the block, hops forward, lands and walks right at 24 px/s
 // until the runner catches it.
-const sproutRise = [bumpAt, bumpAt + 0.28] as const;
-const sproutHop: Arc = { t0: sproutRise[1], y0: BLOCK_BOTTOM + 8, vy: 120, t1: sproutRise[1] + fallTime(BLOCK_BOTTOM + 8, 120, 0) };
-const sproutLandX = BLOCK_X + 4 + 100 * (sproutHop.t1 - sproutHop.t0);
-const caught = (sproutLandX - 24 * sproutHop.t1 - HERO_X - 7) / (SPEED - 24);
+const chipRise = [bumpAt, bumpAt + 0.28] as const;
+const chipHop: Arc = { t0: chipRise[1], y0: BLOCK_BOTTOM + 8, vy: 120, t1: chipRise[1] + fallTime(BLOCK_BOTTOM + 8, 120, 0) };
+const chipLandX = BLOCK_X + 4 + 100 * (chipHop.t1 - chipHop.t0);
+const caught = (chipLandX - 24 * chipHop.t1 - HERO_X - 7) / (SPEED - 24);
 const GROW = [caught, caught + 0.3] as const;
 const SHRINK = [5.9, 6.2] as const; // the power-up wears off well before the loop ends
 
@@ -282,7 +283,7 @@ export function createScene() {
 	const bigJump = sprite([...HEAD, ...BIG_BODY, ...JUMP_LEGS]);
 	const enemy = ENEMY.map(sprite);
 	const enemyFlat = sprite(ENEMY_FLAT);
-	const sprout = sprite(SPROUT);
+	const chip = sprite(CHIP);
 	const coin = COIN.map(sprite);
 
 	/**
@@ -314,19 +315,19 @@ export function createScene() {
 			const s = t - n * LOOP;
 			const at = (X: number) => n * L + X - cam;
 
-			// sprout (drawn before its block, so it rises from behind it)
-			if (s >= sproutRise[0] && s < caught) {
+			// chip (drawn before its block, so it rises from behind it)
+			if (s >= chipRise[0] && s < caught) {
 				let sx = BLOCK_X + 4;
 				let sb = BLOCK_BOTTOM + 8;
-				if (s < sproutRise[1]) sb = BLOCK_BOTTOM + 8 * ((s - sproutRise[0]) / (sproutRise[1] - sproutRise[0]));
-				else if (s < sproutHop.t1) {
-					sx += 100 * (s - sproutHop.t0);
-					sb = heightOn(sproutHop, s);
+				if (s < chipRise[1]) sb = BLOCK_BOTTOM + 8 * ((s - chipRise[0]) / (chipRise[1] - chipRise[0]));
+				else if (s < chipHop.t1) {
+					sx += 100 * (s - chipHop.t0);
+					sb = heightOn(chipHop, s);
 				} else {
-					sx = sproutLandX + 24 * (s - sproutHop.t1);
+					sx = chipLandX + 24 * (s - chipHop.t1);
 					sb = 0;
 				}
-				img(sprout, at(sx - 4), GROUND - sb - 8);
+				img(chip, at(sx - 4), GROUND - sb - 8);
 			}
 
 			// the block, bumped up for a moment when hit
@@ -362,7 +363,7 @@ export function createScene() {
 		for (const [a, b] of [GROW, SHRINK]) {
 			if (phase < a || phase >= b + 0.15) continue;
 			const q = (phase - a) / (b + 0.15 - a);
-			ctx.fillStyle = Math.floor(q * 8) % 2 ? '#ffffff' : '#c6ff3d';
+			ctx.fillStyle = Math.floor(q * 8) % 2 ? '#ffffff' : '#19e3ff';
 			for (let i = 0; i < 6; i++) {
 				const ang = q * 5 + (i * Math.PI) / 3;
 				ctx.fillRect(snap(HERO_X + Math.cos(ang) * (7 + 4 * q)), snap(GROUND - hero.h - 10 + Math.sin(ang) * (9 + 4 * q)), 1, 1);
