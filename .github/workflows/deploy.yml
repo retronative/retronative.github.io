@@ -1,13 +1,13 @@
 # Deploys this site to GitHub Pages (https://retronative.github.io/) from
 # retronative/retronative.github.io (Settings > Pages > Source: GitHub Actions).
-# It runs by hand (Actions > Deploy to GitHub Pages > Run workflow); the push
-# trigger is enabled once the first deployment has been checked.
+# It runs on every push to main, or by hand (Actions > Deploy to GitHub Pages >
+# Run workflow).
 name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
 
 # Nothing by default; each job asks for what it needs. Actions are pinned to the
 # commit of a release (its tag in the comment).

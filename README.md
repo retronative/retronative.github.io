@@ -54,8 +54,8 @@ Add an entry to `src/data/projects.json`. The build fails if an entry doesn't ma
 ## Deployment
 
 `.github/workflows/deploy.yml` builds, checks (`astro check`, `scripts/check-dist.mjs`) and deploys
-the site to GitHub Pages (Settings → Pages → Source: GitHub Actions). It runs by hand; its `push`
-trigger is enabled once the first deployment has been checked.
+the site to GitHub Pages (Settings → Pages → Source: GitHub Actions). It runs on every push to
+`main`, or by hand.
 
 ## Licenses
 
