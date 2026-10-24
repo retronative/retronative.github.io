@@ -51,7 +51,7 @@ const scene = [
 					class="body"
 					src="/hero/laptop-1600.webp"
 					srcset="/hero/laptop-800.webp 800w, /hero/laptop-1200.webp 1200w, /hero/laptop-1600.webp 1600w"
-					sizes="(min-width: 62rem) 50vw, 100vw"
+					sizes="(min-width: 62rem) 56vw, 100vw"
 					width="1600"
 					height={Math.round((1600 * IMAGE.height) / IMAGE.width)}
 					alt="A laptop playing an original 8-bit side-scrolling platformer."
@@ -171,9 +171,12 @@ const scene = [
 		gap: clamp(2rem, 5vw, 4rem);
 		align-items: center;
 	}
+	/* Desktop: the laptop's column is wider than the text's (9:7), but the text never
+	   narrows past its widest line, the wordmark. */
 	@media (min-width: 62rem) {
 		.inner {
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: minmax(min-content, 7fr) minmax(0, 9fr);
+			gap: 2rem;
 		}
 	}
 	.brand {
