@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
+import CodeTranslation from '../components/CodeTranslation.astro';
 import Section from '../components/Section.astro';
 import ProjectGallery from '../components/ProjectGallery.astro';
 import Disclaimer from '../components/Disclaimer.astro';
@@ -71,11 +72,16 @@ const jsonLd = [
 	<Hero />
 
 	<Section id="mission" index="01" label="Mission" title="Why RetroNative">
-		<p class="statement">{site.mission}</p>
-		<p class="lede">
-			Classic games were written for consoles that are no longer made. RetroNative works on ports that carry those games over to the computers
-			people use today, as native programs, while respecting the people who made them and the players who own them.
-		</p>
+		<div class="mission-grid">
+			<div>
+				<p class="statement">{site.mission}</p>
+				<p class="lede">
+					Classic games were written for consoles that are no longer made. RetroNative works on ports that carry those games over to the computers
+					people use today, as native programs, while respecting the people who made them and the players who own them.
+				</p>
+			</div>
+			<CodeTranslation />
+		</div>
 		<ul class="principles" role="list">
 			{
 				principles.map((p, i) => (
@@ -142,6 +148,16 @@ const jsonLd = [
 		font-weight: 500;
 		line-height: 1.25;
 		color: var(--rn-neon-soft);
+	}
+	.mission-grid {
+		display: grid;
+		gap: 2rem 3rem;
+		align-items: center;
+	}
+	@media (min-width: 62rem) {
+		.mission-grid {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 	.principles,
 	.steps {

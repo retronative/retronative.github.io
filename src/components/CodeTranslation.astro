@@ -1,0 +1,147 @@
+---
+// What native recompilation does, with made-up instructions: console machine code
+// in, native machine code out, ahead of time. No game material, no motion.
+const source = [
+	['lwz', 'r11, 0x1c(r31)'],
+	['addi', 'r3, r11, 16'],
+	['rlwinm', 'r4, r3, 2, 0, 29'],
+	['stw', 'r4, 0x20(r31)'],
+	['bl', 'update_frame'],
+];
+const target = [
+	['ldr', 'w11, [x19, #0x1c]'],
+	['rev', 'w11, w11'],
+	['add', 'w3, w11, #16'],
+	['lsl', 'w4, w3, #2'],
+	['rev', 'w4, w4'],
+	['str', 'w4, [x19, #0x20]'],
+	['bl', 'update_frame'],
+];
+---
+
+<figure class="console">
+	<div class="pipeline" aria-hidden="true">
+		<span>Console code</span><span class="arrow">→</span><span>C++</span><span class="arrow">→</span><span class="out">Native binary</span>
+	</div>
+	<div class="panes">
+		<div class="pane">
+			<p class="pane-label">PowerPC · big-endian</p>
+			<ol class="code">
+				{
+					source.map(([op, args]) => (
+						<li>
+							<span class="op">{op}</span> {args}
+						</li>
+					))
+				}
+			</ol>
+		</div>
+		<div class="pane pane--out">
+			<p class="pane-label">arm64 · native</p>
+			<ol class="code">
+				{
+					target.map(([op, args]) => (
+						<li>
+							<span class="op">{op}</span> {args}
+						</li>
+					))
+				}
+			</ol>
+		</div>
+					</div>
+	<figcaption>Illustrative instructions, not taken from any game: the same work, recompiled once, before the game ever runs.</figcaption>
+</figure>
+
+<style>
+	.console {
+		margin: 0;
+		min-width: 0;
+		padding: 1rem;
+		background: color-mix(in srgb, var(--surface) 88%, transparent);
+		border: 1px solid var(--line-strong);
+		clip-path: polygon(0 0, calc(100% - var(--rn-cut)) 0, 100% var(--rn-cut), 100% 100%, var(--rn-cut) 100%, 0 calc(100% - var(--rn-cut)));
+	}
+	.pipeline {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.4rem;
+		margin-bottom: 1rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	.pipeline span:not(.arrow) {
+		padding: 0.15rem 0.5rem;
+		border: 1px solid var(--line-strong);
+	}
+	.pipeline .out {
+		color: var(--rn-neon);
+		border-color: color-mix(in srgb, var(--rn-neon) 60%, transparent);
+	}
+	.arrow {
+		color: var(--text-muted);
+	}
+	.panes {
+		position: relative;
+		display: grid;
+		gap: 1rem;
+		overflow: hidden;
+	}
+	@media (min-width: 30rem) {
+		.panes {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	.pane {
+		min-width: 0;
+		padding: 0.75rem 0.9rem;
+		background: var(--bg-deep);
+		border: 1px solid var(--line);
+	}
+	.pane--out {
+		border-color: color-mix(in srgb, var(--rn-neon) 45%, var(--line));
+	}
+	.pane-label {
+		margin: 0 0 0.5rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+	}
+	.pane--out .pane-label {
+		color: var(--rn-neon);
+	}
+	.code {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: var(--rn-font-mono);
+		font-size: 0.8rem;
+		line-height: 1.85;
+		color: var(--text-2);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.code li {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.op {
+		display: inline-block;
+		min-width: 4.5ch;
+		color: var(--rn-amber);
+	}
+	.pane--out .op {
+		color: var(--rn-volt);
+	}
+	figcaption {
+		margin-top: 0.9rem;
+		font-size: 0.8rem;
+		color: var(--text-muted);
+	}
+</style>

@@ -4,7 +4,7 @@
 // - axe-core 4.10.2 (loaded from cdnjs into the page): WCAG 2.0/2.1 A and AA and best practices;
 // - no horizontal overflow;
 // - keyboard: every Tab stop is visible on screen and shows a focus indicator.
-// With prefers-reduced-motion: reduce, no animation runs and no transition has a duration.
+// With prefers-reduced-motion: reduce, no animation runs (CSS or canvas) and no transition has a duration.
 // Needs a Playwright Chromium (npx playwright-core install chromium).
 import { chromium } from 'playwright-core';
 
@@ -26,8 +26,7 @@ try {
 			const where = `${path} @${width}px`;
 			await page.goto(`${base}${path}`, { waitUntil: 'load' });
 			await page.evaluate(() => document.fonts.ready);
-			// Let the one-off hero reveal finish before measuring contrast.
-			await page.waitForTimeout(3000);
+			await page.waitForTimeout(500);
 
 			await page.addScriptTag({ url: AXE });
 			const result = await page.evaluate(async () => {
@@ -94,8 +93,10 @@ try {
 				const dur = (v) => v.split(',').some((d) => parseFloat(d) > 0);
 				return dur(cs.transitionDuration) || (cs.animationName !== 'none' && dur(cs.animationDuration));
 			});
-			return { animations: document.getAnimations().length, timed: timed.map((el) => el.tagName.toLowerCase() + (el.className ? `.${String(el.className).split(' ')[0]}` : '')), scroll: getComputedStyle(document.documentElement).scrollBehavior };
+			const games = [...document.querySelectorAll('canvas[data-state]')].filter((c) => c.dataset.state !== 'paused').length;
+			return { games, animations: document.getAnimations().length, timed: timed.map((el) => el.tagName.toLowerCase() + (el.className ? `.${String(el.className).split(' ')[0]}` : '')), scroll: getComputedStyle(document.documentElement).scrollBehavior };
 		});
+		if (motion.games) problems.push(`${path} (reduced motion): ${motion.games} canvas animation(s) running`);
 		if (motion.animations) problems.push(`${path} (reduced motion): ${motion.animations} animation(s) running`);
 		if (motion.timed.length) problems.push(`${path} (reduced motion): timed transitions on ${motion.timed.slice(0, 5).join(', ')}`);
 		if (motion.scroll !== 'auto') problems.push(`${path} (reduced motion): scroll-behavior ${motion.scroll}`);
