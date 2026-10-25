@@ -18,13 +18,13 @@
 		},
 		"technique": "static-recompilation",
 		"status": {
-			"phase": "early-development",
-			"label": "Early Development — Playable in Parts",
-			"note": "No public release and no downloads yet.",
-			"released": false,
-			"downloads": false,
-			"source": "ReCarbon README (Status) and docs overview",
-			"updated": "2026-10-24"
+			"phase": "alpha",
+			"label": "Alpha Release — Playable",
+			"note": "The first playable alpha (v0.1.0): full races on the keyboard, on Apple Silicon Macs with macOS 27. Download and install steps are on the project site; you need your own Xbox 360 disc image. Known limitations are listed there.",
+			"released": true,
+			"downloads": true,
+			"source": "ReCarbon v0.1.0 alpha release notes and Known Issues",
+			"updated": "2026-10-26"
 		},
 		"requirements": [
 			"An Apple Silicon Mac",
