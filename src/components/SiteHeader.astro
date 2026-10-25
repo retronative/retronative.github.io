@@ -10,6 +10,7 @@ const at = (hash: string) => (isHome ? `#${hash}` : `/#${hash}`);
 const nav = [
 	{ label: 'Mission', href: at('mission') },
 	{ label: 'Projects', href: '/projects/', current: path.startsWith('/projects/') },
+	{ label: 'Knowledge', href: '/knowledge/', current: path.startsWith('/knowledge/') },
 	{ label: 'Contributors', href: at('contributors') },
 ];
 ---
