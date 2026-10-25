@@ -54,7 +54,7 @@
 		"featured": false,
 		"name": "reFrozen",
 		"tagline": "Native recompilation of Warcraft III: The Frozen Throne (1.26a) for Apple Silicon.",
-		"summary": "Planned with the same method as ReCarbon: statically recompile the game's x86 Win32 code (war3.exe and Game.dll 1.26a) for arm64, on a native runtime that replaces Win32, Direct3D 8/9, DirectSound and Storm, so that DotA Allstars (v6.83) plays on macOS without Wine or a VM. Whether this is feasible is still being studied.",
+		"summary": "Built with the same method as ReCarbon: the game's x86 Win32 code (war3.exe and Game.dll 1.26a) statically recompiled for arm64, on a native runtime that replaces Win32, Direct3D 8/9, DirectSound and Storm, so that DotA Allstars plays on macOS without Wine or a VM.",
 		"game": {
 			"title": "Warcraft III: The Frozen Throne",
 			"original_platform": "Windows (x86 Win32)"
@@ -66,19 +66,20 @@
 		},
 		"technique": "static-recompilation",
 		"status": {
-			"phase": "planning",
-			"label": "Planning",
-			"note": "Feasibility research (M0) is in progress; nothing is built yet. No releases or downloads.",
+			"phase": "early-development",
+			"label": "In Development — Alpha Coming Soon",
+			"note": "A local DotA match plays to the end natively on Apple Silicon, from an install made from your own Warcraft III installers. AI opponents and long sessions are next. An alpha release is coming soon; no downloads yet.",
 			"released": false,
 			"downloads": false,
 			"source": "reFrozen README (Status)",
-			"updated": "2026-10-24"
+			"updated": "2026-10-26"
 		},
 		"requirements": [
 			"An Apple Silicon Mac",
 			"Your own legally obtained copy of Warcraft III: Reign of Chaos and The Frozen Throne"
 		],
 		"links": {
+			"site": { "url": "https://retronative.github.io/refrozen/", "public": true },
 			"repo": { "url": "https://github.com/retronative/refrozen", "public": true }
 		},
 		"upstream": [],
