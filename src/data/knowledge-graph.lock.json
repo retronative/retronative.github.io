@@ -2,6 +2,6 @@
 	"version": "2.0.1",
 	"sha256": "c082476456fb79ac03f6bc2643941b7e4817dbc41a75a0b977408139f5b76d92",
 	"source": "retronative/knowledge",
-	"commit": "b68be1175add217f490c28d9db13ea47183520cc",
+	"commit": "9df54030c629d56dbabadbf5179f1ac102791e0f",
 	"path": "knowledge-graph/graph.json"
 }
