@@ -5,8 +5,8 @@
 // - no horizontal overflow;
 // - keyboard: every Tab stop is visible on screen and shows a focus indicator.
 // With prefers-reduced-motion: reduce, no animation runs (CSS or canvas) and no transition has a duration.
-// /knowledge/ again with its interactive graph open and a node selected: axe and overflow at every width, and no
-// animation under reduced motion.
+// /knowledge/ again with its interactive graph open and a node selected: axe and overflow at every width, in the default
+// view and in Advanced mode (commits and file:line evidence), and no animation under reduced motion.
 // Needs a Playwright Chromium (npx playwright-core install chromium).
 import { chromium } from 'playwright-core';
 
@@ -107,13 +107,14 @@ try {
 	await context.close();
 
 	if (paths.includes('/knowledge/')) {
-		for (const [width, reducedMotion] of [...widths.map((w) => [w, 'no-preference']), [1280, 'reduce']]) {
-			const where = `/knowledge/ (graph open${reducedMotion === 'reduce' ? ', reduced motion' : ''}) @${width}px`;
+		for (const [width, reducedMotion, advanced] of [...widths.map((w) => [w, 'no-preference', false]), [1280, 'reduce', false], ...widths.map((w) => [w, 'no-preference', true])]) {
+			const where = `/knowledge/ (graph open${reducedMotion === 'reduce' ? ', reduced motion' : ''}${advanced ? ', advanced mode' : ''}) @${width}px`;
 			const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion });
 			const page = await context.newPage();
 			await page.goto(`${base}/knowledge/`, { waitUntil: 'load' });
 			await page.click('[data-kg-open]');
 			await page.waitForSelector('[data-kb-graph][data-state="ready"]', { timeout: 15000 });
+			if (advanced) await page.check('[data-kg-advanced]');
 			await page.click('[data-show-node]');
 			await page.waitForTimeout(500);
 			await page.addScriptTag({ url: AXE });

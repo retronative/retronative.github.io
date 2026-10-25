@@ -1,28 +1,35 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { site } from '../../site.config';
-import { areas, counts, documents, domId, projects, symptoms } from '../../lib/knowledge';
+import { areas, counts, domId, guides, investigations, projects, symptoms } from '../../lib/knowledge';
+import Evidence from '../../components/KnowledgeEvidence.astro';
 
 const KB_SEARCH = 'https://github.com/retronative/game-port-knowledge/search';
 const search = (...parts: (string | undefined)[]) => parts.filter(Boolean).join(' ').toLowerCase();
+// The relation filters of the graph. Commits and their cites/in_project edges come with Advanced mode.
 const relations = [
-	{ value: 'answered_by', label: 'Symptom answered by document' },
-	{ value: 'cites', label: 'Document cites commit' },
-	{ value: 'in_project', label: 'Commit in project' },
+	{ value: 'answered_by', label: 'Symptom is documented or investigated in' },
+	{ value: 'documents', label: 'Guide documents technique' },
 	{ value: 'references', label: 'Document references document' },
+	{ value: 'draws_on', label: 'Draws on evidence from project' },
+	{ value: 'shares_evidence', label: 'Cites the same evidence (derived)' },
 ];
+// "is documented in" -> "Documented in"
+const lead = (label: string) => label.replace(/^is /, '').replace(/^./, (c) => c.toUpperCase());
+const guideAreas = areas.filter((a) => guides.some((g) => g.node.area === a.id));
+const investigationAreas = areas.filter((a) => investigations.some((i) => i.node.area === a.id));
 ---
 
 <Base
 	title={`Knowledge base — ${site.name}`}
-	description="A map of RetroNative's shared porting knowledge: documents on static recompilation, Xbox 360 and Win32 runtimes, the symptoms they answer and the project commits they cite."
+	description="A map of RetroNative's shared porting knowledge: guides and the techniques they document, investigations of real bugs, the symptoms that lead to them and the projects whose evidence they draw on."
 >
 	<div class="wrap page kb">
 		<p class="eyebrow">Knowledge</p>
 		<h1>Knowledge base</h1>
 		<p class="lede">
-			What the projects learned while porting, as {counts.docs} documents linked to the symptoms they answer and the commits they cite. Start from a symptom, browse by
-			platform, or search.
+			What the projects learned while porting: {counts.guides} guides documenting {counts.techniques} techniques, {counts.investigations} investigations of real bugs, and
+			the symptoms that lead to them. Start from a symptom, browse techniques by platform, or search.
 		</p>
 		<p class="note">
 			This list is the complete, accessible view of the knowledge graph. An optional interactive graph further down shows the same relationships visually. The
@@ -45,11 +52,18 @@ const relations = [
 			<dl>
 				<div>
 					<dt><span class="tag">Extracted</span></dt>
-					<dd>Read directly from a document: a link, a cited commit or a symptom table row, each with the file and line it came from.</dd>
+					<dd>Read directly from a document: a section heading, a link, a citation or a symptom table row. Each one's file and line are under “Evidence”.</dd>
+				</div>
+				<div data-kb-legend-derived>
+					<dt><span class="tag tag--derived">Derived</span></dt>
+					<dd>
+						“Cites the same evidence as”: two items cite the same project commit. That is all it says; it makes no claim about how the two topics relate. In
+						the graph it is a dashed line labelled “derived”.
+					</dd>
 				</div>
 				<div>
 					<dt><span class="tag tag--inferred">Inferred</span></dt>
-					<dd>A connection a maintainer reviewed and wrote down with a rationale; no document states it. Hidden unless you ask for it. In the graph it is a dashed line labelled INFERRED.</dd>
+					<dd>A connection a maintainer reviewed and wrote down with a rationale; no document states it. Hidden unless you ask for it. In the graph it is a dotted line labelled INFERRED.</dd>
 				</div>
 			</dl>
 			{
@@ -59,55 +73,120 @@ const relations = [
 						<label for="show-inferred">Show reviewed inferred relationships ({counts.inferred})</label>
 					</p>
 				) : (
-					<p class="toggle-none">No inferred relationships are published yet: everything below is extracted.</p>
+					<p class="toggle-none">No inferred relationships are published yet: everything below is extracted or derived.</p>
 				)
 			}
 		</section>
 
 		<nav class="toc" aria-label="On this page">
 			<ul>
-				<li><a href="#documents">Documents</a></li>
-				<li><a href="#projects">Projects</a></li>
 				<li><a href="#symptoms">Start from a symptom</a></li>
+				<li><a href="#guides">Techniques and guides</a></li>
+				<li><a href="#investigations">Investigations</a></li>
+				<li><a href="#projects">Projects</a></li>
 				<li hidden data-kb-js><a href="#graph">Interactive graph</a></li>
 			</ul>
 		</nav>
 
-		<section id="documents" class="block" aria-labelledby="documents-h">
-			<h2 id="documents-h">Documents</h2>
+		<section id="symptoms" class="block" aria-labelledby="symptoms-h">
+			<h2 id="symptoms-h">Start from a symptom</h2>
+			<p class="intro">What you see in a port, and where it is documented or investigated. <span class="tag">Extracted</span> from the knowledge base's symptom index.</p>
+			<ul class="symptoms">
+				{
+					symptoms.map((s) => (
+						<li id={domId(s.node.id)} data-kb-item data-kb-section="symptoms" data-search={search(s.node.label, ...s.targets.map((t) => t.node.label))}>
+							<p class="symptom">
+								{s.node.label} <span class="status-tag">{s.node.status}</span>
+							</p>
+							<ul class="leads">
+								{s.targets.map((t) => (
+									<li>
+										{lead(t.label)} <a href={`#${domId(t.node.id)}`}>{t.node.label}</a>
+									</li>
+								))}
+							</ul>
+							<p class="item-actions">
+								<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={s.node.id}>
+									Show in graph<span class="sr-only">: {s.node.label}</span>
+								</button>
+							</p>
+							<Evidence rows={s.evidence} label={s.node.label} />
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		<section id="guides" class="block" aria-labelledby="guides-h">
+			<h2 id="guides-h">Techniques and guides</h2>
+			<p class="intro">Each guide and the techniques it documents, with a link to each section. Status labels are the guide's own.</p>
 			{
-				areas.map((area) => {
-					const docs = documents.filter((d) => d.doc.area === area.id);
-					return (
-						<div class="group" data-kb-group>
-							<h3>{area.title}</h3>
-							<ul class="cards">
-								{docs.map((d) => (
+				guideAreas.map((area) => (
+					<div class="group" data-kb-group>
+						<h3>{area.title}</h3>
+						<ul class="cards">
+							{guides
+								.filter((g) => g.node.area === area.id)
+								.map((g) => (
 									<li
 										class="kcard"
-										id={domId(d.doc.id)}
+										id={domId(g.node.id)}
 										data-kb-item
-										data-search={search(d.doc.label, d.doc.id, ...d.symptoms.map((s) => s.label), ...d.projects.map((p) => p.node.label))}
+										data-kb-section="guides"
+										data-search={search(g.node.label, g.node.id, ...g.techniques.map((t) => t.node.label), ...g.symptoms.map((s) => s.label), ...g.projects.map((p) => p.label))}
 									>
-										<h4>{d.doc.label}</h4>
-										<p class="path">{d.doc.id}</p>
+										<h4>{g.node.label}</h4>
+										<p class="path">{g.node.id}</p>
 										<p class="actions">
-											<a class="ext" href={d.doc.href} rel="noopener">
-												Read the document<span class="sr-only"> “{d.doc.label}” on GitHub</span>
+											<a class="ext" href={g.node.href} rel="noopener">
+												Read the guide<span class="sr-only"> “{g.node.label}” on GitHub</span>
 											</a>
-											<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={d.doc.id}>
-												Show in graph<span class="sr-only">: {d.doc.label}</span>
+											<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={g.node.id}>
+												Show in graph<span class="sr-only">: {g.node.label}</span>
 											</button>
 										</p>
 										<dl class="rels">
-											{d.symptoms.length > 0 && (
+											{g.techniques.length > 0 ? (
 												<div>
 													<dt>
-														Symptoms that lead here <span class="tag">Extracted</span>
+														Techniques ({g.techniques.length}) <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul class="techniques">
+															{g.techniques.map((t) => (
+																<li id={domId(t.node.id)}>
+																	<a href={t.node.href} rel="noopener">
+																		{t.node.label}
+																		<span class="sr-only"> (section on GitHub)</span>
+																	</a>
+																	{t.node.status && <span class="status-tag">{t.node.status}</span>}
+																	{t.projects.length > 0 && <p class="sub-rel">Draws on evidence from {t.projects.map((p) => p.label).join(' and ')}</p>}
+																	{t.shared.map((x) => (
+																		<p class="sub-rel shared">
+																			{lead(x.label)} <a href={`#${domId(x.node.id)}`}>{x.node.label}</a>{' '}
+																			<span class="tag tag--derived">Derived</span>
+																		</p>
+																	))}
+																	<Evidence rows={t.evidence} label={t.node.label} />
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											) : (
+												<div>
+													<dt>Techniques</dt>
+													<dd>A step-by-step checklist: its numbered steps are one procedure, so none is listed as a technique of its own.</dd>
+												</div>
+											)}
+											{g.symptoms.length > 0 && (
+												<div>
+													<dt>
+														Symptoms documented here <span class="tag">Extracted</span>
 													</dt>
 													<dd>
 														<ul>
-															{d.symptoms.map((s) => (
+															{g.symptoms.map((s) => (
 																<li>
 																	<a href={`#${domId(s.id)}`}>{s.label}</a>
 																</li>
@@ -116,68 +195,32 @@ const relations = [
 													</dd>
 												</div>
 											)}
-											{d.projects.length > 0 && (
-												<div>
-													<dt>
-														Projects cited <span class="tag">Extracted</span>
-													</dt>
-													<dd>
-														<ul>
-															{d.projects.map((p) => (
-																<li>
-																	<a href={`#${domId(p.node.id)}`}>{p.node.label}</a>
-																	<span class="commits">
-																		{' '}
-																		({p.commits.length} commit{p.commits.length === 1 ? '' : 's'}: {p.commits.map((c) => c.id.split(':').pop()).join(', ')})
-																	</span>
-																</li>
-															))}
-														</ul>
-													</dd>
-												</div>
-											)}
-											{d.references.length > 0 && (
+											{g.references.length > 0 && (
 												<div>
 													<dt>
 														References <span class="tag">Extracted</span>
 													</dt>
 													<dd>
 														<ul>
-															{d.references.map((r) => (
+															{g.references.map((r) => (
 																<li>
-																	{r.note} <a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
+																	{lead(r.note)} <a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
 																</li>
 															))}
 														</ul>
 													</dd>
 												</div>
 											)}
-											{d.sharedCommits.length > 0 && (
-												<div>
-													<dt>
-														Shares commits with <span class="tag">Extracted</span>
-													</dt>
-													<dd>
-														<ul>
-															{d.sharedCommits.map((r) => (
-																<li>
-																	<a href={`#${domId(r.node.id)}`}>{r.node.label}</a> <span class="commits">({r.note})</span>
-																</li>
-															))}
-														</ul>
-													</dd>
-												</div>
-											)}
-											{d.inferred.length > 0 && (
+											{g.inferred.length > 0 && (
 												<div class="inferred">
 													<dt>
 														Related <span class="tag tag--inferred">Inferred</span>
 													</dt>
 													<dd>
 														<ul>
-															{d.inferred.map((r) => (
+															{g.inferred.map((r) => (
 																<li>
-																	<a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
+																	{lead(r.label)} <a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
 																	<p class="why">Rationale: {r.rationale}</p>
 																</li>
 															))}
@@ -186,21 +229,148 @@ const relations = [
 												</div>
 											)}
 										</dl>
+										<Evidence rows={g.evidence} label={g.node.label} />
 									</li>
 								))}
-							</ul>
-						</div>
-					);
-				})
+						</ul>
+					</div>
+				))
+			}
+		</section>
+
+		<section id="investigations" class="block" aria-labelledby="investigations-h">
+			<h2 id="investigations-h">Investigations</h2>
+			<p class="intro">Case studies of real bugs: the symptoms, the evidence, the root cause, the fix and how it was verified.</p>
+			{
+				investigationAreas.map((area) => (
+					<div class="group" data-kb-group>
+						<h3>{area.title}</h3>
+						<ul class="cards">
+							{investigations
+								.filter((i) => i.node.area === area.id)
+								.map((i) => (
+									<li
+										class="kcard kcard--case"
+										id={domId(i.node.id)}
+										data-kb-item
+										data-kb-section="investigations"
+										data-search={search(i.node.label, i.node.id, ...i.symptoms.map((s) => s.label), ...i.projects.map((p) => p.label))}
+									>
+										<h4>{i.node.label}</h4>
+										<p class="path">{i.node.id}</p>
+										<p class="actions">
+											<a class="ext" href={i.node.href} rel="noopener">
+												Read the investigation<span class="sr-only"> “{i.node.label}” on GitHub</span>
+											</a>
+											<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={i.node.id}>
+												Show in graph<span class="sr-only">: {i.node.label}</span>
+											</button>
+										</p>
+										<dl class="rels">
+											{i.symptoms.length > 0 && (
+												<div>
+													<dt>
+														Investigates <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul>
+															{i.symptoms.map((s) => (
+																<li>
+																	<a href={`#${domId(s.id)}`}>{s.label}</a>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{i.projects.length > 0 && (
+												<div>
+													<dt>
+														Draws on evidence from <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul>
+															{i.projects.map((p) => (
+																<li>
+																	<a href={`#${domId(p.id)}`}>{p.label}</a>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{i.shared.length > 0 && (
+												<div class="shared">
+													<dt>
+														Cites the same evidence as <span class="tag tag--derived">Derived</span>
+													</dt>
+													<dd>
+														<ul>
+															{i.shared.map((x) => (
+																<li>
+																	<a href={`#${domId(x.node.id)}`}>{x.node.label}</a>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{i.references.length > 0 && (
+												<div>
+													<dt>
+														References <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul>
+															{i.references.map((r) => (
+																<li>
+																	{lead(r.note)} <a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{i.inferred.length > 0 && (
+												<div class="inferred">
+													<dt>
+														Related <span class="tag tag--inferred">Inferred</span>
+													</dt>
+													<dd>
+														<ul>
+															{i.inferred.map((r) => (
+																<li>
+																	{lead(r.label)} <a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
+																	<p class="why">Rationale: {r.rationale}</p>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+										</dl>
+										<Evidence rows={i.evidence} label={i.node.label} />
+									</li>
+								))}
+						</ul>
+					</div>
+				))
 			}
 		</section>
 
 		<section id="projects" class="block" aria-labelledby="projects-h">
 			<h2 id="projects-h">Projects</h2>
+			<p class="intro">The ports whose commits the guides and investigations cite as evidence.</p>
 			<ul class="cards cards--two">
 				{
 					projects.map((p) => (
-						<li class="kcard" id={domId(p.node.id)} data-kb-item data-search={search(p.node.label, ...p.docs.map((d) => d.label))}>
+						<li
+							class="kcard"
+							id={domId(p.node.id)}
+							data-kb-item
+							data-kb-section="projects"
+							data-search={search(p.node.label, ...p.guides.map((d) => d.label), ...p.investigations.map((d) => d.label))}
+						>
 							<h3>{p.node.label}</h3>
 							<p class="actions">
 								<a class="ext" href={p.node.href} rel="noopener">
@@ -210,56 +380,54 @@ const relations = [
 									Show in graph<span class="sr-only">: {p.node.label}</span>
 								</button>
 							</p>
-							<p class="sub">
-								Cited by {p.docs.length} document{p.docs.length === 1 ? '' : 's'} <span class="tag">Extracted</span>
-							</p>
-							<ul class="plain">
-								{p.docs.map((d) => (
-									<li>
-										<a href={`#${domId(d.id)}`}>{d.label}</a>
-									</li>
-								))}
-							</ul>
+							<dl class="rels">
+								{p.guides.length > 0 && (
+									<div>
+										<dt>
+											Guides that draw on its evidence <span class="tag">Extracted</span>
+										</dt>
+										<dd>
+											<ul>
+												{p.guides.map((d) => (
+													<li>
+														<a href={`#${domId(d.id)}`}>{d.label}</a>
+													</li>
+												))}
+											</ul>
+										</dd>
+									</div>
+								)}
+								{p.investigations.length > 0 && (
+									<div>
+										<dt>
+											Investigations that draw on its evidence <span class="tag">Extracted</span>
+										</dt>
+										<dd>
+											<ul>
+												{p.investigations.map((d) => (
+													<li>
+														<a href={`#${domId(d.id)}`}>{d.label}</a>
+													</li>
+												))}
+											</ul>
+										</dd>
+									</div>
+								)}
+							</dl>
+							<Evidence rows={p.evidence} label={p.node.label} />
 						</li>
 					))
 				}
 			</ul>
 		</section>
-
-		<section id="symptoms" class="block" aria-labelledby="symptoms-h">
-			<h2 id="symptoms-h">Start from a symptom</h2>
-			<p>What you see in a port, and the documents that explain it. <span class="tag">Extracted</span> from each document's symptom table.</p>
-			<ul class="symptoms">
-				{
-					symptoms.map((s) => (
-						<li id={domId(s.node.id)} data-kb-item data-search={search(s.node.label, ...s.docs.map((d) => d.label))}>
-							<p class="symptom">
-								{s.node.label} <span class="status-tag">{s.node.status}</span>
-							</p>
-							<p class="leads">
-								Read:{' '}
-								{s.docs.map((d, i) => (
-									<>
-										{i > 0 && ', '}
-										<a href={`#${domId(d.id)}`}>{d.label}</a>
-									</>
-								))}
-								<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={s.node.id}>
-									Show in graph<span class="sr-only">: {s.node.label}</span>
-								</button>
-							</p>
-						</li>
-					))
-				}
-			</ul>
-		</section>
-		<p class="empty" hidden data-kb-empty>No documents, projects or symptoms match. Try fewer words, or search the documents on GitHub.</p>
+		<p class="empty" hidden data-kb-empty>Nothing matches. Try fewer words, or search the documents on GitHub.</p>
 
 		<section id="graph" class="block graph" aria-labelledby="graph-h" hidden data-kb-js data-kb-graph>
 			<h2 id="graph-h">Interactive graph</h2>
 			<p>
-				The same {counts.nodes} documents, projects, commits and symptoms as a zoomable graph. It loads only when you open it. Everything in it is also in the list
-				above, which works with a keyboard and a screen reader.
+				The same {counts.primary} symptoms, guides, techniques, investigations and projects as a zoomable graph, read left to right. It loads only when you open it.
+				Everything in it is also in the list above, which works with a keyboard and a screen reader. Advanced mode adds the {counts.commits} cited commits and each
+				relationship's file and line.
 			</p>
 			<button class="btn" type="button" aria-expanded="false" aria-controls="kg-panel" data-kg-open>Show interactive graph</button>
 			<p class="status" data-kg-loading role="status"></p>
@@ -299,11 +467,16 @@ const relations = [
 							counts.inferred > 0 && (
 								<label class="check" for="show-inferred-graph">
 									<input id="show-inferred-graph" type="checkbox" data-kg-inferred-mirror />
-									Reviewed inferred (dashed, INFERRED)
+									Reviewed inferred (dotted, INFERRED)
 								</label>
 							)
 						}
 					</fieldset>
+					<p class="check advanced">
+						<input id="kg-advanced" type="checkbox" aria-describedby="kg-advanced-hint" data-kg-advanced />
+						<label for="kg-advanced">Advanced mode</label>
+						<span id="kg-advanced-hint" class="hint-inline">Shows the cited commits and each relationship's file and line.</span>
+					</p>
 					<div class="zoom" role="group" aria-label="Zoom">
 						<button class="btn btn--ghost btn--sm" type="button" data-kg-zoom-in aria-label="Zoom in">+</button>
 						<button class="btn btn--ghost btn--sm" type="button" data-kg-zoom-out aria-label="Zoom out">−</button>
@@ -314,7 +487,7 @@ const relations = [
 					<div
 						class="canvas"
 						role="img"
-						aria-label="Knowledge graph: documents, projects, commits and symptoms with their relationships. The list above is the accessible equivalent."
+						aria-label="Knowledge graph, left to right: symptoms, guides and investigations, techniques, projects. The list above is the accessible equivalent."
 						data-kg-canvas
 					>
 					</div>
@@ -327,14 +500,23 @@ const relations = [
 						<p class="keys">Escape clears the selection. Drag to pan, scroll or pinch to zoom.</p>
 					</div>
 				</div>
-				<p class="legend-inline">
-					Shapes: <span>▭ document</span>
-					<span>◆ project</span>
-					<span>● commit</span>
-					<span>▲ symptom</span>
-					<span>solid line: extracted</span>
-					{counts.inferred > 0 && <span>dashed line labelled INFERRED: inferred</span>}
-				</p>
+				<div class="legend-inline" data-kg-legend>
+					<p>
+						<span class="legend-h">Kinds</span>
+						<span><svg class="lg lg--symptom" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11.5 11h-11z"></path></svg>triangle: symptom</span>
+						<span><svg class="lg lg--guide" viewBox="0 0 16 12" aria-hidden="true"><rect x="1" y="2.5" width="14" height="7" rx="2"></rect></svg>bar: guide</span>
+						<span><svg class="lg lg--investigation" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1h6l3 5-3 5H3L0 6z"></path></svg>hexagon: investigation</span>
+						<span><svg class="lg lg--technique" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4"></circle></svg>circle: technique</span>
+						<span><svg class="lg lg--project" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0 12 6 6 12 0 6z"></path></svg>diamond: project</span>
+						<span data-kg-legend-commit hidden><svg class="lg lg--commit" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="2" width="8" height="8"></rect></svg>square: commit (advanced)</span>
+					</p>
+					<p>
+						<span class="legend-h">Lines</span>
+						<span>solid: extracted</span>
+						<span>dashed, labelled “derived”: cites the same evidence</span>
+						{counts.inferred > 0 && <span>dotted, labelled INFERRED: reviewed inferred</span>}
+					</p>
+				</div>
 			</div>
 		</section>
 	</div>
@@ -355,7 +537,7 @@ const relations = [
 	const items = $$<HTMLElement>('[data-kb-item]');
 	const empty = $<HTMLElement>('[data-kb-empty]');
 	$<HTMLElement>('[data-kb-submit]').textContent = 'Filter';
-	$<HTMLElement>('[data-kb-hint]').textContent = 'Filters the documents, projects and symptoms on this page as you type.';
+	$<HTMLElement>('[data-kb-hint]').textContent = 'Filters the symptoms, guides, investigations and projects on this page as you type.';
 
 	let graph: GraphApi | null = null;
 	let timer = 0;
@@ -422,6 +604,8 @@ const relations = [
 					area: $('[data-kg-area]'),
 					relations: $$('[data-kg-relation]'),
 					inferred: mirror,
+					advanced,
+					legendCommit: $('[data-kg-legend-commit]'),
 					jump: $('[data-kg-jump]'),
 					zoomIn: $('[data-kg-zoom-in]'),
 					zoomOut: $('[data-kg-zoom-out]'),
@@ -429,7 +613,7 @@ const relations = [
 				});
 				section.dataset.state = 'ready';
 				graph.setQuery(input.value);
-				loading.textContent = `Graph loaded: ${graph.nodeCount} nodes.`;
+				loading.textContent = `Graph loaded: ${graph.nodeCount} nodes shown.`;
 				return graph;
 			} catch (err) {
 				loading.textContent = 'The graph could not be loaded. The list above has the same information.';
@@ -440,6 +624,21 @@ const relations = [
 		})();
 		return mounting;
 	}
+
+	// Advanced mode (commits and file:line evidence): a real checkbox, mirrored in the URL as #advanced so it can be shared.
+	// Only the checkbox turns it off; following an in-page link that replaces the hash does not.
+	const advanced = $<HTMLInputElement>('[data-kg-advanced]');
+	advanced.addEventListener('change', () => history.replaceState(null, '', advanced.checked ? '#advanced' : location.pathname + location.search));
+	const fromHash = () => {
+		if (location.hash !== '#advanced') return;
+		if (!advanced.checked) {
+			advanced.checked = true;
+			advanced.dispatchEvent(new Event('change'));
+		}
+		load().then(() => section.scrollIntoView({ block: 'start' }));
+	};
+	addEventListener('hashchange', fromHash);
+	fromHash();
 
 	open.addEventListener('click', () => {
 		if (open.getAttribute('aria-expanded') === 'true') {
@@ -569,9 +768,18 @@ const relations = [
 		border: 1px solid var(--line-strong);
 	}
 	.tag--inferred {
+		color: var(--text);
+		border-style: dotted;
+		border-color: var(--text);
+	}
+	.tag--derived {
 		color: var(--rn-amber);
 		border-style: dashed;
 		border-color: var(--rn-amber);
+	}
+	.intro {
+		max-width: 44rem;
+		color: var(--text-2);
 	}
 
 	.legend {
@@ -737,7 +945,7 @@ const relations = [
 	.kb:has(#show-inferred:checked) .inferred {
 		display: block;
 		padding-left: 0.6rem;
-		border-left: 2px dashed var(--rn-amber);
+		border-left: 2px dotted var(--text);
 	}
 
 	.symptoms {
@@ -762,11 +970,30 @@ const relations = [
 	}
 	.leads {
 		margin: 0.25rem 0 0;
+		padding: 0;
+		list-style: none;
 		font-size: 0.92rem;
 		color: var(--text-2);
 	}
-	.leads .btn {
-		margin-left: 0.5rem;
+	.item-actions {
+		margin: 0.25rem 0 0;
+	}
+	.item-actions:has(> [hidden]:only-child) {
+		display: none;
+	}
+	.techniques > li {
+		margin: 0.45rem 0;
+	}
+	.techniques .status-tag {
+		margin-left: 0.4rem;
+	}
+	.sub-rel {
+		margin: 0.15rem 0 0;
+		color: var(--text-2);
+		font-size: 0.86rem;
+	}
+	.kcard--case {
+		border-top-color: var(--rn-volt);
 	}
 	.empty {
 		margin-top: 2rem;
@@ -935,6 +1162,10 @@ const relations = [
 		border: 1px solid var(--line-strong);
 	}
 	.details :global(.is-inferred .tag) {
+		color: var(--text);
+		border: 1px dotted var(--text);
+	}
+	.details :global(.is-derived .tag) {
 		color: var(--rn-amber);
 		border: 1px dashed var(--rn-amber);
 	}
@@ -943,12 +1174,62 @@ const relations = [
 		color: var(--text-2);
 	}
 	.legend-inline {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.25rem 1rem;
 		margin: 0.75rem 0 0;
 		font-size: 0.85rem;
 		color: var(--text-2);
+	}
+	.legend-inline p {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1rem;
+		margin: 0.25rem 0;
+	}
+	.lg {
+		width: 0.9em;
+		height: 0.9em;
+		margin-right: 0.35em;
+		vertical-align: -0.1em;
+	}
+	.lg--symptom {
+		fill: var(--rn-amber);
+	}
+	.lg--guide {
+		fill: var(--rn-neon);
+	}
+	.lg--investigation {
+		fill: var(--rn-volt);
+	}
+	.lg--technique {
+		fill: var(--rn-text);
+	}
+	.lg--project {
+		fill: var(--rn-ember);
+	}
+	.lg--commit {
+		fill: var(--rn-muted);
+	}
+	.legend-h {
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	.advanced {
+		flex-wrap: wrap;
+		margin: 0;
+	}
+	.advanced label {
+		font-weight: 600;
+	}
+	.hint-inline {
+		color: var(--text-muted);
+		font-size: 0.82rem;
+	}
+	.details :global(.kg-d-ev) {
+		margin: 0.15rem 0 0;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		color: var(--text-muted);
 	}
 
 	@media (min-width: 48rem) {

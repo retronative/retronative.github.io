@@ -1,6 +1,10 @@
 {
  "edges": [
   {
+   "advanced": true,
+   "commits": [
+    "044f91d"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -8,12 +12,18 @@
      "line": 17
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:044f91d",
    "target": "project:recarbon",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "243b8b2"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -21,12 +31,18 @@
      "line": 3
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:243b8b2",
    "target": "project:recarbon",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "49c3a21"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -34,12 +50,18 @@
      "line": 58
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:49c3a21",
    "target": "project:recarbon",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "540970f"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -55,12 +77,18 @@
      "line": 25
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:540970f",
    "target": "project:recarbon",
    "weight": 3
   },
   {
+   "advanced": true,
+   "commits": [
+    "69dfc05"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -68,12 +96,18 @@
      "line": 30
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:69dfc05",
    "target": "project:recarbon",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "6de491d"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -81,12 +115,18 @@
      "line": 24
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:6de491d",
    "target": "project:recarbon",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "d10d6ab"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -98,12 +138,18 @@
      "line": 3
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:d10d6ab",
    "target": "project:recarbon",
    "weight": 2
   },
   {
+   "advanced": true,
+   "commits": [
+    "da1a76e"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -115,12 +161,18 @@
      "line": 9
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:da1a76e",
    "target": "project:recarbon",
    "weight": 2
   },
   {
+   "advanced": true,
+   "commits": [
+    "f2b4d75"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -128,12 +180,18 @@
      "line": 29
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:recarbon:f2b4d75",
    "target": "project:recarbon",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "240175b"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -141,12 +199,18 @@
      "line": 17
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:240175b",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "26804e2"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -154,12 +218,18 @@
      "line": 56
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:26804e2",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "26a14a1"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -167,12 +237,18 @@
      "line": 23
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:26a14a1",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "3ce4266"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -184,12 +260,18 @@
      "line": 13
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:3ce4266",
    "target": "project:refrozen",
    "weight": 2
   },
   {
+   "advanced": true,
+   "commits": [
+    "4f4b402"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -197,12 +279,18 @@
      "line": 34
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:4f4b402",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "90cbec7"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -210,12 +298,18 @@
      "line": 22
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:90cbec7",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "9c4f745"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -223,12 +317,18 @@
      "line": 22
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:9c4f745",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "c9e5cdd"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -236,12 +336,18 @@
      "line": 14
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:c9e5cdd",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "d9642e7"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -249,12 +355,18 @@
      "line": 34
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:d9642e7",
    "target": "project:refrozen",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "fb7bf86"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -262,6 +374,8 @@
      "line": 54
     }
    ],
+   "inverse": "has commit",
+   "label": "is a commit of",
    "relation": "in_project",
    "source": "commit:refrozen:fb7bf86",
    "target": "project:refrozen",
@@ -275,6 +389,8 @@
      "line": 20
     }
    ],
+   "inverse": "is referenced by",
+   "label": "references",
    "relation": "references",
    "source": "general/bring-up-checklist.md",
    "target": "general/static-recompilation.md",
@@ -285,12 +401,44 @@
    "evidence": [
     {
      "file": "general/concurrency-patterns.md",
-     "line": 9
+     "line": 21
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/concurrency-patterns.md",
-   "target": "commit:recarbon:540970f",
+   "target": "technique:general/concurrency-patterns.md#data-layout-shared-with-guest-code-verified",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 3
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "general/concurrency-patterns.md",
+   "target": "technique:general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 26
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "general/concurrency-patterns.md",
+   "target": "technique:general/concurrency-patterns.md#lost-wakeups-method",
    "weight": 1
   },
   {
@@ -301,9 +449,11 @@
      "line": 30
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/concurrency-patterns.md",
-   "target": "commit:recarbon:69dfc05",
+   "target": "technique:general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
    "weight": 1
   },
   {
@@ -311,12 +461,14 @@
    "evidence": [
     {
      "file": "general/concurrency-patterns.md",
-     "line": 28
+     "line": 45
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/concurrency-patterns.md",
-   "target": "commit:recarbon:d10d6ab",
+   "target": "technique:general/concurrency-patterns.md#self-suspending-worker-threads-note",
    "weight": 1
   },
   {
@@ -324,12 +476,14 @@
    "evidence": [
     {
      "file": "general/concurrency-patterns.md",
-     "line": 6
+     "line": 9
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/concurrency-patterns.md",
-   "target": "commit:recarbon:da1a76e",
+   "target": "technique:general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
    "weight": 1
   },
   {
@@ -337,12 +491,14 @@
    "evidence": [
     {
      "file": "general/static-recompilation.md",
-     "line": 58
+     "line": 3
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/static-recompilation.md",
-   "target": "commit:recarbon:49c3a21",
+   "target": "technique:general/static-recompilation.md#function-discovery",
    "weight": 1
   },
   {
@@ -350,12 +506,14 @@
    "evidence": [
     {
      "file": "general/static-recompilation.md",
-     "line": 24
+     "line": 52
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/static-recompilation.md",
-   "target": "commit:recarbon:6de491d",
+   "target": "technique:general/static-recompilation.md#instruction-semantics",
    "weight": 1
   },
   {
@@ -363,12 +521,14 @@
    "evidence": [
     {
      "file": "general/static-recompilation.md",
-     "line": 56
+     "line": 39
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/static-recompilation.md",
-   "target": "commit:refrozen:26804e2",
+   "target": "technique:general/static-recompilation.md#structural-validation-of-generated-code-do-this-before-running-anything",
    "weight": 1
   },
   {
@@ -376,41 +536,21 @@
    "evidence": [
     {
      "file": "general/static-recompilation.md",
-     "line": 23
+     "line": 26
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "general/static-recompilation.md",
-   "target": "commit:refrozen:26a14a1",
+   "target": "technique:general/static-recompilation.md#switch-tables",
    "weight": 1
   },
   {
-   "confidence": "EXTRACTED",
-   "evidence": [
-    {
-     "file": "general/static-recompilation.md",
-     "line": 34
-    }
+   "advanced": true,
+   "commits": [
+    "d10d6ab"
    ],
-   "relation": "cites",
-   "source": "general/static-recompilation.md",
-   "target": "commit:refrozen:4f4b402",
-   "weight": 1
-  },
-  {
-   "confidence": "EXTRACTED",
-   "evidence": [
-    {
-     "file": "general/static-recompilation.md",
-     "line": 34
-    }
-   ],
-   "relation": "cites",
-   "source": "general/static-recompilation.md",
-   "target": "commit:refrozen:d9642e7",
-   "weight": 1
-  },
-  {
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -418,12 +558,60 @@
      "line": 3
     }
    ],
+   "inverse": "is cited by",
+   "label": "cites commit",
    "relation": "cites",
    "source": "recarbon/m4-8-movie-teardown-hang.md",
    "target": "commit:recarbon:d10d6ab",
    "weight": 1
   },
   {
+   "commits": [
+    "d10d6ab"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "recarbon/m4-8-movie-teardown-hang.md",
+     "line": 3
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "recarbon/m4-8-movie-teardown-hang.md",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "d10d6ab"
+   ],
+   "confidence": "DERIVED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 28,
+     "side": "target"
+    },
+    {
+     "file": "recarbon/m4-8-movie-teardown-hang.md",
+     "line": 3,
+     "side": "source"
+    }
+   ],
+   "inverse": "cites the same evidence as",
+   "label": "cites the same evidence as",
+   "relation": "shares_evidence",
+   "source": "recarbon/m4-8-movie-teardown-hang.md",
+   "target": "technique:general/concurrency-patterns.md#lost-wakeups-method",
+   "weight": 2
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "540970f"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -431,10 +619,78 @@
      "line": 3
     }
    ],
+   "inverse": "is cited by",
+   "label": "cites commit",
    "relation": "cites",
    "source": "recarbon/m6-render-queue-fences.md",
    "target": "commit:recarbon:540970f",
    "weight": 1
+  },
+  {
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "recarbon/m6-render-queue-fences.md",
+     "line": 3
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "recarbon/m6-render-queue-fences.md",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "DERIVED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 9,
+     "side": "target"
+    },
+    {
+     "file": "recarbon/m6-render-queue-fences.md",
+     "line": 3,
+     "side": "source"
+    }
+   ],
+   "inverse": "cites the same evidence as",
+   "label": "cites the same evidence as",
+   "relation": "shares_evidence",
+   "source": "recarbon/m6-render-queue-fences.md",
+   "target": "technique:general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
+   "weight": 2
+  },
+  {
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "DERIVED",
+   "evidence": [
+    {
+     "file": "recarbon/m6-render-queue-fences.md",
+     "line": 3,
+     "side": "source"
+    },
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 25,
+     "side": "target"
+    }
+   ],
+   "inverse": "cites the same evidence as",
+   "label": "cites the same evidence as",
+   "relation": "shares_evidence",
+   "source": "recarbon/m6-render-queue-fences.md",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "weight": 2
   },
   {
    "confidence": "EXTRACTED",
@@ -444,6 +700,8 @@
      "line": 70
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:a-crash-at-exit-inside-a-dll-s-detach-that-the-original-survives",
    "target": "win32/loader-and-imports.md",
@@ -457,6 +715,8 @@
      "line": 23
     }
    ],
+   "inverse": "investigates the symptom",
+   "label": "is investigated in",
    "relation": "answered_by",
    "source": "symptom:a-mid-asm-hook-doesn-t-seem-to-run",
    "target": "recarbon/m6-render-queue-fences.md",
@@ -470,6 +730,8 @@
      "line": 77
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:an-offline-game-stops-in-wsock32-by-ordinal-inet-addr-always-fai",
    "target": "win32/loader-and-imports.md",
@@ -483,6 +745,8 @@
      "line": 47
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:audio-dropouts-or-underruns-a-real-time-callback-runs-long",
    "target": "general/concurrency-patterns.md",
@@ -496,6 +760,8 @@
      "line": 19
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:black-video-but-the-decoder-writes-frames",
    "target": "xbox360/gpu-edram-and-ring.md",
@@ -509,6 +775,8 @@
      "line": 56
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:data-races-between-guest-visible-hardware-and-host-threads",
    "target": "general/concurrency-patterns.md",
@@ -522,6 +790,8 @@
      "line": 7
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:function-count-far-above-the-unwind-table-count",
    "target": "general/static-recompilation.md",
@@ -535,6 +805,8 @@
      "line": 10
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:how-to-validate-generated-code-before-running-it",
    "target": "general/static-recompilation.md",
@@ -548,6 +820,8 @@
      "line": 64
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:import-coverage-numbers-look-too-good-ordinal-named-handlers-cou",
    "target": "win32/loader-and-imports.md",
@@ -561,6 +835,8 @@
      "line": 78
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:indirect-branch-to-an-unlifted-routine-reached-through-a-table-i",
    "target": "general/static-recompilation.md",
@@ -574,6 +850,8 @@
      "line": 13
     }
    ],
+   "inverse": "investigates the symptom",
+   "label": "is investigated in",
    "relation": "answered_by",
    "source": "symptom:rare-hang-thread-blocked-in-rtlentercriticalsection-register-hol",
    "target": "recarbon/m4-8-movie-teardown-hang.md",
@@ -587,6 +865,8 @@
      "line": 22
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:same-message-but-x-is-in-a-data-section-or-rare-null-garbage-cal",
    "target": "general/concurrency-patterns.md",
@@ -600,6 +880,8 @@
      "line": 22
     }
    ],
+   "inverse": "investigates the symptom",
+   "label": "is investigated in",
    "relation": "answered_by",
    "source": "symptom:same-message-but-x-is-in-a-data-section-or-rare-null-garbage-cal",
    "target": "recarbon/m6-render-queue-fences.md",
@@ -613,6 +895,8 @@
      "line": 16
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:shader-translation-failed-unimplemented-xenos-opcode",
    "target": "xbox360/gpu-edram-and-ring.md",
@@ -626,6 +910,8 @@
      "line": 5
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:starting-a-new-port-what-to-do-first",
    "target": "general/bring-up-checklist.md",
@@ -639,6 +925,8 @@
      "line": 15
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:surface-see-through-or-black-and-untextured-in-gameplay-many-ski",
    "target": "xbox360/gpu-edram-and-ring.md",
@@ -652,6 +940,8 @@
      "line": 33
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:survey-recompile-from-scratch-gives-thousands-of-switch-case-out",
    "target": "general/static-recompilation.md",
@@ -665,6 +955,8 @@
      "line": 8
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:switch-case-outside-function-jump-tables-b-4-stubs-seh-headers-a",
    "target": "general/static-recompilation.md",
@@ -678,6 +970,8 @@
      "line": 9
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:unrecognized-instructions-testing-instruction-semantics",
    "target": "general/static-recompilation.md",
@@ -691,6 +985,8 @@
      "line": 75
     }
    ],
+   "inverse": "investigates the symptom",
+   "label": "is investigated in",
    "relation": "answered_by",
    "source": "symptom:win32-game-silent-no-sound-device-last-waveout-block-never-retur",
    "target": "win32/waveout-on-sdl-audio.md",
@@ -704,6 +1000,8 @@
      "line": 67
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:x86-callee-saved-registers-corrupt-after-a-routine-crash-at-exit",
    "target": "general/static-recompilation.md",
@@ -717,6 +1015,8 @@
      "line": 66
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:x86-jump-table-via-mov-reg-t-i-4-jmp-reg-analyzer-lists-bogus-ca",
    "target": "general/static-recompilation.md",
@@ -730,12 +1030,480 @@
      "line": 63
     }
    ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
    "relation": "answered_by",
    "source": "symptom:x86-win32-guest-a-dll-misbehaves-only-when-statically-loaded-or-",
    "target": "win32/loader-and-imports.md",
    "weight": 1
   },
   {
+   "advanced": true,
+   "commits": [
+    "da1a76e"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 6
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
+   "target": "commit:recarbon:da1a76e",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "da1a76e"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 6
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "da1a76e"
+   ],
+   "confidence": "DERIVED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 6,
+     "side": "source"
+    },
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 9,
+     "side": "target"
+    }
+   ],
+   "inverse": "cites the same evidence as",
+   "label": "cites the same evidence as",
+   "relation": "shares_evidence",
+   "source": "technique:general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
+   "weight": 2
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "d10d6ab"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 28
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/concurrency-patterns.md#lost-wakeups-method",
+   "target": "commit:recarbon:d10d6ab",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "d10d6ab"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 28
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/concurrency-patterns.md#lost-wakeups-method",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "69dfc05"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 30
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
+   "target": "commit:recarbon:69dfc05",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "69dfc05"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 30
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 9
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
+   "target": "commit:recarbon:540970f",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 9
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "DERIVED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 9,
+     "side": "source"
+    },
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 25,
+     "side": "target"
+    }
+   ],
+   "inverse": "cites the same evidence as",
+   "label": "cites the same evidence as",
+   "relation": "shares_evidence",
+   "source": "technique:general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "weight": 2
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "6de491d"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 24
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/static-recompilation.md#function-discovery",
+   "target": "commit:recarbon:6de491d",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "26a14a1"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 23
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/static-recompilation.md#function-discovery",
+   "target": "commit:refrozen:26a14a1",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "6de491d"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 24
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/static-recompilation.md#function-discovery",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "26a14a1"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 23
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/static-recompilation.md#function-discovery",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "49c3a21"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 58
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/static-recompilation.md#instruction-semantics",
+   "target": "commit:recarbon:49c3a21",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "26804e2"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 56
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/static-recompilation.md#instruction-semantics",
+   "target": "commit:refrozen:26804e2",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "49c3a21"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 58
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/static-recompilation.md#instruction-semantics",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "26804e2"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 56
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/static-recompilation.md#instruction-semantics",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "4f4b402"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 34
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/static-recompilation.md#switch-tables",
+   "target": "commit:refrozen:4f4b402",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "d9642e7"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 34
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/static-recompilation.md#switch-tables",
+   "target": "commit:refrozen:d9642e7",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "4f4b402",
+    "d9642e7"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 34
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/static-recompilation.md#switch-tables",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "3ce4266"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 5
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
+   "target": "commit:refrozen:3ce4266",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "3ce4266"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 5
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "3ce4266"
+   ],
+   "confidence": "DERIVED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 5,
+     "side": "source"
+    },
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 13,
+     "side": "target"
+    }
+   ],
+   "inverse": "cites the same evidence as",
+   "label": "cites the same evidence as",
+   "relation": "shares_evidence",
+   "source": "technique:win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
+   "target": "technique:win32/loader-and-imports.md#import-coverage-counts",
+   "weight": 2
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "240175b"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -743,9 +1511,332 @@
      "line": 17
     }
    ],
+   "inverse": "is cited by",
+   "label": "cites commit",
    "relation": "cites",
-   "source": "win32/loader-and-imports.md",
+   "source": "technique:win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
    "target": "commit:refrozen:240175b",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "240175b"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 17
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "3ce4266"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 13
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:win32/loader-and-imports.md#import-coverage-counts",
+   "target": "commit:refrozen:3ce4266",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "c9e5cdd"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 14
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:win32/loader-and-imports.md#import-coverage-counts",
+   "target": "commit:refrozen:c9e5cdd",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "3ce4266",
+    "c9e5cdd"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 13
+    },
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 14
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:win32/loader-and-imports.md#import-coverage-counts",
+   "target": "project:refrozen",
+   "weight": 2
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "90cbec7"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 22
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
+   "target": "commit:refrozen:90cbec7",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "9c4f745"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 22
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
+   "target": "commit:refrozen:9c4f745",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "90cbec7",
+    "9c4f745"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 22
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "243b8b2"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 3
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
+   "target": "commit:recarbon:243b8b2",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "243b8b2"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 3
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "f2b4d75"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 29
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#memexport",
+   "target": "commit:recarbon:f2b4d75",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "f2b4d75"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 29
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#memexport",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "da1a76e"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 9
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
+   "target": "commit:recarbon:da1a76e",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "da1a76e"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 9
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 25
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "target": "commit:recarbon:540970f",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "540970f"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 25
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "044f91d"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 17
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
+   "target": "commit:recarbon:044f91d",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "044f91d"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 17
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
+   "target": "project:recarbon",
    "weight": 1
   },
   {
@@ -754,28 +1845,43 @@
     {
      "file": "win32/loader-and-imports.md",
      "line": 5
-    },
-    {
-     "file": "win32/loader-and-imports.md",
-     "line": 13
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "win32/loader-and-imports.md",
-   "target": "commit:refrozen:3ce4266",
-   "weight": 2
+   "target": "technique:win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
+   "weight": 1
   },
   {
    "confidence": "EXTRACTED",
    "evidence": [
     {
      "file": "win32/loader-and-imports.md",
-     "line": 22
+     "line": 17
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "win32/loader-and-imports.md",
-   "target": "commit:refrozen:90cbec7",
+   "target": "technique:win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 12
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "win32/loader-and-imports.md",
+   "target": "technique:win32/loader-and-imports.md#import-coverage-counts",
    "weight": 1
   },
   {
@@ -786,25 +1892,18 @@
      "line": 22
     }
    ],
-   "relation": "cites",
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
    "source": "win32/loader-and-imports.md",
-   "target": "commit:refrozen:9c4f745",
+   "target": "technique:win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
    "weight": 1
   },
   {
-   "confidence": "EXTRACTED",
-   "evidence": [
-    {
-     "file": "win32/loader-and-imports.md",
-     "line": 14
-    }
+   "advanced": true,
+   "commits": [
+    "fb7bf86"
    ],
-   "relation": "cites",
-   "source": "win32/loader-and-imports.md",
-   "target": "commit:refrozen:c9e5cdd",
-   "weight": 1
-  },
-  {
    "confidence": "EXTRACTED",
    "evidence": [
     {
@@ -812,74 +1911,29 @@
      "line": 54
     }
    ],
+   "inverse": "is cited by",
+   "label": "cites commit",
    "relation": "cites",
    "source": "win32/waveout-on-sdl-audio.md",
    "target": "commit:refrozen:fb7bf86",
    "weight": 1
   },
   {
+   "commits": [
+    "fb7bf86"
+   ],
    "confidence": "EXTRACTED",
    "evidence": [
     {
-     "file": "xbox360/gpu-edram-and-ring.md",
-     "line": 17
+     "file": "win32/waveout-on-sdl-audio.md",
+     "line": 54
     }
    ],
-   "relation": "cites",
-   "source": "xbox360/gpu-edram-and-ring.md",
-   "target": "commit:recarbon:044f91d",
-   "weight": 1
-  },
-  {
-   "confidence": "EXTRACTED",
-   "evidence": [
-    {
-     "file": "xbox360/gpu-edram-and-ring.md",
-     "line": 3
-    }
-   ],
-   "relation": "cites",
-   "source": "xbox360/gpu-edram-and-ring.md",
-   "target": "commit:recarbon:243b8b2",
-   "weight": 1
-  },
-  {
-   "confidence": "EXTRACTED",
-   "evidence": [
-    {
-     "file": "xbox360/gpu-edram-and-ring.md",
-     "line": 25
-    }
-   ],
-   "relation": "cites",
-   "source": "xbox360/gpu-edram-and-ring.md",
-   "target": "commit:recarbon:540970f",
-   "weight": 1
-  },
-  {
-   "confidence": "EXTRACTED",
-   "evidence": [
-    {
-     "file": "xbox360/gpu-edram-and-ring.md",
-     "line": 9
-    }
-   ],
-   "relation": "cites",
-   "source": "xbox360/gpu-edram-and-ring.md",
-   "target": "commit:recarbon:da1a76e",
-   "weight": 1
-  },
-  {
-   "confidence": "EXTRACTED",
-   "evidence": [
-    {
-     "file": "xbox360/gpu-edram-and-ring.md",
-     "line": 29
-    }
-   ],
-   "relation": "cites",
-   "source": "xbox360/gpu-edram-and-ring.md",
-   "target": "commit:recarbon:f2b4d75",
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "win32/waveout-on-sdl-audio.md",
+   "target": "project:refrozen",
    "weight": 1
   },
   {
@@ -890,9 +1944,101 @@
      "line": 26
     }
    ],
+   "inverse": "is referenced by",
+   "label": "references",
    "relation": "references",
    "source": "xbox360/gpu-edram-and-ring.md",
    "target": "recarbon/m6-render-queue-fences.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 3
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 22
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#edram-msaa-clears-vs-1x-targets-unresolved-observation",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 28
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#memexport",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 9
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 25
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 17
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "technique:xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
    "weight": 1
   }
  ],
@@ -902,327 +2048,594 @@
    "area": "general",
    "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/bring-up-checklist.md",
    "id": "general/bring-up-checklist.md",
-   "kind": "doc",
-   "label": "New-port bring-up checklist (platform-agnostic)"
+   "kind": "guide",
+   "label": "New-port bring-up checklist (platform-agnostic)",
+   "short": "New-port bring-up checklist"
   },
   {
    "area": "general",
    "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md",
    "id": "general/concurrency-patterns.md",
-   "kind": "doc",
-   "label": "Concurrency patterns in HLE runtimes"
+   "kind": "guide",
+   "label": "Concurrency patterns in HLE runtimes",
+   "short": "Concurrency patterns in HLE…"
   },
   {
    "area": "general",
    "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md",
    "id": "general/static-recompilation.md",
-   "kind": "doc",
-   "label": "Static recompilation: function discovery and validation (platform-agnostic)"
-  },
-  {
-   "area": "recarbon",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m4-8-movie-teardown-hang.md",
-   "id": "recarbon/m4-8-movie-teardown-hang.md",
-   "kind": "doc",
-   "label": "Case: intermittent movie-teardown hang (ReCarbon M4.8)"
-  },
-  {
-   "area": "recarbon",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m6-render-queue-fences.md",
-   "id": "recarbon/m6-render-queue-fences.md",
-   "kind": "doc",
-   "label": "Case: deferred render-callback queue without barriers (ReCarbon M6)"
+   "kind": "guide",
+   "label": "Static recompilation: function discovery and validation (platform-agnostic)",
+   "short": "Static recompilation: function…"
   },
   {
    "area": "win32",
    "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md",
    "id": "win32/loader-and-imports.md",
-   "kind": "doc",
-   "label": "Win32 HLE loader: DllMain contract and import accounting"
-  },
-  {
-   "area": "win32",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/waveout-on-sdl-audio.md",
-   "id": "win32/waveout-on-sdl-audio.md",
-   "kind": "doc",
-   "label": "winmm waveOut on SDL audio streams"
+   "kind": "guide",
+   "label": "Win32 HLE loader: DllMain contract and import accounting",
+   "short": "Win32 HLE loader: DllMain…"
   },
   {
    "area": "xbox360",
    "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md",
    "id": "xbox360/gpu-edram-and-ring.md",
-   "kind": "doc",
-   "label": "Xenos GPU: EDRAM formats and the command ring"
+   "kind": "guide",
+   "label": "Xenos GPU: EDRAM formats and the command ring",
+   "short": "Xenos GPU: EDRAM formats and the…"
   },
   {
-   "href": "https://github.com/retronative/recarbon",
-   "id": "project:recarbon",
-   "kind": "project",
-   "label": "ReCarbon"
+   "area": "recarbon",
+   "case_signal": "h1",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m4-8-movie-teardown-hang.md",
+   "id": "recarbon/m4-8-movie-teardown-hang.md",
+   "kind": "investigation",
+   "label": "Case: intermittent movie-teardown hang (ReCarbon M4.8)",
+   "short": "Intermittent movie-teardown hang"
   },
   {
-   "href": "https://github.com/retronative/refrozen",
-   "id": "project:refrozen",
-   "kind": "project",
-   "label": "reFrozen"
+   "area": "recarbon",
+   "case_signal": "h1",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m6-render-queue-fences.md",
+   "id": "recarbon/m6-render-queue-fences.md",
+   "kind": "investigation",
+   "label": "Case: deferred render-callback queue without barriers (ReCarbon M6)",
+   "short": "Deferred render-callback queue…"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/044f91d",
-   "id": "commit:recarbon:044f91d",
-   "kind": "commit",
-   "label": "ReCarbon 044f91d",
-   "project": "project:recarbon"
+   "area": "win32",
+   "case_signal": "sections",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/waveout-on-sdl-audio.md",
+   "id": "win32/waveout-on-sdl-audio.md",
+   "kind": "investigation",
+   "label": "winmm waveOut on SDL audio streams",
+   "short": "winmm waveOut on SDL audio…"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/243b8b2",
-   "id": "commit:recarbon:243b8b2",
-   "kind": "commit",
-   "label": "ReCarbon 243b8b2",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/concurrency-patterns.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#data-layout-shared-with-guest-code-verified",
+   "id": "technique:general/concurrency-patterns.md#data-layout-shared-with-guest-code-verified",
+   "kind": "technique",
+   "label": "Data layout shared with guest code",
+   "short": "Data layout shared with guest…",
+   "status": "VERIFIED"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/49c3a21",
-   "id": "commit:recarbon:49c3a21",
-   "kind": "commit",
-   "label": "ReCarbon 49c3a21",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/concurrency-patterns.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
+   "id": "technique:general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
+   "kind": "technique",
+   "label": "Host data races on state the guest treats as hardware",
+   "short": "Host data races on state the…",
+   "status": "VERIFIED"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/540970f",
-   "id": "commit:recarbon:540970f",
-   "kind": "commit",
-   "label": "ReCarbon 540970f",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/concurrency-patterns.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#lost-wakeups-method",
+   "id": "technique:general/concurrency-patterns.md#lost-wakeups-method",
+   "kind": "technique",
+   "label": "Lost wakeups",
+   "short": "Lost wakeups",
+   "status": "method"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/69dfc05",
-   "id": "commit:recarbon:69dfc05",
-   "kind": "commit",
-   "label": "ReCarbon 69dfc05",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/concurrency-patterns.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
+   "id": "technique:general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
+   "kind": "technique",
+   "label": "Priority inversion: a real-time host thread waits on a guest thread",
+   "short": "Priority inversion: a real-time…",
+   "status": "VERIFIED"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/6de491d",
-   "id": "commit:recarbon:6de491d",
-   "kind": "commit",
-   "label": "ReCarbon 6de491d",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/concurrency-patterns.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#self-suspending-worker-threads-note",
+   "id": "technique:general/concurrency-patterns.md#self-suspending-worker-threads-note",
+   "kind": "technique",
+   "label": "Self-suspending worker threads",
+   "short": "Self-suspending worker threads",
+   "status": "note"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/d10d6ab",
-   "id": "commit:recarbon:d10d6ab",
-   "kind": "commit",
-   "label": "ReCarbon d10d6ab",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/concurrency-patterns.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
+   "id": "technique:general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
+   "kind": "technique",
+   "label": "Weak-memory publish without barriers",
+   "short": "Weak-memory publish without…",
+   "status": "VERIFIED"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/da1a76e",
-   "id": "commit:recarbon:da1a76e",
-   "kind": "commit",
-   "label": "ReCarbon da1a76e",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/static-recompilation.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#function-discovery",
+   "id": "technique:general/static-recompilation.md#function-discovery",
+   "kind": "technique",
+   "label": "Function discovery",
+   "short": "Function discovery"
   },
   {
-   "href": "https://github.com/retronative/recarbon/commit/f2b4d75",
-   "id": "commit:recarbon:f2b4d75",
-   "kind": "commit",
-   "label": "ReCarbon f2b4d75",
-   "project": "project:recarbon"
+   "area": "general",
+   "doc": "general/static-recompilation.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#instruction-semantics",
+   "id": "technique:general/static-recompilation.md#instruction-semantics",
+   "kind": "technique",
+   "label": "Instruction semantics",
+   "short": "Instruction semantics"
   },
   {
-   "id": "commit:refrozen:240175b",
-   "kind": "commit",
-   "label": "reFrozen 240175b",
-   "project": "project:refrozen"
+   "area": "general",
+   "doc": "general/static-recompilation.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#structural-validation-of-generated-code-do-this-before-running-anything",
+   "id": "technique:general/static-recompilation.md#structural-validation-of-generated-code-do-this-before-running-anything",
+   "kind": "technique",
+   "label": "Structural validation of generated code (do this before running anything)",
+   "short": "Structural validation of…"
   },
   {
-   "id": "commit:refrozen:26804e2",
-   "kind": "commit",
-   "label": "reFrozen 26804e2",
-   "project": "project:refrozen"
+   "area": "general",
+   "doc": "general/static-recompilation.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#switch-tables",
+   "id": "technique:general/static-recompilation.md#switch-tables",
+   "kind": "technique",
+   "label": "Switch tables",
+   "short": "Switch tables"
   },
   {
-   "id": "commit:refrozen:26a14a1",
-   "kind": "commit",
-   "label": "reFrozen 26a14a1",
-   "project": "project:refrozen"
+   "area": "win32",
+   "doc": "win32/loader-and-imports.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
+   "id": "technique:win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
+   "kind": "technique",
+   "label": "DllMain gets a non-NULL lpReserved for static loads",
+   "short": "DllMain gets a non-NULL…",
+   "status": "VERIFIED"
   },
   {
-   "id": "commit:refrozen:3ce4266",
-   "kind": "commit",
-   "label": "reFrozen 3ce4266",
-   "project": "project:refrozen"
+   "area": "win32",
+   "doc": "win32/loader-and-imports.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
+   "id": "technique:win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
+   "kind": "technique",
+   "label": "Exceptions escaping DllMain are caught by the loader",
+   "short": "Exceptions escaping DllMain are…",
+   "status": "VERIFIED"
   },
   {
-   "id": "commit:refrozen:4f4b402",
-   "kind": "commit",
-   "label": "reFrozen 4f4b402",
-   "project": "project:refrozen"
+   "area": "win32",
+   "doc": "win32/loader-and-imports.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#import-coverage-counts",
+   "id": "technique:win32/loader-and-imports.md#import-coverage-counts",
+   "kind": "technique",
+   "label": "Import coverage counts",
+   "short": "Import coverage counts"
   },
   {
-   "id": "commit:refrozen:90cbec7",
-   "kind": "commit",
-   "label": "reFrozen 90cbec7",
-   "project": "project:refrozen"
+   "area": "win32",
+   "doc": "win32/loader-and-imports.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
+   "id": "technique:win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
+   "kind": "technique",
+   "label": "Winsock 1.1 by ordinal",
+   "short": "Winsock 1.1 by ordinal",
+   "status": "VERIFIED"
   },
   {
-   "id": "commit:refrozen:9c4f745",
-   "kind": "commit",
-   "label": "reFrozen 9c4f745",
-   "project": "project:refrozen"
+   "area": "xbox360",
+   "doc": "xbox360/gpu-edram-and-ring.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
+   "id": "technique:xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
+   "kind": "technique",
+   "label": "EDRAM colour formats share storage",
+   "short": "EDRAM colour formats share…",
+   "status": "VERIFIED"
   },
   {
-   "id": "commit:refrozen:c9e5cdd",
-   "kind": "commit",
-   "label": "reFrozen c9e5cdd",
-   "project": "project:refrozen"
+   "area": "xbox360",
+   "doc": "xbox360/gpu-edram-and-ring.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#edram-msaa-clears-vs-1x-targets-unresolved-observation",
+   "id": "technique:xbox360/gpu-edram-and-ring.md#edram-msaa-clears-vs-1x-targets-unresolved-observation",
+   "kind": "technique",
+   "label": "EDRAM MSAA clears vs 1x targets",
+   "short": "EDRAM MSAA clears vs 1x targets",
+   "status": "UNRESOLVED"
   },
   {
-   "id": "commit:refrozen:d9642e7",
-   "kind": "commit",
-   "label": "reFrozen d9642e7",
-   "project": "project:refrozen"
+   "area": "xbox360",
+   "doc": "xbox360/gpu-edram-and-ring.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#memexport",
+   "id": "technique:xbox360/gpu-edram-and-ring.md#memexport",
+   "kind": "technique",
+   "label": "Memexport",
+   "short": "Memexport"
   },
   {
-   "id": "commit:refrozen:fb7bf86",
-   "kind": "commit",
-   "label": "reFrozen fb7bf86",
-   "project": "project:refrozen"
+   "area": "xbox360",
+   "doc": "xbox360/gpu-edram-and-ring.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
+   "id": "technique:xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
+   "kind": "technique",
+   "label": "Primary ring buffer re-initialization",
+   "short": "Primary ring buffer…",
+   "status": "VERIFIED"
+  },
+  {
+   "area": "xbox360",
+   "doc": "xbox360/gpu-edram-and-ring.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "id": "technique:xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "kind": "technique",
+   "label": "Render-queue fences",
+   "short": "Render-queue fences",
+   "status": "VERIFIED"
+  },
+  {
+   "area": "xbox360",
+   "doc": "xbox360/gpu-edram-and-ring.md",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
+   "id": "technique:xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
+   "kind": "technique",
+   "label": "Shader translation: getGradients",
+   "short": "Shader translation: getGradients",
+   "status": "VERIFIED"
   },
   {
    "id": "symptom:a-crash-at-exit-inside-a-dll-s-detach-that-the-original-survives",
    "kind": "symptom",
    "label": "A crash at exit inside a DLL's detach that the original survives",
+   "short": "A crash at exit inside a DLL's…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:a-mid-asm-hook-doesn-t-seem-to-run",
    "kind": "symptom",
    "label": "A mid-asm hook doesn't seem to run",
+   "short": "A mid-asm hook doesn't seem to…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:an-offline-game-stops-in-wsock32-by-ordinal-inet-addr-always-fai",
    "kind": "symptom",
    "label": "An offline game stops in wsock32 by ordinal; inet_addr always fails",
+   "short": "An offline game stops in wsock32…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:audio-dropouts-or-underruns-a-real-time-callback-runs-long",
    "kind": "symptom",
    "label": "Audio dropouts or underruns; a real-time callback runs long",
+   "short": "Audio dropouts or underruns; a…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:black-video-but-the-decoder-writes-frames",
    "kind": "symptom",
    "label": "Black video, but the decoder writes frames",
+   "short": "Black video, but the decoder…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:data-races-between-guest-visible-hardware-and-host-threads",
    "kind": "symptom",
    "label": "Data races between guest-visible \"hardware\" and host threads",
+   "short": "Data races between guest-visible…",
    "status": "VERIFIED / method"
   },
   {
    "id": "symptom:function-count-far-above-the-unwind-table-count",
    "kind": "symptom",
    "label": "Function count far above the unwind-table count",
+   "short": "Function count far above the…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:how-to-validate-generated-code-before-running-it",
    "kind": "symptom",
    "label": "How to validate generated code before running it",
+   "short": "How to validate generated code…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:import-coverage-numbers-look-too-good-ordinal-named-handlers-cou",
    "kind": "symptom",
    "label": "Import coverage numbers look too good; ordinal-named handlers counted as stubs",
+   "short": "Import coverage numbers look too…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:indirect-branch-to-an-unlifted-routine-reached-through-a-table-i",
    "kind": "symptom",
    "label": "Indirect branch to an unlifted routine reached through a table inside a code section",
+   "short": "Indirect branch to an unlifted…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:rare-hang-thread-blocked-in-rtlentercriticalsection-register-hol",
    "kind": "symptom",
    "label": "Rare hang, thread blocked in RtlEnterCriticalSection, register holds 0x01000000",
+   "short": "Rare hang, thread blocked in…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:same-message-but-x-is-in-a-data-section-or-rare-null-garbage-cal",
    "kind": "symptom",
    "label": "Same message but X is in a data section, or rare null/garbage callbacks under load",
+   "short": "Same message but X is in a data…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:shader-translation-failed-unimplemented-xenos-opcode",
    "kind": "symptom",
    "label": "Shader \"translation failed\" / unimplemented Xenos opcode",
+   "short": "Shader \"translation failed\" /…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:starting-a-new-port-what-to-do-first",
    "kind": "symptom",
    "label": "Starting a new port: what to do first",
+   "short": "Starting a new port: what to do…",
    "status": "method"
   },
   {
    "id": "symptom:surface-see-through-or-black-and-untextured-in-gameplay-many-ski",
    "kind": "symptom",
    "label": "Surface see-through, or black and untextured, in gameplay; many skipped draws",
+   "short": "Surface see-through, or black…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:survey-recompile-from-scratch-gives-thousands-of-switch-case-out",
    "kind": "symptom",
    "label": "Survey/recompile from scratch gives thousands of \"switch case outside function\" though the committed config works",
+   "short": "Survey/recompile from scratch…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:switch-case-outside-function-jump-tables-b-4-stubs-seh-headers-a",
    "kind": "symptom",
    "label": "\"switch case outside function\", jump tables, b +4 stubs, SEH headers as code",
+   "short": "\"switch case outside function\"…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:unrecognized-instructions-testing-instruction-semantics",
    "kind": "symptom",
    "label": "Unrecognized instructions; testing instruction semantics",
+   "short": "Unrecognized instructions…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:win32-game-silent-no-sound-device-last-waveout-block-never-retur",
    "kind": "symptom",
    "label": "Win32 game silent (\"no sound device\"); last waveOut block never returned (no WOM_DONE)",
+   "short": "Win32 game silent (\"no sound…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:x86-callee-saved-registers-corrupt-after-a-routine-crash-at-exit",
    "kind": "symptom",
    "label": "x86: callee-saved registers corrupt after a routine, crash at exit; ESP off by 2",
+   "short": "x86: callee-saved registers…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:x86-jump-table-via-mov-reg-t-i-4-jmp-reg-analyzer-lists-bogus-ca",
    "kind": "symptom",
    "label": "x86 jump table via mov reg,[t+i*4]; jmp reg; analyzer lists bogus cases; unexplained code pointers in data",
+   "short": "x86 jump table via mov…",
    "status": "VERIFIED"
   },
   {
    "id": "symptom:x86-win32-guest-a-dll-misbehaves-only-when-statically-loaded-or-",
    "kind": "symptom",
    "label": "x86 Win32 guest: a DLL misbehaves only when statically loaded (or only via LoadLibrary); DllMain order",
+   "short": "x86 Win32 guest: a DLL…",
    "status": "VERIFIED"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon",
+   "id": "project:recarbon",
+   "kind": "project",
+   "label": "ReCarbon",
+   "short": "ReCarbon"
+  },
+  {
+   "href": "https://github.com/retronative/refrozen",
+   "id": "project:refrozen",
+   "kind": "project",
+   "label": "reFrozen",
+   "short": "reFrozen"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/044f91d",
+   "id": "commit:recarbon:044f91d",
+   "kind": "commit",
+   "label": "ReCarbon 044f91d",
+   "project": "project:recarbon",
+   "short": "044f91d"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/243b8b2",
+   "id": "commit:recarbon:243b8b2",
+   "kind": "commit",
+   "label": "ReCarbon 243b8b2",
+   "project": "project:recarbon",
+   "short": "243b8b2"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/49c3a21",
+   "id": "commit:recarbon:49c3a21",
+   "kind": "commit",
+   "label": "ReCarbon 49c3a21",
+   "project": "project:recarbon",
+   "short": "49c3a21"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/540970f",
+   "id": "commit:recarbon:540970f",
+   "kind": "commit",
+   "label": "ReCarbon 540970f",
+   "project": "project:recarbon",
+   "short": "540970f"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/69dfc05",
+   "id": "commit:recarbon:69dfc05",
+   "kind": "commit",
+   "label": "ReCarbon 69dfc05",
+   "project": "project:recarbon",
+   "short": "69dfc05"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/6de491d",
+   "id": "commit:recarbon:6de491d",
+   "kind": "commit",
+   "label": "ReCarbon 6de491d",
+   "project": "project:recarbon",
+   "short": "6de491d"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/d10d6ab",
+   "id": "commit:recarbon:d10d6ab",
+   "kind": "commit",
+   "label": "ReCarbon d10d6ab",
+   "project": "project:recarbon",
+   "short": "d10d6ab"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/da1a76e",
+   "id": "commit:recarbon:da1a76e",
+   "kind": "commit",
+   "label": "ReCarbon da1a76e",
+   "project": "project:recarbon",
+   "short": "da1a76e"
+  },
+  {
+   "advanced": true,
+   "href": "https://github.com/retronative/recarbon/commit/f2b4d75",
+   "id": "commit:recarbon:f2b4d75",
+   "kind": "commit",
+   "label": "ReCarbon f2b4d75",
+   "project": "project:recarbon",
+   "short": "f2b4d75"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:240175b",
+   "kind": "commit",
+   "label": "reFrozen 240175b",
+   "project": "project:refrozen",
+   "short": "240175b"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:26804e2",
+   "kind": "commit",
+   "label": "reFrozen 26804e2",
+   "project": "project:refrozen",
+   "short": "26804e2"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:26a14a1",
+   "kind": "commit",
+   "label": "reFrozen 26a14a1",
+   "project": "project:refrozen",
+   "short": "26a14a1"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:3ce4266",
+   "kind": "commit",
+   "label": "reFrozen 3ce4266",
+   "project": "project:refrozen",
+   "short": "3ce4266"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:4f4b402",
+   "kind": "commit",
+   "label": "reFrozen 4f4b402",
+   "project": "project:refrozen",
+   "short": "4f4b402"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:90cbec7",
+   "kind": "commit",
+   "label": "reFrozen 90cbec7",
+   "project": "project:refrozen",
+   "short": "90cbec7"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:9c4f745",
+   "kind": "commit",
+   "label": "reFrozen 9c4f745",
+   "project": "project:refrozen",
+   "short": "9c4f745"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:c9e5cdd",
+   "kind": "commit",
+   "label": "reFrozen c9e5cdd",
+   "project": "project:refrozen",
+   "short": "c9e5cdd"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:d9642e7",
+   "kind": "commit",
+   "label": "reFrozen d9642e7",
+   "project": "project:refrozen",
+   "short": "d9642e7"
+  },
+  {
+   "advanced": true,
+   "id": "commit:refrozen:fb7bf86",
+   "kind": "commit",
+   "label": "reFrozen fb7bf86",
+   "project": "project:refrozen",
+   "short": "fb7bf86"
   }
  ],
- "schema": 1,
+ "schema": 2,
  "source": {
   "documents": [
    "INDEX.md",

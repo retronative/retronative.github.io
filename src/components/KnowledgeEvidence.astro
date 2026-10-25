@@ -1,0 +1,72 @@
+---
+// The evidence behind one /knowledge/ item, collapsed by default: what each row supports, its file and line in the
+// knowledge base, and the commits cited there. Commit hashes appear on the page only here.
+import type { EvidenceRow } from '../lib/knowledge';
+
+interface Props {
+	rows: EvidenceRow[];
+	label: string;
+}
+const { rows, label } = Astro.props;
+---
+
+{
+	rows.length > 0 && (
+		<details class="evidence" data-kb-evidence>
+			<summary>
+				Evidence<span class="sr-only"> for {label}</span> ({rows.length})
+			</summary>
+			<ul>
+				{rows.map((r) => (
+					<li>
+						<span class="what">{r.what}</span>{' '}
+						<code>
+							{r.file}:{r.line}
+						</code>
+						{r.commits.length > 0 && (
+							<span class="commits">
+								{' '}
+								· commit{r.commits.length === 1 ? '' : 's'} {r.commits.join(', ')}
+							</span>
+						)}
+					</li>
+				))}
+			</ul>
+		</details>
+	)
+}
+
+<style>
+	.evidence {
+		margin-top: 0.6rem;
+		font-size: 0.85rem;
+		color: var(--text-2);
+	}
+	summary {
+		width: fit-content;
+		padding: 0.75rem 0.25rem 0.75rem 0;
+		cursor: pointer;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	summary:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+	ul {
+		margin: 0.25rem 0 0;
+		padding-left: 1.1rem;
+	}
+	li {
+		margin: 0.2rem 0;
+		overflow-wrap: anywhere;
+	}
+	code,
+	.commits {
+		font-family: var(--rn-font-mono);
+		font-size: 0.78rem;
+		color: var(--text-muted);
+	}
+</style>

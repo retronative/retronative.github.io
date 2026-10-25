@@ -1,6 +1,9 @@
 // Checks the pinned knowledge graph (src/data/knowledge-graph.json) against its lock. No dependencies.
 // - Its sha256 equals the lock's.
-// - Schema 1; no INFERRED edge unless KNOWLEDGE_GRAPH_ALLOW_INFERRED=1; every document link is in the KB repository.
+// - Schema 2; edges are EXTRACTED, or DERIVED (shares_evidence only, with two evidence lines and the shared commits);
+//   no INFERRED edge unless KNOWLEDGE_GRAPH_ALLOW_INFERRED=1; every document and section link is in the KB repository;
+//   relation labels come from the fixed vocabulary below and never claim a cause or a fix; only commits (and the
+//   cites/in_project edges) are advanced.
 // - Provenance: with a sibling checkout ../game-port-knowledge, `git show <commit>:<path>` must equal the file byte
 //   for byte, and graph.meta.json at that commit must carry the lock's version and sha256. Without the sibling the
 //   hash alone is checked, unless KNOWLEDGE_GRAPH_REQUIRE_PROVENANCE=1, which makes that a failure.
@@ -26,13 +29,43 @@ if (sha256(bytes) !== lock.sha256) errors.push(`sha256 ${sha256(bytes)} != lock 
 if (!/^[0-9a-f]{40}$/.test(lock.commit)) errors.push(`lock commit "${lock.commit}" is not a full SHA`);
 
 // 2. Shape.
-if (graph.schema !== 1) errors.push(`schema ${graph.schema} != 1`);
+const VOCABULARY = new Set([
+	'documents', 'is documented in', 'documents the symptom', 'is investigated in', 'investigates the symptom', 'references', 'is referenced by',
+	'draws on evidence from', 'provides evidence for', 'cites the same evidence as', 'cites commit', 'is cited by', 'is a commit of', 'has commit',
+	'is related to', 'follows the same pattern as',
+]);
+const CAUSAL = /\b(?:caus\w*|because|fix\w*|leads? to|due to|results? in|explains?)\b/i;
+const KINDS = new Set(['guide', 'investigation', 'technique', 'symptom', 'project', 'commit']);
+const ADVANCED = new Set(['cites', 'in_project']);
+if (graph.schema !== 2) errors.push(`schema ${graph.schema} != 2`);
 const allowInferred = process.env.KNOWLEDGE_GRAPH_ALLOW_INFERRED === '1';
 const inferred = [...(graph.edges ?? []), ...(graph.inferred_edges ?? [])].filter((e) => e.confidence === 'INFERRED');
-if ((graph.edges ?? []).some((e) => e.confidence !== 'EXTRACTED')) errors.push('edges holds a non-EXTRACTED edge');
+const kindOf = new Map((graph.nodes ?? []).map((n) => [n.id, n.kind]));
+for (const e of graph.edges ?? []) {
+	const where = `edge ${e.source} -${e.relation}-> ${e.target}`;
+	if (e.confidence !== (e.relation === 'shares_evidence' ? 'DERIVED' : 'EXTRACTED')) errors.push(`${where}: confidence ${e.confidence}`);
+	if (!kindOf.has(e.source) || !kindOf.has(e.target)) errors.push(`${where}: unknown endpoint`);
+	if (!(e.evidence?.length > 0)) errors.push(`${where}: no evidence`);
+	if (!!e.advanced !== ADVANCED.has(e.relation)) errors.push(`${where}: advanced flag ${e.advanced}`);
+	if (e.relation === 'shares_evidence') {
+		const sides = new Set(e.evidence.map((v) => v.side));
+		if (e.source >= e.target || !sides.has('source') || !sides.has('target') || !(e.commits?.length > 0)) errors.push(`${where}: a derived edge needs two ordered endpoints, both evidence lines and the shared commits`);
+	}
+}
+for (const e of [...(graph.edges ?? []), ...(graph.inferred_edges ?? [])]) {
+	for (const s of [e.label, e.inverse]) {
+		if (!VOCABULARY.has(s)) errors.push(`edge ${e.source} -${e.relation}->: label ${JSON.stringify(s)} is not in the vocabulary`);
+		if (CAUSAL.test(s ?? '')) errors.push(`edge ${e.source} -${e.relation}->: label ${JSON.stringify(s)} claims causation`);
+	}
+}
 if (inferred.length && !allowInferred) errors.push(`${inferred.length} INFERRED edge(s); set KNOWLEDGE_GRAPH_ALLOW_INFERRED=1 to publish them`);
 for (const n of graph.nodes ?? []) {
-	if (n.kind === 'doc' && !(typeof n.href === 'string' && n.href.startsWith(KB_BASE) && n.href.length > KB_BASE.length)) errors.push(`doc ${n.id}: href ${n.href} is not under ${KB_BASE}`);
+	if (!KINDS.has(n.kind)) errors.push(`node ${n.id}: unknown kind ${n.kind}`);
+	if (typeof n.label !== 'string' || typeof n.short !== 'string' || n.short.length > 33) errors.push(`node ${n.id}: needs a label and a short label of at most 33 characters`);
+	if (!!n.advanced !== (n.kind === 'commit')) errors.push(`node ${n.id}: advanced flag ${n.advanced}`);
+	const doc = n.kind === 'guide' || n.kind === 'investigation';
+	if ((doc || n.kind === 'technique') && !(typeof n.href === 'string' && n.href.startsWith(KB_BASE) && n.href.length > KB_BASE.length)) errors.push(`${n.kind} ${n.id}: href ${n.href} is not under ${KB_BASE}`);
+	if (n.kind === 'technique' && !/^[^#]+\.md#[a-z0-9_-]+$/.test(n.href.slice(KB_BASE.length))) errors.push(`technique ${n.id}: href ${n.href} is not a section anchor`);
 }
 
 // 3. Provenance.
@@ -81,5 +114,5 @@ if (errors.length) {
 	process.exit(1);
 }
 console.log(
-	`check-knowledge-graph: version ${lock.version}, sha256 ${lock.sha256.slice(0, 12)}…, ${graph.nodes.length} nodes, ${graph.edges.length} extracted and ${inferred.length} inferred edges, ${scanned} strings scanned; ${provenance}`,
+	`check-knowledge-graph: version ${lock.version}, sha256 ${lock.sha256.slice(0, 12)}…, ${graph.nodes.length} nodes, ${graph.edges.filter((e) => e.confidence === 'EXTRACTED').length} extracted, ${graph.edges.filter((e) => e.confidence === 'DERIVED').length} derived and ${inferred.length} inferred edges, ${scanned} strings scanned; ${provenance}`,
 );
