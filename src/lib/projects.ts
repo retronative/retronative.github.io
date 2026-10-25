@@ -14,7 +14,7 @@ export function publicLinks(p: Project) {
 	const labels = { site: 'Project site', repo: 'Source code', issues: 'Issue tracker' } as const;
 	return (Object.keys(labels) as (keyof typeof labels)[])
 		.filter((k) => p.links[k]?.public)
-		.map((k) => ({ label: labels[k], url: p.links[k]!.url }));
+		.map((k) => ({ kind: k, label: labels[k], url: p.links[k]!.url }));
 }
 
 export const techniqueLabel: Record<Project['technique'], string> = {
