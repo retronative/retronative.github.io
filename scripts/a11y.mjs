@@ -5,6 +5,8 @@
 // - no horizontal overflow;
 // - keyboard: every Tab stop is visible on screen and shows a focus indicator.
 // With prefers-reduced-motion: reduce, no animation runs (CSS or canvas) and no transition has a duration.
+// /knowledge/ again with its interactive graph open and a node selected: axe and overflow at every width, and no
+// animation under reduced motion.
 // Needs a Playwright Chromium (npx playwright-core install chromium).
 import { chromium } from 'playwright-core';
 
@@ -103,6 +105,31 @@ try {
 		console.log(`${path} (reduced motion): ${motion.animations} animations, ${motion.timed.length} timed elements, scroll-behavior ${motion.scroll}`);
 	}
 	await context.close();
+
+	if (paths.includes('/knowledge/')) {
+		for (const [width, reducedMotion] of [...widths.map((w) => [w, 'no-preference']), [1280, 'reduce']]) {
+			const where = `/knowledge/ (graph open${reducedMotion === 'reduce' ? ', reduced motion' : ''}) @${width}px`;
+			const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion });
+			const page = await context.newPage();
+			await page.goto(`${base}/knowledge/`, { waitUntil: 'load' });
+			await page.click('[data-kg-open]');
+			await page.waitForSelector('[data-kb-graph][data-state="ready"]', { timeout: 15000 });
+			await page.click('[data-show-node]');
+			await page.waitForTimeout(500);
+			await page.addScriptTag({ url: AXE });
+			const violations = await page.evaluate(async () => {
+				const r = await /** @type {any} */ (window).axe.run(document, { runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'] });
+				return r.violations.map((v) => `${v.id} (${v.impact}) at ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join(', ')}`);
+			});
+			for (const v of violations) problems.push(`${where}: axe ${v}`);
+			const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+			if (overflow > 0) problems.push(`${where}: horizontal overflow of ${overflow}px`);
+			const animations = reducedMotion === 'reduce' ? await page.evaluate(() => document.getAnimations().length) : 0;
+			if (animations) problems.push(`${where}: ${animations} animation(s) running`);
+			console.log(`${where}: axe ${violations.length} violations; overflow ${Math.max(0, overflow)}px${reducedMotion === 'reduce' ? `; ${animations} animations` : ''}`);
+			await context.close();
+		}
+	}
 } finally {
 	await browser.close();
 }

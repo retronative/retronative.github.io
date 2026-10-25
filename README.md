@@ -18,14 +18,16 @@ npm run dev            # dev server on http://127.0.0.1:4400/
 npm run verify         # astro check + scripts/check-knowledge-graph.mjs + astro build + scripts/check-dist.mjs
 npm run preview        # serve dist/ on http://127.0.0.1:4400/
 npm run test:a11y      # with the preview running: axe, overflow, keyboard and reduced-motion checks
+npm run test:knowledge # with the preview running: /knowledge/ behaviour (no-JS list, search, lazy graph, labels, motion)
 npm run og             # re-render public/og/retronative.png
 npm run hero-still     # re-render public/hero/platformer-still.png after changing the hero scene
 npm run hero-laptop -- <photo>   # re-cut public/hero/laptop-*.webp from the laptop photo
 ```
 
-`test:a11y`, `og`, `hero-still` and `hero-laptop` use Playwright's Chromium (`npx playwright-core install chromium`);
+`test:a11y`, `test:knowledge`, `og`, `hero-still` and `hero-laptop` use Playwright's Chromium (`npx playwright-core install chromium`);
 `hero-laptop` also needs `cwebp` and `dwebp` (libwebp) on the `PATH`;
-`test:a11y` loads axe-core 4.10.2 from cdnjs into each page.
+`test:a11y` and `test:knowledge` load axe-core 4.10.2 from cdnjs into each page. Both take the preview's URL as
+an argument (`npm run test:knowledge -- http://127.0.0.1:4401`).
 
 ## Layout
 
@@ -45,6 +47,7 @@ npm run hero-laptop -- <photo>   # re-cut public/hero/laptop-*.webp from the lap
 | `scripts/check-dist.mjs` | Checks on the build: metadata, links and anchors, private and download links, sitemap, project path collisions, the served knowledge graph against its lock |
 | `scripts/check-knowledge-graph.mjs` | Checks the pinned knowledge graph: hash, schema, no inferred edges, document links, provenance, denylist |
 | `scripts/a11y.mjs` | Accessibility checks against a running preview |
+| `scripts/knowledge-test.mjs` | Behaviour tests of `/knowledge/` against a running preview |
 | `.github/workflows/deploy.yml` | The GitHub Pages deployment (actions pinned to release commits) |
 
 ## Adding a project
@@ -78,7 +81,7 @@ document link on the page returns 404.
 
 ## Deployment
 
-`.github/workflows/deploy.yml` builds, checks (`astro check`, `scripts/check-dist.mjs`) and deploys
+`.github/workflows/deploy.yml` builds, checks (`astro check`, `scripts/check-knowledge-graph.mjs`, `scripts/check-dist.mjs`) and deploys
 the site to GitHub Pages (Settings → Pages → Source: GitHub Actions). It runs on every push to
 `main`, or by hand.
 

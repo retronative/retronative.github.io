@@ -16,6 +16,7 @@
     "verify": "astro check && node scripts/check-knowledge-graph.mjs && astro build && node scripts/check-dist.mjs",
     "preview": "astro preview --host 127.0.0.1 --port 4400",
     "test:a11y": "node scripts/a11y.mjs",
+    "test:knowledge": "node scripts/knowledge-test.mjs",
     "og": "node scripts/render-og.mjs",
     "astro": "astro",
     "hero-still": "node scripts/render-hero-still.mjs",
