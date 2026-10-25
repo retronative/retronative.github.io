@@ -1,18 +1,43 @@
 ---
 import type { Project } from '../lib/projects';
 import { accentVar, targetLabel } from '../lib/projects';
+import { Picture } from 'astro:assets';
 import ProjectArt from './ProjectArt.astro';
 import StatusBadge from './StatusBadge.astro';
+import { artworkOf } from '../lib/artwork';
 
 interface Props {
 	project: Project;
 	headingLevel?: 'h2' | 'h3';
 }
 const { project, headingLevel: H = 'h3' } = Astro.props;
+const artwork = artworkOf(project.id);
+const diagram = artwork?.diagram;
 ---
 
-<article class="card" style={`--accent: ${accentVar[project.accent]}`}>
-	<div class="art"><ProjectArt project={project} /></div>
+<article
+	class:list={['card', `card--${project.id}`, diagram && 'card--diagram']}
+	style={`--accent: ${accentVar[project.accent]}${diagram ? `; --diagram: ${diagram}` : ''}`}
+>
+	<div class:list={['art', artwork && 'art--photo', `art--${project.id}`]}>
+		{
+			artwork && (
+				<Picture
+					class="photo"
+					src={artwork.src}
+					formats={['avif', 'webp']}
+					widths={[480, 800, 1200]}
+					quality={55}
+					sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 560px"
+					alt=""
+					loading="lazy"
+					decoding="async"
+					style={`object-position: ${artwork.focus}`}
+				/>
+			)
+		}
+		<ProjectArt project={project} />
+	</div>
 	<div class="body">
 		<StatusBadge status={project.status} />
 		<H class="name"><a href={`/projects/${project.id}/`}>{project.name}</a></H>
@@ -47,12 +72,70 @@ const { project, headingLevel: H = 'h3' } = Astro.props;
 	}
 	.card:hover,
 	.card:focus-within {
-		border-color: var(--accent);
+		border-color: var(--hover-border, var(--accent));
 		transform: translateY(-3px);
 	}
+	/* The hover border and the link follow that diagram colour. */
+	.card--diagram {
+		--hover-border: var(--diagram);
+	}
+	.card--diagram .more {
+		color: var(--diagram);
+	}
 	.art {
+		position: relative;
+		overflow: hidden;
 		background: var(--bg-deep);
 		border-bottom: 1px solid var(--line);
+	}
+	/* The artwork fills the header; the diagram stays on top, legible over a dark scrim. */
+	.art :global(picture),
+	.art :global(.photo) {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.art :global(.photo) {
+		object-fit: cover;
+	}
+	.art--photo::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background:
+			radial-gradient(ellipse 60% 70% at 50% 50%, rgb(8 10 14 / 0.35), transparent 75%),
+			linear-gradient(180deg, rgb(8 10 14 / 0.25) 0%, rgb(8 10 14 / 0.12) 45%, rgb(8 10 14 / 0.65) 100%);
+		pointer-events: none;
+	}
+	/* reFrozen's night scene is already dark: a lighter scrim keeps the archer on the left visible. */
+	.art--refrozen::after {
+		background:
+			radial-gradient(ellipse 45% 60% at 60% 50%, rgb(8 10 14 / 0.2), transparent 75%),
+			linear-gradient(180deg, rgb(8 10 14 / 0) 0%, rgb(8 10 14 / 0) 50%, rgb(8 10 14 / 0.5) 100%);
+	}
+	/* ReCarbon's art is magenta-lit: a cool wash pulls it toward the site's cyan. */
+	.art--recarbon::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		background: linear-gradient(180deg, #0a2c3a, #061620);
+		mix-blend-mode: color;
+		opacity: 0.6;
+		pointer-events: none;
+	}
+	.art--photo::after {
+		z-index: 1;
+	}
+	.art :global(svg.art) {
+		position: relative;
+		z-index: 2;
+	}
+	/* A diagram colour set for the artwork (reFrozen: green), with a dark edge. */
+	.card--diagram .art :global(svg.art g) {
+		--accent: var(--diagram);
+		filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.9));
 	}
 	.body {
 		display: flex;
