@@ -1,6 +1,6 @@
 // Accessibility and layout checks against a running preview (npm run preview).
 //   node scripts/a11y.mjs [base-url]      default http://127.0.0.1:4400
-// For every page in the sitemap, plus the 404 page, at 1280, 1000 and 390 px:
+// For every page in the sitemap, plus the 404 page, at 1280, 800 and 390 px:
 // - axe-core 4.10.2 (loaded from cdnjs into the page): WCAG 2.0/2.1 A and AA and best practices;
 // - no horizontal overflow;
 // - keyboard: every Tab stop is visible on screen and shows a focus indicator.
@@ -10,7 +10,7 @@ import { chromium } from 'playwright-core';
 
 const base = (process.argv[2] ?? 'http://127.0.0.1:4400').replace(/\/$/, '');
 const AXE = 'https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.10.2/axe.min.js';
-const widths = [1280, 1000, 390];
+const widths = [1280, 800, 390];
 
 const sitemap = await (await fetch(`${base}/sitemap-0.xml`)).text();
 const paths = [...sitemap.matchAll(/<loc>https:\/\/retronative\.github\.io([^<]+)<\/loc>/g)].map((m) => m[1]);
@@ -53,7 +53,7 @@ try {
 				document.activeElement?.blur();
 			});
 			const stops = [];
-			for (let i = 0; i < 60; i++) {
+			for (let i = 0; i < 400; i++) {
 				await page.keyboard.press('Tab');
 				const info = await page.evaluate(() => {
 					const el = document.activeElement;

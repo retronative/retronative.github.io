@@ -1,0 +1,7 @@
+{
+	"version": "1.0.0",
+	"sha256": "d2bcf678ecc2bc5bde0abe919afae474aeedf9e1e0271e02a7573e9611e354eb",
+	"source": "retronative/game-port-knowledge",
+	"commit": "461f4f6763e87ce9f787ee53b08642b1c0753574",
+	"path": "knowledge-graph/graph.json"
+}

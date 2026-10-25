@@ -1,0 +1,1240 @@
+{
+ "edges": [
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 17
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:044f91d",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 3
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:243b8b2",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 58
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:49c3a21",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 9
+    },
+    {
+     "file": "recarbon/m6-render-queue-fences.md",
+     "line": 3
+    },
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 25
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:540970f",
+   "target": "project:recarbon",
+   "weight": 3
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 30
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:69dfc05",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 24
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:6de491d",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 28
+    },
+    {
+     "file": "recarbon/m4-8-movie-teardown-hang.md",
+     "line": 3
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:d10d6ab",
+   "target": "project:recarbon",
+   "weight": 2
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 6
+    },
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 9
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:da1a76e",
+   "target": "project:recarbon",
+   "weight": 2
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 29
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:recarbon:f2b4d75",
+   "target": "project:recarbon",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 17
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:240175b",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 56
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:26804e2",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 23
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:26a14a1",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 5
+    },
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 13
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:3ce4266",
+   "target": "project:refrozen",
+   "weight": 2
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 34
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:4f4b402",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 22
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:90cbec7",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 22
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:9c4f745",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 14
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:c9e5cdd",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 34
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:d9642e7",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/waveout-on-sdl-audio.md",
+     "line": 54
+    }
+   ],
+   "relation": "in_project",
+   "source": "commit:refrozen:fb7bf86",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/bring-up-checklist.md",
+     "line": 20
+    }
+   ],
+   "relation": "references",
+   "source": "general/bring-up-checklist.md",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 9
+    }
+   ],
+   "relation": "cites",
+   "source": "general/concurrency-patterns.md",
+   "target": "commit:recarbon:540970f",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 30
+    }
+   ],
+   "relation": "cites",
+   "source": "general/concurrency-patterns.md",
+   "target": "commit:recarbon:69dfc05",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 28
+    }
+   ],
+   "relation": "cites",
+   "source": "general/concurrency-patterns.md",
+   "target": "commit:recarbon:d10d6ab",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/concurrency-patterns.md",
+     "line": 6
+    }
+   ],
+   "relation": "cites",
+   "source": "general/concurrency-patterns.md",
+   "target": "commit:recarbon:da1a76e",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 58
+    }
+   ],
+   "relation": "cites",
+   "source": "general/static-recompilation.md",
+   "target": "commit:recarbon:49c3a21",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 24
+    }
+   ],
+   "relation": "cites",
+   "source": "general/static-recompilation.md",
+   "target": "commit:recarbon:6de491d",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 56
+    }
+   ],
+   "relation": "cites",
+   "source": "general/static-recompilation.md",
+   "target": "commit:refrozen:26804e2",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 23
+    }
+   ],
+   "relation": "cites",
+   "source": "general/static-recompilation.md",
+   "target": "commit:refrozen:26a14a1",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 34
+    }
+   ],
+   "relation": "cites",
+   "source": "general/static-recompilation.md",
+   "target": "commit:refrozen:4f4b402",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 34
+    }
+   ],
+   "relation": "cites",
+   "source": "general/static-recompilation.md",
+   "target": "commit:refrozen:d9642e7",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "recarbon/m4-8-movie-teardown-hang.md",
+     "line": 3
+    }
+   ],
+   "relation": "cites",
+   "source": "recarbon/m4-8-movie-teardown-hang.md",
+   "target": "commit:recarbon:d10d6ab",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "recarbon/m6-render-queue-fences.md",
+     "line": 3
+    }
+   ],
+   "relation": "cites",
+   "source": "recarbon/m6-render-queue-fences.md",
+   "target": "commit:recarbon:540970f",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 70
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:a-crash-at-exit-inside-a-dll-s-detach-that-the-original-survives",
+   "target": "win32/loader-and-imports.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 23
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:a-mid-asm-hook-doesn-t-seem-to-run",
+   "target": "recarbon/m6-render-queue-fences.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 77
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:an-offline-game-stops-in-wsock32-by-ordinal-inet-addr-always-fai",
+   "target": "win32/loader-and-imports.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 47
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:audio-dropouts-or-underruns-a-real-time-callback-runs-long",
+   "target": "general/concurrency-patterns.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 19
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:black-video-but-the-decoder-writes-frames",
+   "target": "xbox360/gpu-edram-and-ring.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 56
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:data-races-between-guest-visible-hardware-and-host-threads",
+   "target": "general/concurrency-patterns.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 7
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:function-count-far-above-the-unwind-table-count",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 10
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:how-to-validate-generated-code-before-running-it",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 64
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:import-coverage-numbers-look-too-good-ordinal-named-handlers-cou",
+   "target": "win32/loader-and-imports.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 78
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:indirect-branch-to-an-unlifted-routine-reached-through-a-table-i",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 13
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:rare-hang-thread-blocked-in-rtlentercriticalsection-register-hol",
+   "target": "recarbon/m4-8-movie-teardown-hang.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 22
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:same-message-but-x-is-in-a-data-section-or-rare-null-garbage-cal",
+   "target": "general/concurrency-patterns.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 22
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:same-message-but-x-is-in-a-data-section-or-rare-null-garbage-cal",
+   "target": "recarbon/m6-render-queue-fences.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 16
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:shader-translation-failed-unimplemented-xenos-opcode",
+   "target": "xbox360/gpu-edram-and-ring.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 5
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:starting-a-new-port-what-to-do-first",
+   "target": "general/bring-up-checklist.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 15
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:surface-see-through-or-black-and-untextured-in-gameplay-many-ski",
+   "target": "xbox360/gpu-edram-and-ring.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 33
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:survey-recompile-from-scratch-gives-thousands-of-switch-case-out",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 8
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:switch-case-outside-function-jump-tables-b-4-stubs-seh-headers-a",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 9
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:unrecognized-instructions-testing-instruction-semantics",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 75
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:win32-game-silent-no-sound-device-last-waveout-block-never-retur",
+   "target": "win32/waveout-on-sdl-audio.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 67
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:x86-callee-saved-registers-corrupt-after-a-routine-crash-at-exit",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 66
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:x86-jump-table-via-mov-reg-t-i-4-jmp-reg-analyzer-lists-bogus-ca",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 63
+    }
+   ],
+   "relation": "answered_by",
+   "source": "symptom:x86-win32-guest-a-dll-misbehaves-only-when-statically-loaded-or-",
+   "target": "win32/loader-and-imports.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 17
+    }
+   ],
+   "relation": "cites",
+   "source": "win32/loader-and-imports.md",
+   "target": "commit:refrozen:240175b",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 5
+    },
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 13
+    }
+   ],
+   "relation": "cites",
+   "source": "win32/loader-and-imports.md",
+   "target": "commit:refrozen:3ce4266",
+   "weight": 2
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 22
+    }
+   ],
+   "relation": "cites",
+   "source": "win32/loader-and-imports.md",
+   "target": "commit:refrozen:90cbec7",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 22
+    }
+   ],
+   "relation": "cites",
+   "source": "win32/loader-and-imports.md",
+   "target": "commit:refrozen:9c4f745",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/loader-and-imports.md",
+     "line": 14
+    }
+   ],
+   "relation": "cites",
+   "source": "win32/loader-and-imports.md",
+   "target": "commit:refrozen:c9e5cdd",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "win32/waveout-on-sdl-audio.md",
+     "line": 54
+    }
+   ],
+   "relation": "cites",
+   "source": "win32/waveout-on-sdl-audio.md",
+   "target": "commit:refrozen:fb7bf86",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 17
+    }
+   ],
+   "relation": "cites",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "commit:recarbon:044f91d",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 3
+    }
+   ],
+   "relation": "cites",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "commit:recarbon:243b8b2",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 25
+    }
+   ],
+   "relation": "cites",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "commit:recarbon:540970f",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 9
+    }
+   ],
+   "relation": "cites",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "commit:recarbon:da1a76e",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 29
+    }
+   ],
+   "relation": "cites",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "commit:recarbon:f2b4d75",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "xbox360/gpu-edram-and-ring.md",
+     "line": 26
+    }
+   ],
+   "relation": "references",
+   "source": "xbox360/gpu-edram-and-ring.md",
+   "target": "recarbon/m6-render-queue-fences.md",
+   "weight": 1
+  }
+ ],
+ "inferred_edges": [],
+ "nodes": [
+  {
+   "area": "general",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/bring-up-checklist.md",
+   "id": "general/bring-up-checklist.md",
+   "kind": "doc",
+   "label": "New-port bring-up checklist (platform-agnostic)"
+  },
+  {
+   "area": "general",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md",
+   "id": "general/concurrency-patterns.md",
+   "kind": "doc",
+   "label": "Concurrency patterns in HLE runtimes"
+  },
+  {
+   "area": "general",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md",
+   "id": "general/static-recompilation.md",
+   "kind": "doc",
+   "label": "Static recompilation: function discovery and validation (platform-agnostic)"
+  },
+  {
+   "area": "recarbon",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m4-8-movie-teardown-hang.md",
+   "id": "recarbon/m4-8-movie-teardown-hang.md",
+   "kind": "doc",
+   "label": "Case: intermittent movie-teardown hang (ReCarbon M4.8)"
+  },
+  {
+   "area": "recarbon",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m6-render-queue-fences.md",
+   "id": "recarbon/m6-render-queue-fences.md",
+   "kind": "doc",
+   "label": "Case: deferred render-callback queue without barriers (ReCarbon M6)"
+  },
+  {
+   "area": "win32",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md",
+   "id": "win32/loader-and-imports.md",
+   "kind": "doc",
+   "label": "Win32 HLE loader: DllMain contract and import accounting"
+  },
+  {
+   "area": "win32",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/waveout-on-sdl-audio.md",
+   "id": "win32/waveout-on-sdl-audio.md",
+   "kind": "doc",
+   "label": "winmm waveOut on SDL audio streams"
+  },
+  {
+   "area": "xbox360",
+   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md",
+   "id": "xbox360/gpu-edram-and-ring.md",
+   "kind": "doc",
+   "label": "Xenos GPU: EDRAM formats and the command ring"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon",
+   "id": "project:recarbon",
+   "kind": "project",
+   "label": "ReCarbon"
+  },
+  {
+   "href": "https://github.com/retronative/refrozen",
+   "id": "project:refrozen",
+   "kind": "project",
+   "label": "reFrozen"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/044f91d",
+   "id": "commit:recarbon:044f91d",
+   "kind": "commit",
+   "label": "ReCarbon 044f91d",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/243b8b2",
+   "id": "commit:recarbon:243b8b2",
+   "kind": "commit",
+   "label": "ReCarbon 243b8b2",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/49c3a21",
+   "id": "commit:recarbon:49c3a21",
+   "kind": "commit",
+   "label": "ReCarbon 49c3a21",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/540970f",
+   "id": "commit:recarbon:540970f",
+   "kind": "commit",
+   "label": "ReCarbon 540970f",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/69dfc05",
+   "id": "commit:recarbon:69dfc05",
+   "kind": "commit",
+   "label": "ReCarbon 69dfc05",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/6de491d",
+   "id": "commit:recarbon:6de491d",
+   "kind": "commit",
+   "label": "ReCarbon 6de491d",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/d10d6ab",
+   "id": "commit:recarbon:d10d6ab",
+   "kind": "commit",
+   "label": "ReCarbon d10d6ab",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/da1a76e",
+   "id": "commit:recarbon:da1a76e",
+   "kind": "commit",
+   "label": "ReCarbon da1a76e",
+   "project": "project:recarbon"
+  },
+  {
+   "href": "https://github.com/retronative/recarbon/commit/f2b4d75",
+   "id": "commit:recarbon:f2b4d75",
+   "kind": "commit",
+   "label": "ReCarbon f2b4d75",
+   "project": "project:recarbon"
+  },
+  {
+   "id": "commit:refrozen:240175b",
+   "kind": "commit",
+   "label": "reFrozen 240175b",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:26804e2",
+   "kind": "commit",
+   "label": "reFrozen 26804e2",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:26a14a1",
+   "kind": "commit",
+   "label": "reFrozen 26a14a1",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:3ce4266",
+   "kind": "commit",
+   "label": "reFrozen 3ce4266",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:4f4b402",
+   "kind": "commit",
+   "label": "reFrozen 4f4b402",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:90cbec7",
+   "kind": "commit",
+   "label": "reFrozen 90cbec7",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:9c4f745",
+   "kind": "commit",
+   "label": "reFrozen 9c4f745",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:c9e5cdd",
+   "kind": "commit",
+   "label": "reFrozen c9e5cdd",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:d9642e7",
+   "kind": "commit",
+   "label": "reFrozen d9642e7",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "commit:refrozen:fb7bf86",
+   "kind": "commit",
+   "label": "reFrozen fb7bf86",
+   "project": "project:refrozen"
+  },
+  {
+   "id": "symptom:a-crash-at-exit-inside-a-dll-s-detach-that-the-original-survives",
+   "kind": "symptom",
+   "label": "A crash at exit inside a DLL's detach that the original survives",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:a-mid-asm-hook-doesn-t-seem-to-run",
+   "kind": "symptom",
+   "label": "A mid-asm hook doesn't seem to run",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:an-offline-game-stops-in-wsock32-by-ordinal-inet-addr-always-fai",
+   "kind": "symptom",
+   "label": "An offline game stops in wsock32 by ordinal; inet_addr always fails",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:audio-dropouts-or-underruns-a-real-time-callback-runs-long",
+   "kind": "symptom",
+   "label": "Audio dropouts or underruns; a real-time callback runs long",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:black-video-but-the-decoder-writes-frames",
+   "kind": "symptom",
+   "label": "Black video, but the decoder writes frames",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:data-races-between-guest-visible-hardware-and-host-threads",
+   "kind": "symptom",
+   "label": "Data races between guest-visible \"hardware\" and host threads",
+   "status": "VERIFIED / method"
+  },
+  {
+   "id": "symptom:function-count-far-above-the-unwind-table-count",
+   "kind": "symptom",
+   "label": "Function count far above the unwind-table count",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:how-to-validate-generated-code-before-running-it",
+   "kind": "symptom",
+   "label": "How to validate generated code before running it",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:import-coverage-numbers-look-too-good-ordinal-named-handlers-cou",
+   "kind": "symptom",
+   "label": "Import coverage numbers look too good; ordinal-named handlers counted as stubs",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:indirect-branch-to-an-unlifted-routine-reached-through-a-table-i",
+   "kind": "symptom",
+   "label": "Indirect branch to an unlifted routine reached through a table inside a code section",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:rare-hang-thread-blocked-in-rtlentercriticalsection-register-hol",
+   "kind": "symptom",
+   "label": "Rare hang, thread blocked in RtlEnterCriticalSection, register holds 0x01000000",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:same-message-but-x-is-in-a-data-section-or-rare-null-garbage-cal",
+   "kind": "symptom",
+   "label": "Same message but X is in a data section, or rare null/garbage callbacks under load",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:shader-translation-failed-unimplemented-xenos-opcode",
+   "kind": "symptom",
+   "label": "Shader \"translation failed\" / unimplemented Xenos opcode",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:starting-a-new-port-what-to-do-first",
+   "kind": "symptom",
+   "label": "Starting a new port: what to do first",
+   "status": "method"
+  },
+  {
+   "id": "symptom:surface-see-through-or-black-and-untextured-in-gameplay-many-ski",
+   "kind": "symptom",
+   "label": "Surface see-through, or black and untextured, in gameplay; many skipped draws",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:survey-recompile-from-scratch-gives-thousands-of-switch-case-out",
+   "kind": "symptom",
+   "label": "Survey/recompile from scratch gives thousands of \"switch case outside function\" though the committed config works",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:switch-case-outside-function-jump-tables-b-4-stubs-seh-headers-a",
+   "kind": "symptom",
+   "label": "\"switch case outside function\", jump tables, b +4 stubs, SEH headers as code",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:unrecognized-instructions-testing-instruction-semantics",
+   "kind": "symptom",
+   "label": "Unrecognized instructions; testing instruction semantics",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:win32-game-silent-no-sound-device-last-waveout-block-never-retur",
+   "kind": "symptom",
+   "label": "Win32 game silent (\"no sound device\"); last waveOut block never returned (no WOM_DONE)",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:x86-callee-saved-registers-corrupt-after-a-routine-crash-at-exit",
+   "kind": "symptom",
+   "label": "x86: callee-saved registers corrupt after a routine, crash at exit; ESP off by 2",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:x86-jump-table-via-mov-reg-t-i-4-jmp-reg-analyzer-lists-bogus-ca",
+   "kind": "symptom",
+   "label": "x86 jump table via mov reg,[t+i*4]; jmp reg; analyzer lists bogus cases; unexplained code pointers in data",
+   "status": "VERIFIED"
+  },
+  {
+   "id": "symptom:x86-win32-guest-a-dll-misbehaves-only-when-statically-loaded-or-",
+   "kind": "symptom",
+   "label": "x86 Win32 guest: a DLL misbehaves only when statically loaded (or only via LoadLibrary); DllMain order",
+   "status": "VERIFIED"
+  }
+ ],
+ "schema": 1,
+ "source": {
+  "documents": [
+   "INDEX.md",
+   "general/bring-up-checklist.md",
+   "general/concurrency-patterns.md",
+   "general/static-recompilation.md",
+   "recarbon/m4-8-movie-teardown-hang.md",
+   "recarbon/m6-render-queue-fences.md",
+   "win32/loader-and-imports.md",
+   "win32/waveout-on-sdl-audio.md",
+   "xbox360/gpu-edram-and-ring.md"
+  ],
+  "dropped_references": 6
+ }
+}

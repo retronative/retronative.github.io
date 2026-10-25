@@ -15,7 +15,7 @@ Node 22.12 or later.
 ```sh
 npm ci                 # install the pinned dependencies
 npm run dev            # dev server on http://127.0.0.1:4400/
-npm run verify         # astro check + astro build + scripts/check-dist.mjs
+npm run verify         # astro check + scripts/check-knowledge-graph.mjs + astro build + scripts/check-dist.mjs
 npm run preview        # serve dist/ on http://127.0.0.1:4400/
 npm run test:a11y      # with the preview running: axe, overflow, keyboard and reduced-motion checks
 npm run og             # re-render public/og/retronative.png
@@ -32,14 +32,18 @@ npm run hero-laptop -- <photo>   # re-cut public/hero/laptop-*.webp from the lap
 | Path | Role |
 |---|---|
 | `src/data/projects.json` | The projects gallery. One entry per port, validated by `src/content.config.ts` |
+| `src/data/knowledge-graph.json` | The knowledge graph shown on `/knowledge/`, pinned byte for byte from `retronative/game-port-knowledge` by `src/data/knowledge-graph.lock.json` (see [Knowledge base](#knowledge-base)) |
 | `src/data/contributors.json` | The hand-curated contributor list (empty for now), validated by `src/lib/contributors.ts` |
 | `src/site.config.ts` | Organization name, mission line, description, GitHub link |
 | `src/lib/platformer.ts` | The hero's original 8-bit platformer loop (canvas, about 3.5 KB gzipped), also drawn as the no-JS still |
+| `src/lib/knowledge.ts` | The build-time view model of `/knowledge/` (documents, projects, symptoms) |
+| `src/lib/knowledge-graph-view.ts` | The optional interactive graph on `/knowledge/` (Cytoscape), loaded only by dynamic `import()` when it is opened |
 | `src/lib/laptop.ts` | The hero laptop photo's display geometry (corners, notch) and the CSS mapping of the game onto it; `scripts/cut-hero-laptop.mjs` uses it to black out the display |
 | `src/components/` | `Hero`, `CodeTranslation`, `Section`, `ProjectGallery`, `ProjectCard`, `ProjectArt`, `StatusBadge`, `Disclaimer`, `ContributorList`, `Seo`, `SiteHeader`, `SiteFooter`, `Wordmark`, `ExternalLink` |
-| `src/pages/` | `/`, `/projects/`, `/projects/<id>/`, `404` |
+| `src/pages/` | `/`, `/projects/`, `/projects/<id>/`, `/knowledge/` (and its `/knowledge/graph.json`), `404` |
 | `src/styles/` | Design tokens, fonts, base styles |
-| `scripts/check-dist.mjs` | Checks on the build: metadata, links and anchors, private and download links, sitemap, project path collisions |
+| `scripts/check-dist.mjs` | Checks on the build: metadata, links and anchors, private and download links, sitemap, project path collisions, the served knowledge graph against its lock |
+| `scripts/check-knowledge-graph.mjs` | Checks the pinned knowledge graph: hash, schema, no inferred edges, document links, provenance, denylist |
 | `scripts/a11y.mjs` | Accessibility checks against a running preview |
 | `.github/workflows/deploy.yml` | The GitHub Pages deployment (actions pinned to release commits) |
 
@@ -55,6 +59,22 @@ Add an entry to `src/data/projects.json`. The build fails if an entry doesn't ma
 - Card art is generated from `accent` and `glyphs`; no game imagery is used anywhere.
 - The site never builds a route at `/<id>/`: on this domain that path belongs to the
   project's own GitHub Pages site.
+
+## Knowledge base
+
+`/knowledge/` lists the documents of the knowledge base (`retronative/game-port-knowledge`) with the symptoms
+they answer and the commits they cite, and links to each document on GitHub. Its data is the generated
+`knowledge-graph/graph.json` of that repository, copied unchanged to `src/data/knowledge-graph.json` and
+pinned by `src/data/knowledge-graph.lock.json` (version, sha256, commit, path). Don't edit it by hand: to
+update it, copy the file from a new commit of the knowledge base and update the lock.
+
+`scripts/check-knowledge-graph.mjs` (part of `npm run verify`) checks the hash against the lock and, when a
+checkout of the knowledge base sits next to this one (`../game-port-knowledge`), that the file is the one at
+the locked commit; without it the hash alone is checked (`KNOWLEDGE_GRAPH_REQUIRE_PROVENANCE=1` makes that a
+failure). Inferred edges are refused unless `KNOWLEDGE_GRAPH_ALLOW_INFERRED=1`.
+
+**Before deploying `/knowledge/`, the knowledge base repository must be public.** Until then every
+document link on the page returns 404.
 
 ## Deployment
 

@@ -1,0 +1,970 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../site.config';
+import { areas, counts, documents, domId, projects, symptoms } from '../../lib/knowledge';
+
+const KB_SEARCH = 'https://github.com/retronative/game-port-knowledge/search';
+const search = (...parts: (string | undefined)[]) => parts.filter(Boolean).join(' ').toLowerCase();
+const relations = [
+	{ value: 'answered_by', label: 'Symptom answered by document' },
+	{ value: 'cites', label: 'Document cites commit' },
+	{ value: 'in_project', label: 'Commit in project' },
+	{ value: 'references', label: 'Document references document' },
+];
+---
+
+<Base
+	title={`Knowledge base — ${site.name}`}
+	description="A map of RetroNative's shared porting knowledge: documents on static recompilation, Xbox 360 and Win32 runtimes, the symptoms they answer and the project commits they cite."
+>
+	<div class="wrap page kb">
+		<p class="eyebrow">Knowledge</p>
+		<h1>Knowledge base</h1>
+		<p class="lede">
+			What the projects learned while porting, as {counts.docs} documents linked to the symptoms they answer and the commits they cite. Start from a symptom, browse by
+			platform, or search.
+		</p>
+		<p class="note">
+			This list is the complete, accessible view of the knowledge graph. An optional interactive graph further down shows the same relationships visually. The
+			documents live in the game-port-knowledge repository, which is not public yet, so its links do not open for now.
+		</p>
+
+		<form class="search" role="search" action={KB_SEARCH} method="get" data-kb-search>
+			<label for="kb-q">Search the knowledge base</label>
+			<div class="search-row">
+				<input id="kb-q" name="q" type="search" autocomplete="off" spellcheck="false" aria-describedby="kb-q-hint" />
+				<input type="hidden" name="type" value="code" />
+				<button class="btn btn--ghost" type="submit" data-kb-submit>Search on GitHub</button>
+			</div>
+			<p id="kb-q-hint" class="hint" data-kb-hint>Searches the documents on GitHub (code search in retronative/game-port-knowledge).</p>
+			<p class="status" role="status" data-kb-status></p>
+		</form>
+
+		<section class="legend" aria-labelledby="legend-h">
+			<h2 id="legend-h">How to read the relationships</h2>
+			<dl>
+				<div>
+					<dt><span class="tag">Extracted</span></dt>
+					<dd>Read directly from a document: a link, a cited commit or a symptom table row, each with the file and line it came from.</dd>
+				</div>
+				<div>
+					<dt><span class="tag tag--inferred">Inferred</span></dt>
+					<dd>A connection a maintainer reviewed and wrote down with a rationale; no document states it. Hidden unless you ask for it. In the graph it is a dashed line labelled INFERRED.</dd>
+				</div>
+			</dl>
+			{
+				counts.inferred > 0 ? (
+					<p class="toggle">
+						<input id="show-inferred" type="checkbox" data-kb-inferred />
+						<label for="show-inferred">Show reviewed inferred relationships ({counts.inferred})</label>
+					</p>
+				) : (
+					<p class="toggle-none">No inferred relationships are published yet: everything below is extracted.</p>
+				)
+			}
+		</section>
+
+		<nav class="toc" aria-label="On this page">
+			<ul>
+				<li><a href="#documents">Documents</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#symptoms">Start from a symptom</a></li>
+				<li hidden data-kb-js><a href="#graph">Interactive graph</a></li>
+			</ul>
+		</nav>
+
+		<section id="documents" class="block" aria-labelledby="documents-h">
+			<h2 id="documents-h">Documents</h2>
+			{
+				areas.map((area) => {
+					const docs = documents.filter((d) => d.doc.area === area.id);
+					return (
+						<div class="group" data-kb-group>
+							<h3>{area.title}</h3>
+							<ul class="cards">
+								{docs.map((d) => (
+									<li
+										class="kcard"
+										id={domId(d.doc.id)}
+										data-kb-item
+										data-search={search(d.doc.label, d.doc.id, ...d.symptoms.map((s) => s.label), ...d.projects.map((p) => p.node.label))}
+									>
+										<h4>{d.doc.label}</h4>
+										<p class="path">{d.doc.id}</p>
+										<p class="actions">
+											<a class="ext" href={d.doc.href} rel="noopener">
+												Read the document<span class="sr-only"> “{d.doc.label}” on GitHub</span>
+											</a>
+											<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={d.doc.id}>
+												Show in graph<span class="sr-only">: {d.doc.label}</span>
+											</button>
+										</p>
+										<dl class="rels">
+											{d.symptoms.length > 0 && (
+												<div>
+													<dt>
+														Symptoms that lead here <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul>
+															{d.symptoms.map((s) => (
+																<li>
+																	<a href={`#${domId(s.id)}`}>{s.label}</a>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{d.projects.length > 0 && (
+												<div>
+													<dt>
+														Projects cited <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul>
+															{d.projects.map((p) => (
+																<li>
+																	<a href={`#${domId(p.node.id)}`}>{p.node.label}</a>
+																	<span class="commits">
+																		{' '}
+																		({p.commits.length} commit{p.commits.length === 1 ? '' : 's'}: {p.commits.map((c) => c.id.split(':').pop()).join(', ')})
+																	</span>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{d.references.length > 0 && (
+												<div>
+													<dt>
+														References <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul>
+															{d.references.map((r) => (
+																<li>
+																	{r.note} <a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{d.sharedCommits.length > 0 && (
+												<div>
+													<dt>
+														Shares commits with <span class="tag">Extracted</span>
+													</dt>
+													<dd>
+														<ul>
+															{d.sharedCommits.map((r) => (
+																<li>
+																	<a href={`#${domId(r.node.id)}`}>{r.node.label}</a> <span class="commits">({r.note})</span>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+											{d.inferred.length > 0 && (
+												<div class="inferred">
+													<dt>
+														Related <span class="tag tag--inferred">Inferred</span>
+													</dt>
+													<dd>
+														<ul>
+															{d.inferred.map((r) => (
+																<li>
+																	<a href={`#${domId(r.node.id)}`}>{r.node.label}</a>
+																	<p class="why">Rationale: {r.rationale}</p>
+																</li>
+															))}
+														</ul>
+													</dd>
+												</div>
+											)}
+										</dl>
+									</li>
+								))}
+							</ul>
+						</div>
+					);
+				})
+			}
+		</section>
+
+		<section id="projects" class="block" aria-labelledby="projects-h">
+			<h2 id="projects-h">Projects</h2>
+			<ul class="cards cards--two">
+				{
+					projects.map((p) => (
+						<li class="kcard" id={domId(p.node.id)} data-kb-item data-search={search(p.node.label, ...p.docs.map((d) => d.label))}>
+							<h3>{p.node.label}</h3>
+							<p class="actions">
+								<a class="ext" href={p.node.href} rel="noopener">
+									Repository<span class="sr-only"> of {p.node.label} on GitHub</span>
+								</a>
+								<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={p.node.id}>
+									Show in graph<span class="sr-only">: {p.node.label}</span>
+								</button>
+							</p>
+							<p class="sub">
+								Cited by {p.docs.length} document{p.docs.length === 1 ? '' : 's'} <span class="tag">Extracted</span>
+							</p>
+							<ul class="plain">
+								{p.docs.map((d) => (
+									<li>
+										<a href={`#${domId(d.id)}`}>{d.label}</a>
+									</li>
+								))}
+							</ul>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+
+		<section id="symptoms" class="block" aria-labelledby="symptoms-h">
+			<h2 id="symptoms-h">Start from a symptom</h2>
+			<p>What you see in a port, and the documents that explain it. <span class="tag">Extracted</span> from each document's symptom table.</p>
+			<ul class="symptoms">
+				{
+					symptoms.map((s) => (
+						<li id={domId(s.node.id)} data-kb-item data-search={search(s.node.label, ...s.docs.map((d) => d.label))}>
+							<p class="symptom">
+								{s.node.label} <span class="status-tag">{s.node.status}</span>
+							</p>
+							<p class="leads">
+								Read:{' '}
+								{s.docs.map((d, i) => (
+									<>
+										{i > 0 && ', '}
+										<a href={`#${domId(d.id)}`}>{d.label}</a>
+									</>
+								))}
+								<button class="btn btn--ghost btn--sm" type="button" hidden data-kb-js data-show-node={s.node.id}>
+									Show in graph<span class="sr-only">: {s.node.label}</span>
+								</button>
+							</p>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+		<p class="empty" hidden data-kb-empty>No documents, projects or symptoms match. Try fewer words, or search the documents on GitHub.</p>
+
+		<section id="graph" class="block graph" aria-labelledby="graph-h" hidden data-kb-js data-kb-graph>
+			<h2 id="graph-h">Interactive graph</h2>
+			<p>
+				The same {counts.nodes} documents, projects, commits and symptoms as a zoomable graph. It loads only when you open it. Everything in it is also in the list
+				above, which works with a keyboard and a screen reader.
+			</p>
+			<button class="btn" type="button" aria-expanded="false" aria-controls="kg-panel" data-kg-open>Show interactive graph</button>
+			<p class="status" data-kg-loading role="status"></p>
+			<div id="kg-panel" class="panel" hidden>
+				<div class="controls">
+					<label>
+						<span>Project</span>
+						<select data-kg-project>
+							<option value="">All projects</option>
+							{projects.map((p) => <option value={p.node.id}>{p.node.label}</option>)}
+						</select>
+					</label>
+					<label>
+						<span>Area</span>
+						<select data-kg-area>
+							<option value="">All areas</option>
+							{areas.map((a) => <option value={a.id}>{a.title}</option>)}
+						</select>
+					</label>
+					<label class="jump">
+						<span>Select a node</span>
+						<select data-kg-jump>
+							<option value="">None</option>
+						</select>
+					</label>
+					<fieldset>
+						<legend>Relations</legend>
+						{
+							relations.map((r) => (
+								<label class="check">
+									<input type="checkbox" value={r.value} checked data-kg-relation />
+									{r.label}
+								</label>
+							))
+						}
+						{
+							counts.inferred > 0 && (
+								<label class="check" for="show-inferred-graph">
+									<input id="show-inferred-graph" type="checkbox" data-kg-inferred-mirror />
+									Reviewed inferred (dashed, INFERRED)
+								</label>
+							)
+						}
+					</fieldset>
+					<div class="zoom" role="group" aria-label="Zoom">
+						<button class="btn btn--ghost btn--sm" type="button" data-kg-zoom-in aria-label="Zoom in">+</button>
+						<button class="btn btn--ghost btn--sm" type="button" data-kg-zoom-out aria-label="Zoom out">−</button>
+						<button class="btn btn--ghost btn--sm" type="button" data-kg-fit>Fit</button>
+					</div>
+				</div>
+				<div class="stage">
+					<div
+						class="canvas"
+						role="img"
+						aria-label="Knowledge graph: documents, projects, commits and symptoms with their relationships. The list above is the accessible equivalent."
+						data-kg-canvas
+					>
+					</div>
+					<div class="details">
+						<h3 id="kg-details-h" class="sr-only">Selected node</h3>
+						<p class="sr-only" aria-live="polite" data-kg-live></p>
+						<div data-kg-details tabindex="0" class="details-body" role="region" aria-label="Selection details">
+							<p class="kg-d-empty">Select a node to see its relationships.</p>
+						</div>
+						<p class="keys">Escape clears the selection. Drag to pan, scroll or pinch to zoom.</p>
+					</div>
+				</div>
+				<p class="legend-inline">
+					Shapes: <span>▭ document</span>
+					<span>◆ project</span>
+					<span>● commit</span>
+					<span>▲ symptom</span>
+					<span>solid line: extracted</span>
+					{counts.inferred > 0 && <span>dashed line labelled INFERRED: inferred</span>}
+				</p>
+			</div>
+		</section>
+	</div>
+</Base>
+
+<script>
+	type GraphApi = Awaited<ReturnType<(typeof import('../../lib/knowledge-graph-view'))['mountGraph']>>;
+
+	const $ = <T extends Element>(sel: string, root: ParentNode = document) => root.querySelector<T>(sel)!;
+	const $$ = <T extends Element>(sel: string, root: ParentNode = document) => [...root.querySelectorAll<T>(sel)];
+
+	for (const el of $$<HTMLElement>('[data-kb-js]')) el.hidden = false;
+
+	// Search: with JavaScript, the box filters the list in place instead of leaving for GitHub.
+	const form = $<HTMLFormElement>('[data-kb-search]');
+	const input = $<HTMLInputElement>('#kb-q');
+	const status = $<HTMLElement>('[data-kb-status]');
+	const items = $$<HTMLElement>('[data-kb-item]');
+	const empty = $<HTMLElement>('[data-kb-empty]');
+	$<HTMLElement>('[data-kb-submit]').textContent = 'Filter';
+	$<HTMLElement>('[data-kb-hint]').textContent = 'Filters the documents, projects and symptoms on this page as you type.';
+
+	let graph: GraphApi | null = null;
+	let timer = 0;
+	function filter() {
+		const words = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+		let shown = 0;
+		for (const item of items) {
+			const hit = words.every((w) => item.dataset.search!.includes(w));
+			item.hidden = !hit;
+			if (hit) shown++;
+		}
+		for (const group of $$<HTMLElement>('[data-kb-group]')) group.hidden = !$$('[data-kb-item]:not([hidden])', group).length;
+		empty.hidden = shown > 0;
+		graph?.setQuery(input.value);
+		clearTimeout(timer);
+		timer = window.setTimeout(() => {
+			status.textContent = words.length ? `${shown} of ${items.length} items match.` : '';
+		}, 300);
+	}
+	input.addEventListener('input', filter);
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+		filter();
+	});
+
+	// Inferred toggle (rendered only when the graph has inferred edges): CSS shows the list items; the graph mirrors it.
+	const inferred = document.querySelector<HTMLInputElement>('[data-kb-inferred]');
+	const mirror = document.querySelector<HTMLInputElement>('[data-kg-inferred-mirror]');
+	if (inferred && mirror) {
+		inferred.addEventListener('change', () => {
+			mirror.checked = inferred.checked;
+			mirror.dispatchEvent(new Event('change'));
+		});
+		mirror.addEventListener('change', (e) => {
+			if (!e.isTrusted) return;
+			inferred.checked = mirror.checked;
+		});
+	}
+
+	// Graph: loaded by dynamic import only when opened.
+	const section = $<HTMLElement>('[data-kb-graph]');
+	const panel = $<HTMLElement>('#kg-panel');
+	const open = $<HTMLButtonElement>('[data-kg-open]');
+	const loading = $<HTMLElement>('[data-kg-loading]');
+	let mounting: Promise<GraphApi | null> | null = null;
+
+	function show() {
+		panel.hidden = false;
+		open.setAttribute('aria-expanded', 'true');
+		open.textContent = 'Hide interactive graph';
+		graph?.resize();
+	}
+	function load(): Promise<GraphApi | null> {
+		show();
+		mounting ??= (async () => {
+			loading.textContent = 'Loading the graph…';
+			try {
+				const { mountGraph } = await import('../../lib/knowledge-graph-view');
+				graph = await mountGraph('/knowledge/graph.json', {
+					container: $('[data-kg-canvas]'),
+					details: $('[data-kg-details]'),
+					live: $('[data-kg-live]'),
+					project: $('[data-kg-project]'),
+					area: $('[data-kg-area]'),
+					relations: $$('[data-kg-relation]'),
+					inferred: mirror,
+					jump: $('[data-kg-jump]'),
+					zoomIn: $('[data-kg-zoom-in]'),
+					zoomOut: $('[data-kg-zoom-out]'),
+					fit: $('[data-kg-fit]'),
+				});
+				section.dataset.state = 'ready';
+				graph.setQuery(input.value);
+				loading.textContent = `Graph loaded: ${graph.nodeCount} nodes.`;
+				return graph;
+			} catch (err) {
+				loading.textContent = 'The graph could not be loaded. The list above has the same information.';
+				mounting = null;
+				console.warn(err);
+				return null;
+			}
+		})();
+		return mounting;
+	}
+
+	open.addEventListener('click', () => {
+		if (open.getAttribute('aria-expanded') === 'true') {
+			panel.hidden = true;
+			open.setAttribute('aria-expanded', 'false');
+			open.textContent = 'Show interactive graph';
+		} else load();
+	});
+
+	for (const button of $$<HTMLButtonElement>('[data-show-node]')) {
+		button.addEventListener('click', async () => {
+			const g = await load();
+			if (!g) return;
+			panel.scrollIntoView({ block: 'start' });
+			g.select(button.dataset.showNode!, { focus: true });
+		});
+	}
+
+	// Wide screens: load once the panel is scrolled into view (never on first render, never on phones).
+	if (matchMedia('(min-width: 64rem)').matches && 'IntersectionObserver' in window) {
+		const io = new IntersectionObserver((entries) => {
+			if (entries.some((e) => e.isIntersecting) && window.scrollY > 0) {
+				io.disconnect();
+				// Opening grows the section; keep what is below it (e.g. a focused footer link) where it was.
+				const before = section.getBoundingClientRect();
+				const active = document.activeElement;
+				const below = !!active && active !== document.body && !!(section.compareDocumentPosition(active) & Node.DOCUMENT_POSITION_FOLLOWING);
+				load();
+				if (before.top < 0 || below) window.scrollBy(0, section.getBoundingClientRect().height - before.height);
+			}
+		});
+		io.observe(section);
+	}
+</script>
+
+<style>
+	.page {
+		padding-top: clamp(2.5rem, 6vw, 4.5rem);
+		padding-bottom: 3rem;
+	}
+	h1 {
+		margin: 0 0 1rem;
+		font-size: clamp(2rem, 5vw, 3rem);
+		text-transform: uppercase;
+	}
+	h2 {
+		margin: 0 0 1rem;
+		font-size: clamp(1.4rem, 3vw, 1.9rem);
+		text-transform: uppercase;
+	}
+	h3 {
+		margin: 1.75rem 0 0.75rem;
+		font-size: 1.15rem;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	h4 {
+		margin: 0;
+		font-family: var(--rn-font-display);
+		font-size: 1.1rem;
+		line-height: 1.25;
+	}
+	.note,
+	.hint {
+		max-width: 44rem;
+		color: var(--text-muted);
+		font-size: 0.95rem;
+	}
+	.hint {
+		margin: 0.4rem 0 0;
+		font-size: 0.85rem;
+	}
+
+	/* Search */
+	.search {
+		margin: 2rem 0 1.5rem;
+		max-width: 44rem;
+	}
+	.search label {
+		display: block;
+		margin-bottom: 0.4rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.8rem;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	.search-row {
+		display: flex;
+		gap: 0.5rem;
+	}
+	.search input[type='search'] {
+		flex: 1;
+		min-width: 0;
+		min-height: 48px;
+		padding: 0 0.9rem;
+		font: inherit;
+		color: var(--text);
+		background: var(--bg-deep);
+		border: 1px solid var(--line-strong);
+		border-radius: 0;
+	}
+	.search input[type='search']:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+	.status {
+		min-height: 1.6em;
+		margin: 0.4rem 0 0;
+		font-size: 0.9rem;
+		color: var(--text-2);
+	}
+
+	/* Tags: the text says which kind of relationship; colour only repeats it. */
+	.tag,
+	.status-tag {
+		display: inline-block;
+		padding: 0 0.4em;
+		font-family: var(--rn-font-mono);
+		font-size: 0.7rem;
+		font-weight: 400;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		vertical-align: 0.1em;
+		color: var(--text-2);
+		border: 1px solid var(--line-strong);
+	}
+	.tag--inferred {
+		color: var(--rn-amber);
+		border-style: dashed;
+		border-color: var(--rn-amber);
+	}
+
+	.legend {
+		max-width: 44rem;
+		margin-bottom: 1.5rem;
+		padding: 1.25rem;
+		background: var(--surface);
+		border: 1px solid var(--line);
+	}
+	.legend h2 {
+		font-size: 1rem;
+		letter-spacing: 0.06em;
+	}
+	.legend dl {
+		display: grid;
+		gap: 0.75rem;
+		margin: 0;
+	}
+	.legend dl div {
+		display: grid;
+		grid-template-columns: 6.5rem 1fr;
+		gap: 0.75rem;
+	}
+	.legend dd {
+		margin: 0;
+		color: var(--text-2);
+		font-size: 0.95rem;
+	}
+	.toggle-none {
+		margin: 1rem 0 0;
+		color: var(--text-2);
+		font-size: 0.95rem;
+	}
+	.toggle {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		margin: 1rem 0 0;
+		min-height: 44px;
+	}
+	input[type='checkbox'] {
+		width: 1.15rem;
+		height: 1.15rem;
+		margin: 0;
+		accent-color: var(--rn-neon);
+		flex: none;
+	}
+
+	.toc ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1.25rem;
+		margin: 0 0 1rem;
+		padding: 0;
+		list-style: none;
+	}
+	.toc a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		font-family: var(--rn-font-mono);
+		font-size: 0.85rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.block {
+		margin-top: 2.5rem;
+	}
+
+	/* Cards: cut corner, like the project cards. */
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+		gap: 1rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.kcard {
+		padding: 1.25rem 1.25rem 1.4rem;
+		background: var(--surface);
+		border: 1px solid var(--line-strong);
+		border-top: 2px solid var(--rn-neon);
+		clip-path: polygon(0 0, calc(100% - var(--rn-cut)) 0, 100% var(--rn-cut), 100% 100%, var(--rn-cut) 100%, 0 calc(100% - var(--rn-cut)));
+		overflow-wrap: anywhere;
+	}
+	.kcard:target {
+		border-color: var(--rn-neon);
+	}
+	.path {
+		margin: 0.25rem 0 0.75rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		color: var(--text-muted);
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 1rem;
+		margin: 0 0 0.75rem;
+	}
+	.actions a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+	}
+	.btn--sm {
+		min-height: 44px;
+		padding: 0.4rem 0.8rem;
+		font-size: 0.8rem;
+	}
+	.rels {
+		margin: 0;
+		font-size: 0.92rem;
+	}
+	.rels > div {
+		margin-top: 0.75rem;
+	}
+	.rels dt {
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	.rels dd {
+		margin: 0.25rem 0 0;
+	}
+	.rels ul,
+	.plain {
+		margin: 0;
+		padding-left: 1.1rem;
+	}
+	.rels li,
+	.plain li {
+		margin: 0.2rem 0;
+	}
+	.commits {
+		font-family: var(--rn-font-mono);
+		font-size: 0.78rem;
+		color: var(--text-muted);
+	}
+	.why {
+		margin: 0.2rem 0 0.4rem;
+		color: var(--text-2);
+		font-size: 0.88rem;
+	}
+	.sub {
+		margin: 0 0 0.4rem;
+		color: var(--text-2);
+	}
+	.kcard h3 {
+		margin: 0 0 0.5rem;
+		color: var(--text);
+	}
+
+	/* Inferred relationships: hidden until the checkbox is on (works without JavaScript). */
+	.inferred {
+		display: none;
+	}
+	.kb:has(#show-inferred:checked) .inferred {
+		display: block;
+		padding-left: 0.6rem;
+		border-left: 2px dashed var(--rn-amber);
+	}
+
+	.symptoms {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+		gap: 0 1.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.symptoms li {
+		padding: 0.75rem 0;
+		border-bottom: 1px solid var(--line);
+		overflow-wrap: anywhere;
+	}
+	.symptoms li:target {
+		background: var(--surface);
+	}
+	.symptom {
+		margin: 0;
+		font-weight: 600;
+	}
+	.leads {
+		margin: 0.25rem 0 0;
+		font-size: 0.92rem;
+		color: var(--text-2);
+	}
+	.leads .btn {
+		margin-left: 0.5rem;
+	}
+	.empty {
+		margin-top: 2rem;
+		color: var(--text-2);
+	}
+	[hidden] {
+		display: none !important;
+	}
+
+	/* Graph */
+	.graph > p {
+		max-width: 44rem;
+		color: var(--text-2);
+	}
+	.panel {
+		margin-top: 1.25rem;
+	}
+	.controls {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		gap: 0.75rem 1.25rem;
+		margin-bottom: 1rem;
+	}
+	.controls label > span,
+	.controls legend {
+		display: block;
+		margin-bottom: 0.25rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--text-2);
+	}
+	select {
+		min-height: 44px;
+		max-width: 100%;
+		padding: 0 0.6rem;
+		font: inherit;
+		font-size: 0.92rem;
+		color: var(--text);
+		background: var(--bg-deep);
+		border: 1px solid var(--line-strong);
+		border-radius: 0;
+	}
+	.jump select {
+		max-width: min(22rem, 100%);
+	}
+	.controls label {
+		max-width: 100%;
+	}
+	fieldset {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 1rem;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		min-width: 0;
+	}
+	.check {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		min-height: 44px;
+		font-size: 0.88rem;
+	}
+	.zoom {
+		display: flex;
+		gap: 0.5rem;
+	}
+	.zoom .btn {
+		min-width: 44px;
+	}
+	.stage {
+		display: grid;
+		gap: 1rem;
+	}
+	.canvas {
+		position: relative;
+		overflow: hidden;
+		height: min(70vh, 26rem);
+		background:
+			linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
+			linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 32px 32px,
+			var(--bg-deep);
+		border: 1px solid var(--line-strong);
+	}
+	.details {
+		min-width: 0;
+		padding: 1rem;
+		background: var(--surface);
+		border: 1px solid var(--line);
+	}
+	.details-body {
+		max-height: 24rem;
+		overflow: auto;
+		overflow-wrap: anywhere;
+	}
+	.details-body:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+	.details :global(.kg-d-title) {
+		margin: 0 0 0.25rem;
+		font-size: 1.05rem;
+		color: var(--text);
+		text-transform: none;
+	}
+	.details :global(.kg-d-title:focus-visible) {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+	}
+	.details :global(.kg-d-meta),
+	.details :global(.kg-d-count),
+	.keys {
+		margin: 0 0 0.5rem;
+		font-family: var(--rn-font-mono);
+		font-size: 0.75rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--text-muted);
+	}
+	.keys {
+		margin: 0.75rem 0 0;
+		text-transform: none;
+		letter-spacing: 0;
+	}
+	.details :global(.kg-d-rels) {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.9rem;
+	}
+	.details :global(.kg-d-rels li) {
+		padding: 0.3rem 0;
+		border-top: 1px solid var(--line);
+	}
+	.details :global(.kg-d-rel) {
+		color: var(--text-muted);
+	}
+	.details :global(.kg-d-go) {
+		min-height: 32px;
+		padding: 0.2rem 0;
+		font: inherit;
+		color: var(--link);
+		text-align: left;
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+		background: none;
+		border: 0;
+		cursor: pointer;
+	}
+	.details :global(.kg-d-why) {
+		margin: 0.2rem 0 0;
+		color: var(--text-2);
+		font-size: 0.85rem;
+	}
+	.details :global(.tag) {
+		display: inline-block;
+		padding: 0 0.4em;
+		font-family: var(--rn-font-mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.08em;
+		color: var(--text-2);
+		border: 1px solid var(--line-strong);
+	}
+	.details :global(.is-inferred .tag) {
+		color: var(--rn-amber);
+		border: 1px dashed var(--rn-amber);
+	}
+	.details :global(.kg-d-empty) {
+		margin: 0;
+		color: var(--text-2);
+	}
+	.legend-inline {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 1rem;
+		margin: 0.75rem 0 0;
+		font-size: 0.85rem;
+		color: var(--text-2);
+	}
+
+	@media (min-width: 48rem) {
+		.canvas {
+			height: 32rem;
+		}
+	}
+	@media (min-width: 64rem) {
+		.stage {
+			grid-template-columns: minmax(0, 1fr) 20rem;
+		}
+		.canvas {
+			height: 36rem;
+		}
+		.details-body {
+			max-height: 28rem;
+		}
+	}
+</style>

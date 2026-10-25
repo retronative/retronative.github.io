@@ -7,6 +7,9 @@
 //   repository of the organization other than a project's public repo link, or to a
 //   download; no `download` attribute.
 // - The sitemap lists every indexable page, and robots.txt points at it.
+// - /knowledge/ is built, its graph.json is the pinned file (sha256 of src/data/knowledge-graph.lock.json), its document
+//   links go only to the knowledge base's blob/main/ prefix, and no page modulepreloads the lazy graph (Cytoscape) chunk.
+import { createHash } from 'node:crypto';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -44,6 +47,8 @@ for (const p of projects) {
 const privateUrls = projects.flatMap((p) => Object.values(p.links ?? {}).filter((l) => !l.public).map((l) => l.url.replace(/\/$/, '')));
 // Public project links (a public repository may be linked; nothing else in the organization).
 const publicUrls = projects.flatMap((p) => Object.values(p.links ?? {}).filter((l) => l.public).map((l) => l.url.replace(/\/$/, '')));
+// The knowledge base: /knowledge/ links to its documents, and to nothing else in that repository.
+const KB_DOCS = `${ORG}/game-port-knowledge/blob/main/`;
 
 const files = await walk(dist);
 const pages = files.filter((f) => f.endsWith('.html'));
@@ -108,7 +113,7 @@ for (const [file, src] of html) {
 		if (/^https?:\/\//.test(href)) {
 			const u = href.replace(/\/$/, '');
 			if (privateUrls.some((p) => u === p || u.startsWith(`${p}/`) || u.startsWith(`${p}#`))) fail(name, `links to a private target: ${href}`);
-			if (u.startsWith(`${ORG}/`) && !publicUrls.some((p) => u === p)) fail(name, `links into the organization (only ${ORG} itself is allowed): ${href}`);
+			if (u.startsWith(`${ORG}/`) && !publicUrls.some((p) => u === p) && !(name === 'knowledge/index.html' && u.startsWith(KB_DOCS) && u.length > KB_DOCS.length)) fail(name, `links into the organization (only ${ORG} itself is allowed): ${href}`);
 			if (/\/releases(\/|$)|\.(dmg|zip|pkg|app|exe|iso|xex)(\?|#|$)/i.test(u)) fail(name, `download-like link: ${href}`);
 			continue;
 		}
@@ -125,7 +130,21 @@ for (const [file, src] of html) {
 			if (!idsOf(html.get(to) ?? '').has(id)) fail(name, `missing anchor ${href}`);
 		}
 	}
+
+	// 6. The lazy graph chunk is never preloaded.
+	for (const [, tag] of src.matchAll(/(<link[^>]*rel="modulepreload"[^>]*>)/g)) if (/knowledge-graph-view|cytoscape/.test(tag)) fail(name, `modulepreloads the graph chunk: ${tag}`);
 }
+
+// 7. /knowledge/ and its graph.
+const lock = JSON.parse(await readFile(join(root, 'src/data/knowledge-graph.lock.json'), 'utf8'));
+if (!html.has(join(dist, 'knowledge/index.html'))) fail('knowledge/index.html', 'missing');
+const graphFile = join(dist, 'knowledge/graph.json');
+if (!(await exists(graphFile))) fail('knowledge/graph.json', 'missing');
+else {
+	const sum = createHash('sha256').update(await readFile(graphFile)).digest('hex');
+	if (sum !== lock.sha256) fail('knowledge/graph.json', `sha256 ${sum} != lock ${lock.sha256}`);
+}
+if (/["']\/knowledge\/graph\.json/.test(html.get(join(dist, 'index.html')) ?? '')) fail('index.html', 'references /knowledge/graph.json');
 
 // 5. Sitemap and robots.
 const sitemap = (await exists(join(dist, 'sitemap-0.xml'))) ? await readFile(join(dist, 'sitemap-0.xml'), 'utf8') : '';
