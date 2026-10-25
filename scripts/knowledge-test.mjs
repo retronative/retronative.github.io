@@ -109,7 +109,7 @@ try {
 		const derived = await page.$$eval('.shared, [data-kb-legend-derived]', (els) => els.map((e) => e.textContent.replace(/\s+/g, ' ').trim()));
 		check('no-JS: shared-evidence wording is never causal', derived.length > 0 && derived.every((t) => !CAUSAL.test(t)), derived.find((t) => CAUSAL.test(t)) ?? `${derived.length} texts`);
 		const form = await page.$eval('form[role="search"]', (f) => ({ action: f.action, method: f.method, q: !!f.querySelector('input[name="q"]'), type: f.querySelector('input[name="type"]')?.value }));
-		check('no-JS: search form posts to GitHub code search', form.action === 'https://github.com/retronative/game-port-knowledge/search' && form.method === 'get' && form.q && form.type === 'code', JSON.stringify(form));
+		check('no-JS: search form posts to GitHub code search', form.action === 'https://github.com/retronative/knowledge/search' && form.method === 'get' && form.q && form.type === 'code', JSON.stringify(form));
 		const graphHidden = await page.$eval('[data-kb-graph]', (s) => s.hidden && getComputedStyle(s).display === 'none');
 		const jsButtons = await page.$$eval('[data-show-node]', (bs) => bs.filter((b) => b.offsetParent !== null).length);
 		check('no-JS: graph section and Show-in-graph buttons are hidden', graphHidden && jsButtons === 0, `visible buttons ${jsButtons}`);

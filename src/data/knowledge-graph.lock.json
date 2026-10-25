@@ -1,7 +1,7 @@
 {
-	"version": "2.0.0",
-	"sha256": "4c49e7849a35f53915e17e44e3fbbaf2c1f6120df68b2b172b3297b0cf0ed2d2",
-	"source": "retronative/game-port-knowledge",
-	"commit": "a48ffa76d4e5be3258f8a905262ee294c601e599",
+	"version": "2.0.1",
+	"sha256": "c082476456fb79ac03f6bc2643941b7e4817dbc41a75a0b977408139f5b76d92",
+	"source": "retronative/knowledge",
+	"commit": "b68be1175add217f490c28d9db13ea47183520cc",
 	"path": "knowledge-graph/graph.json"
 }

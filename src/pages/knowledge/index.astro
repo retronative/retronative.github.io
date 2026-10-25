@@ -4,7 +4,7 @@ import { site } from '../../site.config';
 import { areas, counts, domId, guides, investigations, projects, symptoms } from '../../lib/knowledge';
 import Evidence from '../../components/KnowledgeEvidence.astro';
 
-const KB_SEARCH = 'https://github.com/retronative/game-port-knowledge/search';
+const KB_SEARCH = 'https://github.com/retronative/knowledge/search';
 const search = (...parts: (string | undefined)[]) => parts.filter(Boolean).join(' ').toLowerCase();
 // The relation filters of the graph. Commits and their cites/in_project edges come with Advanced mode.
 const relations = [
@@ -33,7 +33,7 @@ const investigationAreas = areas.filter((a) => investigations.some((i) => i.node
 		</p>
 		<p class="note">
 			This list is the complete, accessible view of the knowledge graph. An optional interactive graph further down shows the same relationships visually. The
-			documents live in the game-port-knowledge repository, which is not public yet, so its links do not open for now.
+			documents live in the retronative/knowledge repository on GitHub.
 		</p>
 
 		<form class="search" role="search" action={KB_SEARCH} method="get" data-kb-search>
@@ -43,7 +43,7 @@ const investigationAreas = areas.filter((a) => investigations.some((i) => i.node
 				<input type="hidden" name="type" value="code" />
 				<button class="btn btn--ghost" type="submit" data-kb-submit>Search on GitHub</button>
 			</div>
-			<p id="kb-q-hint" class="hint" data-kb-hint>Searches the documents on GitHub (code search in retronative/game-port-knowledge).</p>
+			<p id="kb-q-hint" class="hint" data-kb-hint>Searches the documents on GitHub (code search in retronative/knowledge).</p>
 			<p class="status" role="status" data-kb-status></p>
 		</form>
 

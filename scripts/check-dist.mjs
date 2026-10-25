@@ -48,7 +48,7 @@ const privateUrls = projects.flatMap((p) => Object.values(p.links ?? {}).filter(
 // Public project links (a public repository may be linked; nothing else in the organization).
 const publicUrls = projects.flatMap((p) => Object.values(p.links ?? {}).filter((l) => l.public).map((l) => l.url.replace(/\/$/, '')));
 // The knowledge base: /knowledge/ links to its documents, and to nothing else in that repository.
-const KB_DOCS = `${ORG}/game-port-knowledge/blob/main/`;
+const KB_DOCS = `${ORG}/knowledge/blob/main/`;
 
 const files = await walk(dist);
 const pages = files.filter((f) => f.endsWith('.html'));

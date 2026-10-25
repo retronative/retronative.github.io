@@ -34,7 +34,7 @@ an argument (`npm run test:knowledge -- http://127.0.0.1:4401`).
 | Path | Role |
 |---|---|
 | `src/data/projects.json` | The projects gallery. One entry per port, validated by `src/content.config.ts` |
-| `src/data/knowledge-graph.json` | The knowledge graph shown on `/knowledge/`, pinned byte for byte from `retronative/game-port-knowledge` by `src/data/knowledge-graph.lock.json` (see [Knowledge base](#knowledge-base)) |
+| `src/data/knowledge-graph.json` | The knowledge graph shown on `/knowledge/`, pinned byte for byte from `retronative/knowledge` by `src/data/knowledge-graph.lock.json` (see [Knowledge base](#knowledge-base)) |
 | `src/data/contributors.json` | The hand-curated contributor list (empty for now), validated by `src/lib/contributors.ts` |
 | `src/site.config.ts` | Organization name, mission line, description, GitHub link |
 | `src/lib/platformer.ts` | The hero's original 8-bit platformer loop (canvas, about 3.5 KB gzipped), also drawn as the no-JS still |
@@ -65,7 +65,7 @@ Add an entry to `src/data/projects.json`. The build fails if an entry doesn't ma
 
 ## Knowledge base
 
-`/knowledge/` presents the knowledge base (`retronative/game-port-knowledge`) by concept: start from a symptom,
+`/knowledge/` presents the knowledge base ([`retronative/knowledge`](https://github.com/retronative/knowledge)) by concept: start from a symptom,
 browse guides and the techniques they document (each linked to its section on GitHub), read the investigations (case
 studies), or see which guides and investigations draw on each project. Commit hashes are evidence, not headings: on the
 list they appear only inside each item's collapsed "Evidence" (with the file and line), and the interactive graph shows
@@ -76,12 +76,12 @@ pinned by `src/data/knowledge-graph.lock.json` (version, sha256, commit, path). 
 update it, copy the file from a new commit of the knowledge base and update the lock.
 
 `scripts/check-knowledge-graph.mjs` (part of `npm run verify`) checks the hash against the lock and, when a
-checkout of the knowledge base sits next to this one (`../game-port-knowledge`), that the file is the one at
+checkout of the knowledge base sits next to this one (`../knowledge`), that the file is the one at
 the locked commit; without it the hash alone is checked (`KNOWLEDGE_GRAPH_REQUIRE_PROVENANCE=1` makes that a
 failure). Inferred edges are refused unless `KNOWLEDGE_GRAPH_ALLOW_INFERRED=1`.
 
-**Before deploying `/knowledge/`, the knowledge base repository must be public.** Until then every
-document link on the page returns 404.
+**Before deploying `/knowledge/`, push the knowledge base repository (`retronative/knowledge`, public) with the
+locked commit.** Until then every document link on the page returns 404.
 
 ## Deployment
 

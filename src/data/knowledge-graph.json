@@ -190,6 +190,25 @@
   {
    "advanced": true,
    "commits": [
+    "12179f2"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 81
+    }
+   ],
+   "inverse": "has commit",
+   "label": "is a commit of",
+   "relation": "in_project",
+   "source": "commit:refrozen:12179f2",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
     "240175b"
    ],
    "confidence": "EXTRACTED",
@@ -521,6 +540,21 @@
    "evidence": [
     {
      "file": "general/static-recompilation.md",
+     "line": 62
+    }
+   ],
+   "inverse": "is documented in",
+   "label": "documents",
+   "relation": "documents",
+   "source": "general/static-recompilation.md",
+   "target": "technique:general/static-recompilation.md#runtime-build-type-optimise-the-hot-host-paths-in-every-build-verified-refrozen",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
      "line": 39
     }
    ],
@@ -697,7 +731,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 70
+     "line": 23
     }
    ],
    "inverse": "documents the symptom",
@@ -712,7 +746,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 23
+     "line": 15
     }
    ],
    "inverse": "investigates the symptom",
@@ -727,7 +761,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 77
+     "line": 25
     }
    ],
    "inverse": "documents the symptom",
@@ -742,7 +776,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 47
+     "line": 17
     }
    ],
    "inverse": "documents the symptom",
@@ -757,7 +791,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 19
+     "line": 13
     }
    ],
    "inverse": "documents the symptom",
@@ -772,7 +806,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 56
+     "line": 18
     }
    ],
    "inverse": "documents the symptom",
@@ -787,7 +821,22 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 7
+     "line": 28
+    }
+   ],
+   "inverse": "documents the symptom",
+   "label": "is documented in",
+   "relation": "answered_by",
+   "source": "symptom:debug-build-slow-multi-second-load-stalls-watchdog-low-frame-rat",
+   "target": "general/static-recompilation.md",
+   "weight": 1
+  },
+  {
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "INDEX.md",
+     "line": 6
     }
    ],
    "inverse": "documents the symptom",
@@ -802,7 +851,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 10
+     "line": 9
     }
    ],
    "inverse": "documents the symptom",
@@ -817,7 +866,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 64
+     "line": 20
     }
    ],
    "inverse": "documents the symptom",
@@ -832,7 +881,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 78
+     "line": 26
     }
    ],
    "inverse": "documents the symptom",
@@ -847,7 +896,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 13
+     "line": 10
     }
    ],
    "inverse": "investigates the symptom",
@@ -862,7 +911,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 22
+     "line": 14
     }
    ],
    "inverse": "documents the symptom",
@@ -877,7 +926,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 22
+     "line": 14
     }
    ],
    "inverse": "investigates the symptom",
@@ -892,7 +941,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 16
+     "line": 12
     }
    ],
    "inverse": "documents the symptom",
@@ -922,7 +971,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 15
+     "line": 11
     }
    ],
    "inverse": "documents the symptom",
@@ -937,7 +986,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 33
+     "line": 16
     }
    ],
    "inverse": "documents the symptom",
@@ -952,7 +1001,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 8
+     "line": 7
     }
    ],
    "inverse": "documents the symptom",
@@ -967,7 +1016,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 9
+     "line": 8
     }
    ],
    "inverse": "documents the symptom",
@@ -982,7 +1031,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 75
+     "line": 24
     }
    ],
    "inverse": "investigates the symptom",
@@ -997,7 +1046,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 67
+     "line": 22
     }
    ],
    "inverse": "documents the symptom",
@@ -1012,7 +1061,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 66
+     "line": 21
     }
    ],
    "inverse": "documents the symptom",
@@ -1027,7 +1076,7 @@
    "evidence": [
     {
      "file": "INDEX.md",
-     "line": 63
+     "line": 19
     }
    ],
    "inverse": "documents the symptom",
@@ -1378,6 +1427,43 @@
    "label": "draws on evidence from",
    "relation": "draws_on",
    "source": "technique:general/static-recompilation.md#instruction-semantics",
+   "target": "project:refrozen",
+   "weight": 1
+  },
+  {
+   "advanced": true,
+   "commits": [
+    "12179f2"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 81
+    }
+   ],
+   "inverse": "is cited by",
+   "label": "cites commit",
+   "relation": "cites",
+   "source": "technique:general/static-recompilation.md#runtime-build-type-optimise-the-hot-host-paths-in-every-build-verified-refrozen",
+   "target": "commit:refrozen:12179f2",
+   "weight": 1
+  },
+  {
+   "commits": [
+    "12179f2"
+   ],
+   "confidence": "EXTRACTED",
+   "evidence": [
+    {
+     "file": "general/static-recompilation.md",
+     "line": 81
+    }
+   ],
+   "inverse": "provides evidence for",
+   "label": "draws on evidence from",
+   "relation": "draws_on",
+   "source": "technique:general/static-recompilation.md#runtime-build-type-optimise-the-hot-host-paths-in-every-build-verified-refrozen",
    "target": "project:refrozen",
    "weight": 1
   },
@@ -2046,7 +2132,7 @@
  "nodes": [
   {
    "area": "general",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/bring-up-checklist.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/bring-up-checklist.md",
    "id": "general/bring-up-checklist.md",
    "kind": "guide",
    "label": "New-port bring-up checklist (platform-agnostic)",
@@ -2054,7 +2140,7 @@
   },
   {
    "area": "general",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/concurrency-patterns.md",
    "id": "general/concurrency-patterns.md",
    "kind": "guide",
    "label": "Concurrency patterns in HLE runtimes",
@@ -2062,7 +2148,7 @@
   },
   {
    "area": "general",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/static-recompilation.md",
    "id": "general/static-recompilation.md",
    "kind": "guide",
    "label": "Static recompilation: function discovery and validation (platform-agnostic)",
@@ -2070,7 +2156,7 @@
   },
   {
    "area": "win32",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/win32/loader-and-imports.md",
    "id": "win32/loader-and-imports.md",
    "kind": "guide",
    "label": "Win32 HLE loader: DllMain contract and import accounting",
@@ -2078,7 +2164,7 @@
   },
   {
    "area": "xbox360",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/xbox360/gpu-edram-and-ring.md",
    "id": "xbox360/gpu-edram-and-ring.md",
    "kind": "guide",
    "label": "Xenos GPU: EDRAM formats and the command ring",
@@ -2087,7 +2173,7 @@
   {
    "area": "recarbon",
    "case_signal": "h1",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m4-8-movie-teardown-hang.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/recarbon/m4-8-movie-teardown-hang.md",
    "id": "recarbon/m4-8-movie-teardown-hang.md",
    "kind": "investigation",
    "label": "Case: intermittent movie-teardown hang (ReCarbon M4.8)",
@@ -2096,7 +2182,7 @@
   {
    "area": "recarbon",
    "case_signal": "h1",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/recarbon/m6-render-queue-fences.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/recarbon/m6-render-queue-fences.md",
    "id": "recarbon/m6-render-queue-fences.md",
    "kind": "investigation",
    "label": "Case: deferred render-callback queue without barriers (ReCarbon M6)",
@@ -2105,7 +2191,7 @@
   {
    "area": "win32",
    "case_signal": "sections",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/waveout-on-sdl-audio.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/win32/waveout-on-sdl-audio.md",
    "id": "win32/waveout-on-sdl-audio.md",
    "kind": "investigation",
    "label": "winmm waveOut on SDL audio streams",
@@ -2114,7 +2200,7 @@
   {
    "area": "general",
    "doc": "general/concurrency-patterns.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#data-layout-shared-with-guest-code-verified",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/concurrency-patterns.md#data-layout-shared-with-guest-code-verified",
    "id": "technique:general/concurrency-patterns.md#data-layout-shared-with-guest-code-verified",
    "kind": "technique",
    "label": "Data layout shared with guest code",
@@ -2124,7 +2210,7 @@
   {
    "area": "general",
    "doc": "general/concurrency-patterns.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
    "id": "technique:general/concurrency-patterns.md#host-data-races-on-state-the-guest-treats-as-hardware-verified",
    "kind": "technique",
    "label": "Host data races on state the guest treats as hardware",
@@ -2134,7 +2220,7 @@
   {
    "area": "general",
    "doc": "general/concurrency-patterns.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#lost-wakeups-method",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/concurrency-patterns.md#lost-wakeups-method",
    "id": "technique:general/concurrency-patterns.md#lost-wakeups-method",
    "kind": "technique",
    "label": "Lost wakeups",
@@ -2144,7 +2230,7 @@
   {
    "area": "general",
    "doc": "general/concurrency-patterns.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
    "id": "technique:general/concurrency-patterns.md#priority-inversion-a-real-time-host-thread-waits-on-a-guest-thread-verified-recarbon-69dfc05",
    "kind": "technique",
    "label": "Priority inversion: a real-time host thread waits on a guest thread",
@@ -2154,7 +2240,7 @@
   {
    "area": "general",
    "doc": "general/concurrency-patterns.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#self-suspending-worker-threads-note",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/concurrency-patterns.md#self-suspending-worker-threads-note",
    "id": "technique:general/concurrency-patterns.md#self-suspending-worker-threads-note",
    "kind": "technique",
    "label": "Self-suspending worker threads",
@@ -2164,7 +2250,7 @@
   {
    "area": "general",
    "doc": "general/concurrency-patterns.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
    "id": "technique:general/concurrency-patterns.md#weak-memory-publish-without-barriers-verified-recarbon-540970f",
    "kind": "technique",
    "label": "Weak-memory publish without barriers",
@@ -2174,7 +2260,7 @@
   {
    "area": "general",
    "doc": "general/static-recompilation.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#function-discovery",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/static-recompilation.md#function-discovery",
    "id": "technique:general/static-recompilation.md#function-discovery",
    "kind": "technique",
    "label": "Function discovery",
@@ -2183,7 +2269,7 @@
   {
    "area": "general",
    "doc": "general/static-recompilation.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#instruction-semantics",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/static-recompilation.md#instruction-semantics",
    "id": "technique:general/static-recompilation.md#instruction-semantics",
    "kind": "technique",
    "label": "Instruction semantics",
@@ -2192,7 +2278,17 @@
   {
    "area": "general",
    "doc": "general/static-recompilation.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#structural-validation-of-generated-code-do-this-before-running-anything",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/static-recompilation.md#runtime-build-type-optimise-the-hot-host-paths-in-every-build-verified-refrozen",
+   "id": "technique:general/static-recompilation.md#runtime-build-type-optimise-the-hot-host-paths-in-every-build-verified-refrozen",
+   "kind": "technique",
+   "label": "Runtime build type: optimise the hot host paths in every build",
+   "short": "Runtime build type: optimise the…",
+   "status": "VERIFIED"
+  },
+  {
+   "area": "general",
+   "doc": "general/static-recompilation.md",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/static-recompilation.md#structural-validation-of-generated-code-do-this-before-running-anything",
    "id": "technique:general/static-recompilation.md#structural-validation-of-generated-code-do-this-before-running-anything",
    "kind": "technique",
    "label": "Structural validation of generated code (do this before running anything)",
@@ -2201,7 +2297,7 @@
   {
    "area": "general",
    "doc": "general/static-recompilation.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/general/static-recompilation.md#switch-tables",
+   "href": "https://github.com/retronative/knowledge/blob/main/general/static-recompilation.md#switch-tables",
    "id": "technique:general/static-recompilation.md#switch-tables",
    "kind": "technique",
    "label": "Switch tables",
@@ -2210,7 +2306,7 @@
   {
    "area": "win32",
    "doc": "win32/loader-and-imports.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
+   "href": "https://github.com/retronative/knowledge/blob/main/win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
    "id": "technique:win32/loader-and-imports.md#dllmain-gets-a-non-null-lpreserved-for-static-loads-verified-refrozen-3ce4266",
    "kind": "technique",
    "label": "DllMain gets a non-NULL lpReserved for static loads",
@@ -2220,7 +2316,7 @@
   {
    "area": "win32",
    "doc": "win32/loader-and-imports.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
+   "href": "https://github.com/retronative/knowledge/blob/main/win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
    "id": "technique:win32/loader-and-imports.md#exceptions-escaping-dllmain-are-caught-by-the-loader-verified-refrozen-240175b",
    "kind": "technique",
    "label": "Exceptions escaping DllMain are caught by the loader",
@@ -2230,7 +2326,7 @@
   {
    "area": "win32",
    "doc": "win32/loader-and-imports.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#import-coverage-counts",
+   "href": "https://github.com/retronative/knowledge/blob/main/win32/loader-and-imports.md#import-coverage-counts",
    "id": "technique:win32/loader-and-imports.md#import-coverage-counts",
    "kind": "technique",
    "label": "Import coverage counts",
@@ -2239,7 +2335,7 @@
   {
    "area": "win32",
    "doc": "win32/loader-and-imports.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
+   "href": "https://github.com/retronative/knowledge/blob/main/win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
    "id": "technique:win32/loader-and-imports.md#winsock-11-by-ordinal-verified-refrozen-9c4f745-90cbec7",
    "kind": "technique",
    "label": "Winsock 1.1 by ordinal",
@@ -2249,7 +2345,7 @@
   {
    "area": "xbox360",
    "doc": "xbox360/gpu-edram-and-ring.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
+   "href": "https://github.com/retronative/knowledge/blob/main/xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
    "id": "technique:xbox360/gpu-edram-and-ring.md#edram-colour-formats-share-storage-verified-recarbon-243b8b2",
    "kind": "technique",
    "label": "EDRAM colour formats share storage",
@@ -2259,7 +2355,7 @@
   {
    "area": "xbox360",
    "doc": "xbox360/gpu-edram-and-ring.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#edram-msaa-clears-vs-1x-targets-unresolved-observation",
+   "href": "https://github.com/retronative/knowledge/blob/main/xbox360/gpu-edram-and-ring.md#edram-msaa-clears-vs-1x-targets-unresolved-observation",
    "id": "technique:xbox360/gpu-edram-and-ring.md#edram-msaa-clears-vs-1x-targets-unresolved-observation",
    "kind": "technique",
    "label": "EDRAM MSAA clears vs 1x targets",
@@ -2269,7 +2365,7 @@
   {
    "area": "xbox360",
    "doc": "xbox360/gpu-edram-and-ring.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#memexport",
+   "href": "https://github.com/retronative/knowledge/blob/main/xbox360/gpu-edram-and-ring.md#memexport",
    "id": "technique:xbox360/gpu-edram-and-ring.md#memexport",
    "kind": "technique",
    "label": "Memexport",
@@ -2278,7 +2374,7 @@
   {
    "area": "xbox360",
    "doc": "xbox360/gpu-edram-and-ring.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
+   "href": "https://github.com/retronative/knowledge/blob/main/xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
    "id": "technique:xbox360/gpu-edram-and-ring.md#primary-ring-buffer-re-initialization-verified-recarbon-da1a76e",
    "kind": "technique",
    "label": "Primary ring buffer re-initialization",
@@ -2288,7 +2384,7 @@
   {
    "area": "xbox360",
    "doc": "xbox360/gpu-edram-and-ring.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
+   "href": "https://github.com/retronative/knowledge/blob/main/xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
    "id": "technique:xbox360/gpu-edram-and-ring.md#render-queue-fences-verified-recarbon-540970f",
    "kind": "technique",
    "label": "Render-queue fences",
@@ -2298,7 +2394,7 @@
   {
    "area": "xbox360",
    "doc": "xbox360/gpu-edram-and-ring.md",
-   "href": "https://github.com/retronative/game-port-knowledge/blob/main/xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
+   "href": "https://github.com/retronative/knowledge/blob/main/xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
    "id": "technique:xbox360/gpu-edram-and-ring.md#shader-translation-getgradients-verified-recarbon-044f91d",
    "kind": "technique",
    "label": "Shader translation: getGradients",
@@ -2346,6 +2442,13 @@
    "label": "Data races between guest-visible \"hardware\" and host threads",
    "short": "Data races between guest-visible…",
    "status": "VERIFIED / method"
+  },
+  {
+   "id": "symptom:debug-build-slow-multi-second-load-stalls-watchdog-low-frame-rat",
+   "kind": "symptom",
+   "label": "Debug build slow: multi-second load stalls (watchdog), low frame rate, profile in the runtime's STL code",
+   "short": "Debug build slow: multi-second…",
+   "status": "VERIFIED"
   },
   {
    "id": "symptom:function-count-far-above-the-unwind-table-count",
@@ -2556,6 +2659,14 @@
   },
   {
    "advanced": true,
+   "id": "commit:refrozen:12179f2",
+   "kind": "commit",
+   "label": "reFrozen 12179f2",
+   "project": "project:refrozen",
+   "short": "12179f2"
+  },
+  {
+   "advanced": true,
    "id": "commit:refrozen:240175b",
    "kind": "commit",
    "label": "reFrozen 240175b",
@@ -2648,6 +2759,6 @@
    "win32/waveout-on-sdl-audio.md",
    "xbox360/gpu-edram-and-ring.md"
   ],
-  "dropped_references": 6
+  "dropped_references": 1
  }
 }

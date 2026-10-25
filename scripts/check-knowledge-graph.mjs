@@ -4,7 +4,7 @@
 //   no INFERRED edge unless KNOWLEDGE_GRAPH_ALLOW_INFERRED=1; every document and section link is in the KB repository;
 //   relation labels come from the fixed vocabulary below and never claim a cause or a fix; only commits (and the
 //   cites/in_project edges) are advanced.
-// - Provenance: with a sibling checkout ../game-port-knowledge, `git show <commit>:<path>` must equal the file byte
+// - Provenance: with a sibling checkout ../knowledge, `git show <commit>:<path>` must equal the file byte
 //   for byte, and graph.meta.json at that commit must carry the lock's version and sha256. Without the sibling the
 //   hash alone is checked, unless KNOWLEDGE_GRAPH_REQUIRE_PROVENANCE=1, which makes that a failure.
 // - No string value matches the knowledge base generator's denylist (general/tools/kg_build.py, DENY).
@@ -16,7 +16,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
-const KB_BASE = 'https://github.com/retronative/game-port-knowledge/blob/main/';
+const KB_BASE = 'https://github.com/retronative/knowledge/blob/main/';
 const lock = JSON.parse(await readFile(join(root, 'src/data/knowledge-graph.lock.json'), 'utf8'));
 const bytes = await readFile(join(root, 'src/data/knowledge-graph.json'));
 const graph = JSON.parse(bytes.toString('utf8'));
@@ -69,7 +69,7 @@ for (const n of graph.nodes ?? []) {
 }
 
 // 3. Provenance.
-const sibling = join(root, '..', 'game-port-knowledge');
+const sibling = join(root, '..', 'knowledge');
 let provenance;
 if (existsSync(join(sibling, '.git'))) {
 	const show = (path) => execFileSync('git', ['-C', sibling, 'show', `${lock.commit}:${path}`], { encoding: 'buffer', maxBuffer: 64 << 20, stdio: ['ignore', 'pipe', 'pipe'] });
@@ -85,7 +85,7 @@ if (existsSync(join(sibling, '.git'))) {
 } else if (process.env.KNOWLEDGE_GRAPH_REQUIRE_PROVENANCE === '1') {
 	errors.push(`provenance: no sibling checkout at ${sibling} (KNOWLEDGE_GRAPH_REQUIRE_PROVENANCE=1)`);
 } else {
-	provenance = 'provenance checked by hash only (no sibling ../game-port-knowledge checkout)';
+	provenance = 'provenance checked by hash only (no sibling ../knowledge checkout)';
 }
 
 // 4. Denylist, mirrored from the generator: every string value (keys are schema words).
