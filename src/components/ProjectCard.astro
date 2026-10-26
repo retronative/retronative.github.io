@@ -1,6 +1,6 @@
 ---
 import type { Project } from '../lib/projects';
-import { accentVar, targetLabel } from '../lib/projects';
+import { accentVar, publicLinks, targetLabel } from '../lib/projects';
 import { Picture } from 'astro:assets';
 import ProjectArt from './ProjectArt.astro';
 import StatusBadge from './StatusBadge.astro';
@@ -13,6 +13,8 @@ interface Props {
 const { project, headingLevel: H = 'h3' } = Astro.props;
 const artwork = artworkOf(project.id);
 const diagram = artwork?.diagram;
+// The card opens the project's own site when it has a public one, else its page here.
+const site = publicLinks(project).find((l) => l.kind === 'site')?.url;
 ---
 
 <article
@@ -40,13 +42,17 @@ const diagram = artwork?.diagram;
 	</div>
 	<div class="body">
 		<StatusBadge status={project.status} />
-		<H class="name"><a href={`/projects/${project.id}/`}>{project.name}</a></H>
+		<H class="name">
+			<a href={site ?? `/projects/${project.id}/`} rel={site && 'noopener'}>
+				{project.name}{site && <span class="sr-only"> (external site)</span>}
+			</a>
+		</H>
 		<p class="tagline">{project.tagline}</p>
 		<dl class="meta">
 			<div><dt>Original</dt><dd>{project.game.original_platform}</dd></div>
 			<div><dt>Target</dt><dd>{targetLabel(project)}</dd></div>
 		</dl>
-		<p class="more" aria-hidden="true">View project <span>→</span></p>
+		<p class="more" aria-hidden="true">{site ? 'Visit site' : 'View project'} <span>{site ? '↗' : '→'}</span></p>
 	</div>
 </article>
 
