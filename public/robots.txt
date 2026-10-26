@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://retronative.github.io/sitemap-index.xml
+Sitemap: https://retronative.github.io/recarbon/sitemap-index.xml
