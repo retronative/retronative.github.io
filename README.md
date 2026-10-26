@@ -19,12 +19,11 @@ npm run verify         # astro check + scripts/check-knowledge-graph.mjs + astro
 npm run preview        # serve dist/ on http://127.0.0.1:4400/
 npm run test:a11y      # with the preview running: axe, overflow, keyboard and reduced-motion checks
 npm run test:knowledge # with the preview running: /knowledge/ behaviour (no-JS list, search, lazy graph, advanced mode, labels, motion)
-npm run og             # re-render public/og/retronative.png
 npm run hero-still     # re-render public/hero/platformer-still.png after changing the hero scene
 npm run hero-laptop -- <photo>   # re-cut public/hero/laptop-*.webp from the laptop photo
 ```
 
-`test:a11y`, `test:knowledge`, `og`, `hero-still` and `hero-laptop` use Playwright's Chromium (`npx playwright-core install chromium`);
+`test:a11y`, `test:knowledge`, `hero-still` and `hero-laptop` use Playwright's Chromium (`npx playwright-core install chromium`);
 `hero-laptop` also needs `cwebp` and `dwebp` (libwebp) on the `PATH`;
 `test:a11y` and `test:knowledge` load axe-core 4.10.2 from cdnjs into each page. Both take the preview's URL as
 an argument (`npm run test:knowledge -- http://127.0.0.1:4401`).

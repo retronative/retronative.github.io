@@ -9,6 +9,6 @@ export const site = {
 		label: 'github.com/retronative',
 		url: 'https://github.com/retronative',
 	},
-	ogImage: '/og/retronative.png',
-	ogImageAlt: 'The RetroNative wordmark and the mission line on a dark grid.',
+	ogImage: '/og/retronative.jpg',
+	ogImageAlt: 'The RetroNative wordmark over an archer drawing a glowing bow on a hillside above a city at sunset.',
 } as const;
